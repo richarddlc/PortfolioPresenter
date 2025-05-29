@@ -65,68 +65,7 @@ export default function AboutSection() {
         </div>
       ),
     },
-    {
-      id: "experience",
-      title: "Experience",
-      icon: "🚀",
-      content: (
-        <div className="space-y-8">
-          <div className="border-l-2 border-neon-green pl-6 relative">
-            <div className="absolute w-4 h-4 bg-neon-green rounded-full -left-2 top-0"></div>
-            <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
-              <div>
-                <h4 className="text-lg font-semibold text-neon-green">Instructional Designer</h4>
-                <p className="text-gray-400">Sunlife, Taguig</p>
-              </div>
-              <span className="text-sm text-gray-500 md:text-right">Mar 2025 - Present</span>
-            </div>
-            <ul className="text-gray-300 space-y-2 text-sm">
-              <li>• Analyze business-submitted training content to ensure alignment with defined learning objectives</li>
-              <li>• Develop ILT and WBT modules using Articulate 360, Adobe Suite, and video tools</li>
-              <li>• Apply adult learning frameworks (ADDIE, 4MAT, Agile) to create learner-centric programs</li>
-              <li>• Publish SCORM-compliant content on LMS and Breeze Server</li>
-            </ul>
-            <img
-              src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=300&q=80"
-              alt="Modern laptop displaying educational content and e-learning interface"
-              className="rounded-lg mt-4 w-full h-32 object-cover"
-            />
-          </div>
-
-          <div className="border-l-2 border-gray-600 pl-6 relative">
-            <div className="absolute w-4 h-4 bg-gray-600 rounded-full -left-2 top-0"></div>
-            <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
-              <div>
-                <h4 className="text-lg font-semibold">Digital Instructional Designer</h4>
-                <p className="text-gray-400">TTEC, Philippines</p>
-              </div>
-              <span className="text-sm text-gray-500">Mar 2024 - Mar 2025</span>
-            </div>
-            <ul className="text-gray-300 space-y-2 text-sm">
-              <li>• Created 20+ interactive eLearning modules with scenario-based design</li>
-              <li>• Applied instructional models (ADDIE, SAM) to reduce design cycles by 25%</li>
-              <li>• Managed SAP Litmos LMS for 500+ users; tracked engagement metrics</li>
-              <li>• Collaborated with project managers to align content with KPIs</li>
-            </ul>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="border-l-2 border-gray-600 pl-4 relative">
-              <div className="absolute w-3 h-3 bg-gray-600 rounded-full -left-1.5 top-0"></div>
-              <h5 className="font-semibold">Learning Experience Designer</h5>
-              <p className="text-gray-400 text-sm">Manulife • May 2021 - May 2022</p>
-              <p className="text-gray-300 text-xs mt-1">Redesigned onboarding programs, boosting satisfaction from 70% to 88%</p>
-            </div>
-            <div className="border-l-2 border-gray-600 pl-4 relative">
-              <div className="absolute w-3 h-3 bg-gray-600 rounded-full -left-1.5 top-0"></div>
-              <h5 className="font-semibold">Training Specialist</h5>
-              <p className="text-gray-400 text-sm">Philchema Inc • Aug 2018 - May 2021</p>
-              <p className="text-gray-300 text-xs mt-1">Designed product training programs, reducing onboarding time by 30%</p>
-            </div>
-          </div>
-        </div>
-      ),
-    },
+    
     {
       id: "skills",
       title: "Skills & Technologies",

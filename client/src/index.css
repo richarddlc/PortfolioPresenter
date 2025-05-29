@@ -59,11 +59,15 @@
   body {
     @apply font-sans antialiased bg-background text-foreground;
     font-family: 'Inter', sans-serif;
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewport="0 0 20 20" style="fill:white;font-size:12px;"><text y="14">💼</text></svg>') 16 0, auto;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewport="0 0 24 24" style="fill:%2300ff88;"><circle cx="12" cy="12" r="8" stroke="%23ffffff" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="2" fill="%2300ff88"/></svg>') 12 12, auto;
   }
 
   button, a, [role="button"] {
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewport="0 0 20 20" style="fill:white;font-size:12px;"><text y="14">✋</text></svg>') 16 0, pointer;
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewport="0 0 24 24" style="fill:%2300ff88;"><circle cx="12" cy="12" r="10" stroke="%23ffffff" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="4" fill="%2300ff88"/><circle cx="12" cy="12" r="1" fill="%23ffffff"/></svg>') 12 12, pointer;
+  }
+
+  input, textarea {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewport="0 0 24 24" style="fill:%2300ff88;"><line x1="12" y1="5" x2="12" y2="19" stroke="%2300ff88" stroke-width="2"/><line x1="8" y1="9" x2="16" y2="9" stroke="%2300ff88" stroke-width="1"/><line x1="8" y1="15" x2="16" y2="15" stroke="%2300ff88" stroke-width="1"/></svg>') 12 12, text;
   }
 
   html {
