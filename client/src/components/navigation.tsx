@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,6 +23,48 @@ export default function Navigation() {
     setIsOpen(false);
   };
 
+  const navItems = [
+    { id: "home", label: "Home" },
+    { id: "about", label: "About" },
+    { id: "experience", label: "Experience" },
+    { id: "skills", label: "Skills" },
+    { id: "projects", label: "Portfolio" },
+    { id: "contact", label: "Contact" },
+  ];
+
+  const [activeSection, setActiveSection] = useState("home");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-50% 0% -50% 0%",
+      }
+    );
+
+    navItems.forEach((item) => {
+      const element = document.getElementById(item.id);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => {
+      navItems.forEach((item) => {
+        const element = document.getElementById(item.id);
+        if (element) {
+          observer.unobserve(element);
+        }
+      });
+    };
+  }, []);
+
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -33,47 +76,44 @@ export default function Navigation() {
           <div className="text-xl font-bold">
             Richard<span className="text-neon-green">.</span>
           </div>
-          
+
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
-            <button
-              onClick={() => scrollToSection("home")}
-              className="hover:text-neon-green transition-colors duration-300"
-            >
-              Home
-            </button>
-            <button
-              onClick={() => scrollToSection("about")}
-              className="hover:text-neon-green transition-colors duration-300"
-            >
-              About
-            </button>
-            <button
-              onClick={() => scrollToSection("experience")}
-              className="hover:text-neon-green transition-colors duration-300"
-            >
-              Experience
-            </button>
-            <button
-              onClick={() => scrollToSection("skills")}
-              className="hover:text-neon-green transition-colors duration-300"
-            >
-              Skills
-            </button>
-            <button
-              onClick={() => scrollToSection("projects")}
-              className="hover:text-neon-green transition-colors duration-300"
-            >
-              Portfolio
-            </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="hover:text-neon-green transition-colors duration-300"
-            >
-              Contact
-            </button>
+            {navItems.map((item, index) => (
+              <motion.button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                whileHover={{ 
+                  scale: 1.05,
+                  y: -2
+                }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: index * 0.1,
+                  type: "spring",
+                  stiffness: 200
+                }}
+                className={`${
+                  activeSection === item.id
+                    ? "text-neon-green border-b-2 border-neon-green"
+                    : "text-gray-300 hover:text-neon-green"
+                } pb-1 transition-all duration-300 relative`}
+              >
+                {item.label}
+                {activeSection === item.id && (
+                  <motion.div
+                    layoutId="activeTab"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-neon-green"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
+              </motion.button>
+            ))}
           </div>
-          
+
           <a
             href="/attached_assets/2025 Richard de la Cruz_Resume.pdf"
             download="Richard_de_la_Cruz_Resume.pdf"

@@ -72,11 +72,22 @@ export default function SkillsSection() {
           {skillCategories.map((category, index) => (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              initial={{ opacity: 0, y: 50, rotateX: 45 }}
+              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+              whileHover={{ 
+                y: -10,
+                rotateY: 5,
+                boxShadow: "0 30px 60px rgba(0, 255, 136, 0.2)"
+              }}
+              transition={{ 
+                duration: 0.8, 
+                delay: index * 0.2,
+                type: "spring",
+                stiffness: 100
+              }}
               viewport={{ once: true }}
-              className="bg-dark-secondary p-6 rounded-lg border border-gray-700 hover:border-neon-green/50 transition-all duration-300 group"
+              className="bg-dark-secondary rounded-lg p-8 border border-gray-700 hover:border-neon-green/50 transition-all duration-500 group hover-lift"
+              style={{ transformStyle: "preserve-3d" }}
             >
               <div className="w-full h-48 rounded-lg mb-4 group-hover:scale-105 transition-transform duration-300 bg-gradient-to-br from-dark-tertiary to-dark-secondary relative overflow-hidden">
                 <motion.div
@@ -119,12 +130,12 @@ export default function SkillsSection() {
                   </motion.div>
                 </div>
               </div>
-              
+
               <div className="flex items-center mb-4">
                 {category.icon}
                 <h3 className="text-xl font-bold ml-3 text-neon-green">{category.title}</h3>
               </div>
-              
+
               <ul className="space-y-2 text-gray-300">
                 {category.skills.map((skill, skillIndex) => (
                   <li key={skillIndex} className="flex items-center text-sm">
@@ -146,7 +157,7 @@ export default function SkillsSection() {
           className="bg-dark-secondary p-8 rounded-lg border border-gray-700"
         >
           <h3 className="text-2xl font-bold mb-8 text-center text-neon-green">Expertise Level</h3>
-          
+
           <div className="grid md:grid-cols-2 gap-8">
             {coreSkills.map((skill, index) => (
               <motion.div
@@ -161,7 +172,7 @@ export default function SkillsSection() {
                   <span className="font-medium">{skill.name}</span>
                   <span className="text-neon-green font-bold">{skill.level}%</span>
                 </div>
-                
+
                 <div className="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}

@@ -93,11 +93,26 @@ export default function ExperienceSection() {
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                initial={{ 
+                  opacity: 0, 
+                  x: index % 2 === 0 ? -100 : 100,
+                  scale: 0.8
+                }}
+                whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                whileHover={{ 
+                  scale: 1.02,
+                  y: -5,
+                  boxShadow: "0 20px 40px rgba(0, 255, 136, 0.15)"
+                }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: index * 0.2,
+                  type: "spring",
+                  stiffness: 120,
+                  damping: 15
+                }}
                 viewport={{ once: true }}
-                className="relative flex items-start"
+                className="bg-dark-secondary p-6 rounded-lg border border-gray-700 hover:border-neon-green/50 transition-all duration-500 group hover-lift"
               >
                 {/* Timeline dot */}
                 <div className={`flex-shrink-0 w-16 h-16 ${
@@ -118,7 +133,7 @@ export default function ExperienceSection() {
                     </div>
                     <div className="md:hidden mb-4 group-hover:scale-110 transition-transform duration-300">{exp.icon}</div>
                   </div>
-                  
+
                   <ul className="text-gray-300 space-y-2 text-sm">
                     {exp.description.map((item, itemIndex) => (
                       <motion.li 

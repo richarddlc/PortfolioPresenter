@@ -20,7 +20,7 @@ function Counter({ target, duration = 2000, suffix = "" }: CounterProps) {
       if (!startTime) startTime = timestamp;
       const progress = timestamp - startTime;
       const percentage = Math.min(progress / duration, 1);
-      
+
       const currentCount = Math.floor(startCount + (target - startCount) * percentage);
       setCount(currentCount);
 
@@ -76,7 +76,7 @@ export default function HeroSection() {
           className="absolute bottom-1/4 right-1/4 w-72 h-72 border border-neon-green/5 rounded-full"
         />
       </div>
-      
+
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Mobile: Image first */}
         <div className="md:hidden flex justify-center mb-8">
@@ -92,17 +92,42 @@ export default function HeroSection() {
               className="absolute inset-0 rounded-full border-2 border-dashed border-neon-green/30"
             />
             <div className="relative">
-              <img
-                src={professionalImage}
-                alt="Richard de la Cruz - Professional Headshot"
-                className="w-64 h-64 rounded-full object-cover border-4 border-neon-green animate-pulse-border animate-float"
-              />
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="absolute -top-4 -right-4 w-8 h-8 bg-neon-green rounded-full"
-              />
-            </div>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="relative"
+                >
+                  <img
+                    src={professionalImage}
+                    alt="Richard de la Cruz - Professional Headshot"
+                    className="w-64 h-64 rounded-full object-cover border-4 border-neon-green animate-pulse-border animate-float morph-blob"
+                  />
+                  <motion.div
+                    animate={{ 
+                      scale: [1, 1.2, 1],
+                      rotate: [0, 180, 360]
+                    }}
+                    transition={{ 
+                      duration: 4, 
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    className="absolute -top-4 -right-4 w-8 h-8 bg-neon-green rounded-full"
+                  />
+                  <motion.div
+                    animate={{ 
+                      opacity: [0.3, 0.8, 0.3],
+                      scale: [1, 1.1, 1]
+                    }}
+                    transition={{ 
+                      duration: 3, 
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    className="absolute inset-0 rounded-full bg-neon-green/20 blur-xl"
+                  />
+                </motion.div>
+              </div>
           </motion.div>
         </div>
 
@@ -122,7 +147,7 @@ export default function HeroSection() {
             >
               Instructional Designer
             </motion.p>
-            
+
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -132,7 +157,7 @@ export default function HeroSection() {
               Hello I'm<br />
               <span className="text-neon-green">Richard de la Cruz</span>
             </motion.h1>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -143,7 +168,7 @@ export default function HeroSection() {
               proficient in various instructional design methodologies and 
               eLearning technologies.
             </motion.p>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -168,7 +193,7 @@ export default function HeroSection() {
               </div>
             </motion.div>
           </motion.div>
-          
+
           {/* Desktop Image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -183,21 +208,46 @@ export default function HeroSection() {
                 className="absolute inset-0 rounded-full border-2 border-dashed border-neon-green/30"
               />
               <div className="relative">
-                <img
-                  src={professionalImage}
-                  alt="Richard de la Cruz - Professional Headshot"
-                  className="w-80 h-80 rounded-full object-cover border-4 border-neon-green animate-pulse-border animate-float"
-                />
                 <motion.div
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="absolute -top-4 -right-4 w-8 h-8 bg-neon-green rounded-full"
-                />
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="relative"
+                >
+                  <img
+                    src={professionalImage}
+                    alt="Richard de la Cruz - Professional Headshot"
+                    className="w-80 h-80 rounded-full object-cover border-4 border-neon-green animate-pulse-border animate-float morph-blob"
+                  />
+                  <motion.div
+                    animate={{ 
+                      scale: [1, 1.2, 1],
+                      rotate: [0, 180, 360]
+                    }}
+                    transition={{ 
+                      duration: 4, 
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    className="absolute -top-4 -right-4 w-8 h-8 bg-neon-green rounded-full"
+                  />
+                  <motion.div
+                    animate={{ 
+                      opacity: [0.3, 0.8, 0.3],
+                      scale: [1, 1.1, 1]
+                    }}
+                    transition={{ 
+                      duration: 3, 
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    className="absolute inset-0 rounded-full bg-neon-green/20 blur-xl"
+                  />
+                </motion.div>
               </div>
             </div>
           </motion.div>
         </div>
-        
+
         {/* Stats Section */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
