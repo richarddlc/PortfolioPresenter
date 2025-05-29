@@ -74,12 +74,13 @@ export default function Navigation() {
             </button>
           </div>
           
-          <button
-            onClick={() => scrollToSection("contact")}
+          <a
+            href="/attached_assets/2025 Richard de la Cruz_Resume.pdf"
+            download="Richard_de_la_Cruz_Resume.pdf"
             className="hidden md:block bg-neon-green text-black px-4 py-2 rounded-lg font-medium hover:bg-green-400 transition-colors"
           >
-            Hire me
-          </button>
+            Download CV
+          </a>
 
           {/* Mobile menu button */}
           <button

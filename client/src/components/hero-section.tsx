@@ -150,12 +150,13 @@ export default function HeroSection() {
               transition={{ delay: 0.8, duration: 0.6 }}
               className="flex flex-col items-center gap-4 mb-8"
             >
-              <button
-                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+              <a
+                href="/attached_assets/2025 Richard de la Cruz_Resume.pdf"
+                download="Richard_de_la_Cruz_Resume.pdf"
                 className="bg-neon-green text-black px-8 py-3 rounded-lg font-medium hover:bg-green-400 transition-colors shadow-lg hover:shadow-xl transform hover:scale-105 duration-300"
               >
                 Download CV
-              </button>
+              </a>
               
               <div className="flex space-x-6">
                 <a

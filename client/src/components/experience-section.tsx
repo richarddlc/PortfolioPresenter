@@ -33,7 +33,7 @@ export default function ExperienceSection() {
     },
     {
       period: "AUG 2023 - APR 2024",
-      role: "Marketing Manager & Specialist",
+      role: "Instructional Designer",
       company: "Cognizant Technology Solutions, Taguig",
       description: [
         "Developed microlearning content using Synthesia, Canva, and Evolve",
