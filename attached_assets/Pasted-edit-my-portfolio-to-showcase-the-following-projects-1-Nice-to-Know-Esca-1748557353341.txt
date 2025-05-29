@@ -1,0 +1,303 @@
+edit my portfolio to showcase the following projects:
+
+
+
+
+1. 
+
+
+
+
+### **Nice to Know: Escape Room Module**
+
+
+
+
+**Gamified Microlearning**
+
+
+
+
+A gamified e-learning experience created for seasoned Plan Specialists at Sun Life. Designed as an escape room, the module reinforces additional product knowledge through interactive challenges, puzzles, and scenario-based tasks.
+
+
+
+
+**Technologies & Methods:**
+
+
+
+
+[Articulate Storyline] [Gamification] [Scenario-Based Learning] [Instructional Design] [Microlearning]
+
+
+
+
+**Results:**
+
+
+
+
+High engagement among advanced learners, positive feedback for creativity, and successful knowledge reinforcement beyond core topics.
+
+
+
+
+[Show more] 
+
+
+
+
+When clicked, this full details below should pop up. make it interactive and has the best ui:
+
+
+
+
+### **Nice to Know: Escape Room Module**
+
+
+
+
+**Client:** Sun Life Financial
+
+
+
+
+**Tool Used:** Articulate Storyline 360
+
+
+
+
+**Role:** Instructional Designer
+
+
+
+
+**Project Type:** Self-paced E-learning / Gamified Learning
+
+
+
+
+**Date:** March 2025
+
+
+
+
+### **Project Overview**
+
+
+
+
+This module was part of the *GB Admin Life Plan* curriculum designed for experienced Plan Specialists. Rather than reiterating core knowledge, it provided **additional context, updates, and historical insights**—packaged in a fun, gamified experience using an **escape room format** to boost engagement.
+
+
+
+
+### **Learning Objectives**
+
+
+
+
+- Deepen understanding of non-critical but relevant topics like **Paid-Up Life**, **Clarica Heritage**, and **non-coded Phoenix scenarios**.
+- Encourage **self-directed discovery** through puzzles and scenario-based learning.
+- Reinforce key updates via **challenge-based tasks** and knowledge checks.
+
+
+
+
+### **Instructional Strategies**
+
+
+
+
+- **Gamification**: Learners solve puzzles to progress through different “rooms,” each representing a knowledge topic.
+- **Scenario-Based Learning**: Challenges were wrapped in realistic, work-relevant scenarios.
+- **Immediate Feedback**: Learners received guided feedback after each activity to reinforce correct understanding.
+
+
+
+
+### **Tools & Features**
+
+
+
+
+- Articulate Storyline 360 with custom triggers and branching
+- Drag-and-drop activities, locked progression, and timers
+- Custom avatars and themed visuals for immersion
+- Final “Self Check” room with cumulative scenario challenges
+
+
+
+
+### **Outcome**
+
+
+
+
+The module received **positive feedback from internal SMEs and learners** for its creativity and effectiveness. It was praised for being a refreshing departure from traditional compliance-focused modules while still reinforcing critical operational context.
+
+
+
+
+View project (https://richardportfolio10.s3.ap-southeast-2.amazonaws.com/GIB+Case+Study_Richard/story.html ) 
+
+
+
+
+- [When view project is clicked, the link should be opened in a new tab.](https://richardportfolio10.s3.ap-southeast-2.amazonaws.com/Nice+to+Know_Richard+-+Storyline+output/story.html)
+
+
+
+
+1. 
+
+
+
+
+### **GIB Case Study Module**
+
+
+
+
+**Scenario-Based Training**
+
+
+
+
+Interactive case study training for Case Managers to strengthen decision-making on Guaranteed Insurability Benefit (GIB) requests. Includes realistic scenarios, system simulations, and ATHENA-based guidance.
+
+
+
+
+**Technologies & Methods:**
+
+
+
+
+Articulate Storyline | Scenario-Based Learning | System Simulation | Branching Logic | Instructional Design
+
+
+
+
+**Results:**
+
+
+
+
+Improved learner confidence and accuracy in GIB handling, with strong SME endorsement for real-world alignment.
+
+
+
+
+[View Case Study]
+
+
+
+
+When View Case Study is clicked, the following details should pop up in an interactive best ui.
+
+
+
+
+### **GIB Case Study Module**
+
+
+
+
+**GIB Case Study Module**
+
+
+
+
+**Client:** Sun Life Financial
+
+
+
+
+**Tool Used:** Articulate Storyline 360
+
+
+
+
+**Role:** Instructional Designer
+
+
+
+
+**Project Type:** Self-paced E-learning | Case Study Simulation
+
+
+
+
+**Date:** March 2025
+
+
+
+
+### **Project Overview**
+
+
+
+
+This module is part of the *My New Business Options Learning Curriculum* tailored for Case Managers. It focuses on helping learners navigate **Guaranteed Insurability Benefit (GIB)** cases through **interactive case studies**, **guided decision-making**, and **realistic system simulations** using ATHENA procedures.
+
+
+
+
+### **Learning Objectives**
+
+
+
+
+- Understand how to identify and assess GIB requests.
+- Navigate the correct procedures using PHOENIX and ATHENA systems.
+- Apply judgment in nuanced scenarios using real-life case data.
+
+
+
+
+### **Instructional Strategies**
+
+
+
+
+- **Scenario-Based Learning:** Multiple case studies drawn from real GIB situations.
+- **Guided Prompts:** Learners make decisions with immediate feedback.
+- **System Simulation Walkthroughs:** Simulated screens to reinforce navigation and actions in PHOENIX.
+- **Branching Logic:** Paths differ based on learner choices, allowing them to explore consequences.
+
+
+
+
+### **Tools & Features**
+
+
+
+
+- Articulate Storyline 360 with advanced triggers
+- Custom feedback layers
+- Simulated UI based on Sun Life’s PHOENIX system
+- Embedded ATHENA procedure notes
+
+
+
+
+### **Outcome**
+
+
+
+
+- Learners reported **greater confidence** in managing GIB scenarios.
+- SMEs commended the training for its **realism** and **accuracy**.
+- The module became a benchmark for other case study-based trainings in the curriculum.
+
+
+
+
+View Project (https://richardportfolio10.s3.ap-southeast-2.amazonaws.com/GIB+Case+Study_Richard/story.html )
+
+
+
+
+When View Project Is clicked, the link should be opened in a new window.

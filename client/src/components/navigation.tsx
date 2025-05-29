@@ -61,6 +61,12 @@ export default function Navigation() {
               Skills
             </button>
             <button
+              onClick={() => scrollToSection("projects")}
+              className="hover:text-neon-green transition-colors duration-300"
+            >
+              Portfolio
+            </button>
+            <button
               onClick={() => scrollToSection("contact")}
               className="hover:text-neon-green transition-colors duration-300"
             >
@@ -111,6 +117,12 @@ export default function Navigation() {
                 className="block px-3 py-2 text-white hover:text-neon-green transition-colors w-full text-left"
               >
                 Skills
+              </button>
+              <button
+                onClick={() => scrollToSection("projects")}
+                className="block px-3 py-2 text-white hover:text-neon-green transition-colors w-full text-left"
+              >
+                Portfolio
               </button>
               <button
                 onClick={() => scrollToSection("contact")}

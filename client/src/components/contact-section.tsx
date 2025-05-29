@@ -106,15 +106,7 @@ export default function ContactSection() {
           viewport={{ once: true }}
           className="flex flex-col sm:flex-row justify-center items-center gap-4"
         >
-          <a
-            href="https://richardbdelacruz.my.canva.site/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-neon-green text-black px-8 py-3 rounded-lg font-medium hover:bg-green-400 transition-colors flex items-center gap-2 group"
-          >
-            View Portfolio
-            <ExternalLink size={16} className="group-hover:translate-x-1 transition-transform" />
-          </a>
+
           
           <a
             href="https://linkedin.com/in/richard-de-la-cruz-7782bb92"
