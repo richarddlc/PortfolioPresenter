@@ -10,6 +10,7 @@ interface Project {
   technologies: string[];
   results: string;
   viewLink: string;
+  thumbnail?: string;
   details: {
     client: string;
     tool: string;
@@ -36,6 +37,7 @@ export default function ProjectsSection() {
       technologies: ["Articulate Storyline", "Gamification", "Scenario-Based Learning", "Instructional Design", "Microlearning"],
       results: "High engagement among advanced learners, positive feedback for creativity, and successful knowledge reinforcement beyond core topics.",
       viewLink: "https://richardportfolio10.s3.ap-southeast-2.amazonaws.com/Nice+to+Know_Richard+-+Storyline+output/story.html",
+      thumbnail: "/attached_assets/Nice to Know.png",
       details: {
         client: "Sun Life Financial",
         tool: "Articulate Storyline 360",
@@ -70,6 +72,7 @@ export default function ProjectsSection() {
       technologies: ["Articulate Storyline", "Scenario-Based Learning", "System Simulation", "Branching Logic", "Instructional Design"],
       results: "Improved learner confidence and accuracy in GIB handling, with strong SME endorsement for real-world alignment.",
       viewLink: "https://richardportfolio10.s3.ap-southeast-2.amazonaws.com/GIB+Case+Study_Richard/story.html",
+      thumbnail: "/attached_assets/GIB Case Study.png",
       details: {
         client: "Sun Life Financial",
         tool: "Articulate Storyline 360",
@@ -131,14 +134,43 @@ export default function ProjectsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="bg-dark-secondary p-6 rounded-lg border border-gray-700 hover:border-neon-green/50 transition-all duration-300 group"
+              className="bg-dark-secondary rounded-lg border border-gray-700 hover:border-neon-green/50 transition-all duration-300 group overflow-hidden"
             >
-              <h3 className="text-xl font-bold mb-2 text-neon-green">{project.title}</h3>
-              <h4 className="text-lg font-semibold mb-4 text-gray-300">{project.subtitle}</h4>
+              {/* Project Thumbnail */}
+              {project.thumbnail && (
+                <div className="relative overflow-hidden">
+                  <motion.img
+                    src={project.thumbnail}
+                    alt={project.title}
+                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileHover={{ opacity: 1, y: 0 }}
+                    className="absolute bottom-4 left-4 right-4"
+                  >
+                    <div className="bg-black/70 backdrop-blur-sm rounded-lg p-3">
+                      <h3 className="text-lg font-bold text-neon-green">{project.title}</h3>
+                      <p className="text-sm text-gray-300">{project.subtitle}</p>
+                    </div>
+                  </motion.div>
+                </div>
+              )}
               
-              <p className="text-gray-400 mb-4 text-sm leading-relaxed">
-                {project.description}
-              </p>
+              <div className="p-6">
+                {!project.thumbnail && (
+                  <>
+                    <h3 className="text-xl font-bold mb-2 text-neon-green">{project.title}</h3>
+                    <h4 className="text-lg font-semibold mb-4 text-gray-300">{project.subtitle}</h4>
+                  </>
+                )}
+                
+                <p className="text-gray-400 mb-4 text-sm leading-relaxed">
+                  {project.description}
+                </p>
 
               <div className="mb-4">
                 <h5 className="text-sm font-semibold mb-2 text-neon-green">Technologies & Methods:</h5>
@@ -157,21 +189,26 @@ export default function ProjectsSection() {
               </div>
 
               <div className="flex gap-3">
-                <button
-                  onClick={() => openProjectModal(project)}
-                  className="bg-neon-green text-black px-4 py-2 rounded-lg font-medium hover:bg-green-400 transition-colors text-sm"
-                >
-                  Show more
-                </button>
-                <a
-                  href={project.viewLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border border-neon-green text-neon-green px-4 py-2 rounded-lg font-medium hover:bg-neon-green hover:text-black transition-colors text-sm flex items-center gap-2"
-                >
-                  View Project
-                  <ExternalLink size={14} />
-                </a>
+                  <motion.button
+                    onClick={() => openProjectModal(project)}
+                    className="bg-neon-green text-black px-4 py-2 rounded-lg font-medium hover:bg-green-400 transition-colors text-sm"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Show more
+                  </motion.button>
+                  <motion.a
+                    href={project.viewLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border border-neon-green text-neon-green px-4 py-2 rounded-lg font-medium hover:bg-neon-green hover:text-black transition-colors text-sm flex items-center gap-2"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    View Project
+                    <ExternalLink size={14} />
+                  </motion.a>
+                </div>
               </div>
             </motion.div>
           ))}
