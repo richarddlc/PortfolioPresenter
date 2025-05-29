@@ -54,11 +54,27 @@ export default function HeroSection() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="relative"
           >
-            <img
-              src={professionalImage}
-              alt="Richard de la Cruz - Professional Headshot"
-              className="w-64 h-64 rounded-full object-cover border-4 border-neon-green"
-            />
+            <div className="relative">
+              <img
+                src={professionalImage}
+                alt="Richard de la Cruz - Professional Headshot"
+                className="w-64 h-64 rounded-full object-cover"
+              />
+              <div className="absolute inset-0 rounded-full animate-spin-slow">
+                <svg className="w-full h-full" viewBox="0 0 100 100">
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="48"
+                    fill="none"
+                    stroke="#00ff88"
+                    strokeWidth="2"
+                    strokeDasharray="20 10 5 10"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
+            </div>
           </motion.div>
         </div>
 
@@ -132,11 +148,27 @@ export default function HeroSection() {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="hidden md:flex justify-center"
           >
-            <img
-              src={professionalImage}
-              alt="Richard de la Cruz - Professional Headshot"
-              className="w-80 h-80 rounded-full object-cover border-4 border-neon-green"
-            />
+            <div className="relative">
+              <img
+                src={professionalImage}
+                alt="Richard de la Cruz - Professional Headshot"
+                className="w-80 h-80 rounded-full object-cover"
+              />
+              <div className="absolute inset-0 rounded-full animate-spin-slow">
+                <svg className="w-full h-full" viewBox="0 0 100 100">
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="48"
+                    fill="none"
+                    stroke="#00ff88"
+                    strokeWidth="2"
+                    strokeDasharray="20 10 5 10"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </div>
+            </div>
           </motion.div>
         </div>
 
