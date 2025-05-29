@@ -107,21 +107,29 @@ export default function ExperienceSection() {
                 </div>
 
                 {/* Content */}
-                <div className="w-full md:ml-8 bg-dark-primary p-6 rounded-lg border border-gray-700 hover:border-neon-green/50 transition-colors">
+                <div className="w-full md:ml-8 bg-dark-primary p-6 rounded-lg border border-gray-700 hover:border-neon-green/50 transition-all duration-300 group hover:shadow-lg hover:shadow-neon-green/20 hover:scale-[1.02] cursor-pointer">
                   <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
                     <div>
-                      <div className={`text-sm mb-2 ${exp.current ? "text-neon-green" : "text-gray-400"}`}>
+                      <div className={`text-sm mb-2 transition-colors duration-300 ${exp.current ? "text-neon-green" : "text-gray-400 group-hover:text-neon-green"}`}>
                         {exp.period}
                       </div>
-                      <h3 className="text-xl font-bold mb-2">{exp.role}</h3>
-                      <h4 className="text-gray-400 mb-4">{exp.company}</h4>
+                      <h3 className="text-xl font-bold mb-2 group-hover:text-neon-green transition-colors duration-300">{exp.role}</h3>
+                      <h4 className="text-gray-400 mb-4 group-hover:text-gray-200 transition-colors duration-300">{exp.company}</h4>
                     </div>
-                    <div className="md:hidden mb-4">{exp.icon}</div>
+                    <div className="md:hidden mb-4 group-hover:scale-110 transition-transform duration-300">{exp.icon}</div>
                   </div>
                   
                   <ul className="text-gray-300 space-y-2 text-sm">
                     {exp.description.map((item, itemIndex) => (
-                      <li key={itemIndex}>• {item}</li>
+                      <motion.li 
+                        key={itemIndex}
+                        initial={{ opacity: 0.7 }}
+                        whileHover={{ opacity: 1, x: 5 }}
+                        transition={{ duration: 0.2 }}
+                        className="group-hover:text-white transition-colors duration-300"
+                      >
+                        • {item}
+                      </motion.li>
                     ))}
                   </ul>
                 </div>

@@ -78,11 +78,47 @@ export default function SkillsSection() {
               viewport={{ once: true }}
               className="bg-dark-secondary p-6 rounded-lg border border-gray-700 hover:border-neon-green/50 transition-all duration-300 group"
             >
-              <img
-                src={category.image}
-                alt={`${category.title} illustration`}
-                className="w-full h-48 object-cover rounded-lg mb-4 group-hover:scale-105 transition-transform duration-300"
-              />
+              <div className="w-full h-48 rounded-lg mb-4 group-hover:scale-105 transition-transform duration-300 bg-gradient-to-br from-dark-tertiary to-dark-secondary relative overflow-hidden">
+                <motion.div
+                  animate={{
+                    backgroundPosition: ["0% 0%", "100% 100%"],
+                  }}
+                  transition={{
+                    duration: 8,
+                    ease: "linear",
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                  }}
+                  className="absolute inset-0 opacity-30"
+                  style={{
+                    backgroundImage: `
+                      radial-gradient(circle at 30% 40%, rgba(0, 255, 136, 0.2) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 20%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 40% 80%, rgba(0, 255, 136, 0.15) 0%, transparent 50%)
+                    `,
+                    backgroundSize: "100% 100%",
+                  }}
+                />
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, ease: "linear", repeat: Infinity }}
+                  className="absolute top-4 right-4 w-16 h-16 border border-neon-green/20 rounded-full"
+                />
+                <motion.div
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 15, ease: "linear", repeat: Infinity }}
+                  className="absolute bottom-4 left-4 w-12 h-12 border border-neon-green/10 rounded-full"
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <motion.div
+                    animate={{ y: [-10, 10, -10] }}
+                    transition={{ duration: 3, ease: "easeInOut", repeat: Infinity }}
+                    className="text-6xl opacity-80"
+                  >
+                    {category.icon}
+                  </motion.div>
+                </div>
+              </div>
               
               <div className="flex items-center mb-4">
                 {category.icon}

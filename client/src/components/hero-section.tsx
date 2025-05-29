@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { FaLinkedinIn, FaGithub, FaEnvelope } from "react-icons/fa";
+import { FaLinkedinIn, FaEnvelope } from "react-icons/fa";
+import professionalImage from "@assets/Untitled design (14).png";
 
 interface CounterProps {
   target: number;
@@ -40,8 +41,43 @@ function Counter({ target, duration = 2000, suffix = "" }: CounterProps) {
 
 export default function HeroSection() {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16">
-      <div className="max-w-6xl mx-auto">
+    <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-dark-primary via-dark-secondary to-dark-primary"></div>
+        <motion.div
+          animate={{
+            backgroundPosition: ["0% 0%", "100% 100%"],
+          }}
+          transition={{
+            duration: 20,
+            ease: "linear",
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
+          className="absolute inset-0 opacity-30"
+          style={{
+            backgroundImage: `
+              radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 40% 80%, rgba(0, 255, 136, 0.05) 0%, transparent 50%)
+            `,
+            backgroundSize: "100% 100%",
+          }}
+        />
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 50, ease: "linear", repeat: Infinity }}
+          className="absolute top-1/4 left-1/4 w-96 h-96 border border-neon-green/10 rounded-full"
+        />
+        <motion.div
+          animate={{ rotate: -360 }}
+          transition={{ duration: 70, ease: "linear", repeat: Infinity }}
+          className="absolute bottom-1/4 right-1/4 w-72 h-72 border border-neon-green/5 rounded-full"
+        />
+      </div>
+      
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Mobile: Image first */}
         <div className="md:hidden flex justify-center mb-8">
           <motion.div
@@ -57,7 +93,7 @@ export default function HeroSection() {
             />
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=500&q=80"
+                src={professionalImage}
                 alt="Richard de la Cruz - Professional Headshot"
                 className="w-64 h-64 rounded-full object-cover border-4 border-neon-green animate-pulse-border animate-float"
               />
@@ -112,37 +148,29 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.6 }}
-              className="flex flex-col sm:flex-row items-center gap-4 mb-8"
+              className="flex flex-col items-center gap-4 mb-8"
             >
               <button
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                className="bg-neon-green text-black px-6 py-3 rounded-lg font-medium hover:bg-green-400 transition-colors"
+                className="bg-neon-green text-black px-8 py-3 rounded-lg font-medium hover:bg-green-400 transition-colors shadow-lg hover:shadow-xl transform hover:scale-105 duration-300"
               >
                 Download CV
               </button>
               
-              <div className="flex space-x-4">
+              <div className="flex space-x-6">
                 <a
                   href="https://linkedin.com/in/richard-de-la-cruz-7782bb92"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-dark-secondary rounded-full flex items-center justify-center hover:bg-neon-green hover:text-black transition-colors"
+                  className="w-14 h-14 bg-dark-secondary rounded-full flex items-center justify-center hover:bg-neon-green hover:text-black transition-colors transform hover:scale-110 duration-300 shadow-lg"
                 >
-                  <FaLinkedinIn />
+                  <FaLinkedinIn size={20} />
                 </a>
                 <a
                   href="mailto:chard.bdc@gmail.com"
-                  className="w-12 h-12 bg-dark-secondary rounded-full flex items-center justify-center hover:bg-neon-green hover:text-black transition-colors"
+                  className="w-14 h-14 bg-dark-secondary rounded-full flex items-center justify-center hover:bg-neon-green hover:text-black transition-colors transform hover:scale-110 duration-300 shadow-lg"
                 >
-                  <FaEnvelope />
-                </a>
-                <a
-                  href="https://richardbdelacruz.my.canva.site/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 bg-dark-secondary rounded-full flex items-center justify-center hover:bg-neon-green hover:text-black transition-colors"
-                >
-                  <FaGithub />
+                  <FaEnvelope size={20} />
                 </a>
               </div>
             </motion.div>
@@ -163,7 +191,7 @@ export default function HeroSection() {
               />
               <div className="relative">
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=500&q=80"
+                  src={professionalImage}
                   alt="Richard de la Cruz - Professional Headshot"
                   className="w-80 h-80 rounded-full object-cover border-4 border-neon-green animate-pulse-border animate-float"
                 />
@@ -193,7 +221,7 @@ export default function HeroSection() {
             </div>
             <div className="animate-counter">
               <div className="text-3xl font-bold text-neon-green">
-                <Counter target={20} suffix="+" />
+                <Counter target={50} suffix="+" />
               </div>
               <div className="text-gray-400 text-sm">eLearning<br />Modules</div>
             </div>
