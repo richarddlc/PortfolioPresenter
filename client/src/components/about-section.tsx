@@ -211,7 +211,7 @@ export default function AboutSection() {
 
   return (
     <section id="about" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -225,7 +225,8 @@ export default function AboutSection() {
           </p>
         </motion.div>
 
-        <div className="space-y-6">
+        {/* Mobile Layout - Keep collapsible */}
+        <div className="md:hidden space-y-6">
           {sections.map((section, index) => (
             <motion.div
               key={section.id}
@@ -272,6 +273,72 @@ export default function AboutSection() {
               </AnimatePresence>
             </motion.div>
           ))}
+        </div>
+
+        {/* Desktop Layout - Tabs on left, content on right */}
+        <div className="hidden md:flex gap-8">
+          {/* Left Side - Tabs */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="w-80 flex-shrink-0"
+          >
+            <div className="space-y-3">
+              {sections.map((section, index) => (
+                <motion.button
+                  key={section.id}
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  onClick={() => setActiveSection(section.id)}
+                  className={`w-full p-4 text-left rounded-lg transition-all duration-300 ${
+                    activeSection === section.id
+                      ? "bg-neon-green text-black"
+                      : "bg-dark-secondary hover:bg-dark-tertiary"
+                  }`}
+                >
+                  <div className="flex items-center">
+                    <span className="text-2xl mr-4">{section.icon}</span>
+                    <h3 className="text-lg font-semibold">{section.title}</h3>
+                  </div>
+                </motion.button>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right Side - Content */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="flex-1"
+          >
+            <div className="bg-dark-secondary rounded-lg p-8 min-h-[500px]">
+              <AnimatePresence mode="wait">
+                {sections.map((section) => (
+                  activeSection === section.id && (
+                    <motion.div
+                      key={section.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="flex items-center mb-6">
+                        <span className="text-3xl mr-4">{section.icon}</span>
+                        <h3 className="text-2xl font-bold text-neon-green">{section.title}</h3>
+                      </div>
+                      {section.content}
+                    </motion.div>
+                  )
+                ))}
+              </AnimatePresence>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
