@@ -148,16 +148,8 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.6 }}
-              className="flex flex-col items-center gap-4 mb-8"
+              className="flex justify-center mb-8"
             >
-              <a
-                href="/attached_assets/2025 Richard de la Cruz_Resume.pdf"
-                download="Richard_de_la_Cruz_Resume.pdf"
-                className="bg-neon-green text-black px-8 py-3 rounded-lg font-medium hover:bg-green-400 transition-colors shadow-lg hover:shadow-xl transform hover:scale-105 duration-300"
-              >
-                Download CV
-              </a>
-              
               <div className="flex space-x-6">
                 <a
                   href="https://linkedin.com/in/richard-de-la-cruz-7782bb92"
