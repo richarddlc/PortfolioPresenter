@@ -72,62 +72,15 @@ export default function SkillsSection() {
           {skillCategories.map((category, index) => (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, y: 50, rotateX: 45 }}
-              whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-              whileHover={{ 
-                y: -10,
-                rotateY: 5,
-                boxShadow: "0 30px 60px rgba(0, 255, 136, 0.2)"
-              }}
-              transition={{ 
-                duration: 0.8, 
-                delay: index * 0.2,
-                type: "spring",
-                stiffness: 100
-              }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="bg-dark-secondary rounded-lg p-8 border border-gray-700 hover:border-neon-green/50 transition-all duration-500 group hover-lift"
-              style={{ transformStyle: "preserve-3d" }}
+              className="bg-dark-secondary rounded-lg p-8 border border-gray-700 hover:border-neon-green/50 transition-all duration-300"
             >
-              <div className="w-full h-48 rounded-lg mb-4 group-hover:scale-105 transition-transform duration-300 bg-gradient-to-br from-dark-tertiary to-dark-secondary relative overflow-hidden">
-                <motion.div
-                  animate={{
-                    backgroundPosition: ["0% 0%", "100% 100%"],
-                  }}
-                  transition={{
-                    duration: 8,
-                    ease: "linear",
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                  }}
-                  className="absolute inset-0 opacity-30"
-                  style={{
-                    backgroundImage: `
-                      radial-gradient(circle at 30% 40%, rgba(0, 255, 136, 0.2) 0%, transparent 50%),
-                      radial-gradient(circle at 80% 20%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
-                      radial-gradient(circle at 40% 80%, rgba(0, 255, 136, 0.15) 0%, transparent 50%)
-                    `,
-                    backgroundSize: "100% 100%",
-                  }}
-                />
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, ease: "linear", repeat: Infinity }}
-                  className="absolute top-4 right-4 w-16 h-16 border border-neon-green/20 rounded-full"
-                />
-                <motion.div
-                  animate={{ rotate: -360 }}
-                  transition={{ duration: 15, ease: "linear", repeat: Infinity }}
-                  className="absolute bottom-4 left-4 w-12 h-12 border border-neon-green/10 rounded-full"
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <motion.div
-                    animate={{ y: [-10, 10, -10] }}
-                    transition={{ duration: 3, ease: "easeInOut", repeat: Infinity }}
-                    className="text-6xl opacity-80"
-                  >
-                    {category.icon}
-                  </motion.div>
+              <div className="w-full h-48 rounded-lg mb-4 bg-gradient-to-br from-dark-tertiary to-dark-secondary flex items-center justify-center">
+                <div className="text-6xl opacity-80">
+                  {category.icon}
                 </div>
               </div>
 

@@ -93,26 +93,11 @@ export default function ExperienceSection() {
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
-                initial={{ 
-                  opacity: 0, 
-                  x: index % 2 === 0 ? -100 : 100,
-                  scale: 0.8
-                }}
-                whileInView={{ opacity: 1, x: 0, scale: 1 }}
-                whileHover={{ 
-                  scale: 1.02,
-                  y: -5,
-                  boxShadow: "0 20px 40px rgba(0, 255, 136, 0.15)"
-                }}
-                transition={{ 
-                  duration: 0.8, 
-                  delay: index * 0.2,
-                  type: "spring",
-                  stiffness: 120,
-                  damping: 15
-                }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="bg-dark-secondary p-6 rounded-lg border border-gray-700 hover:border-neon-green/50 transition-all duration-500 group hover-lift"
+                className="bg-dark-secondary p-6 rounded-lg border border-gray-700 hover:border-neon-green/50 transition-all duration-300"
               >
                 {/* Timeline dot */}
                 <div className={`flex-shrink-0 w-16 h-16 ${
@@ -122,7 +107,7 @@ export default function ExperienceSection() {
                 </div>
 
                 {/* Content */}
-                <div className="w-full md:ml-8 bg-dark-primary p-6 rounded-lg border border-gray-700 hover:border-neon-green/50 transition-all duration-300 group hover:shadow-lg hover:shadow-neon-green/20 hover:scale-[1.02] cursor-pointer">
+                <div className="w-full md:ml-8 bg-dark-primary p-6 rounded-lg border border-gray-700 hover:border-neon-green/50 transition-all duration-300">
                   <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
                     <div>
                       <div className={`text-sm mb-2 transition-colors duration-300 ${exp.current ? "text-neon-green" : "text-gray-400 group-hover:text-neon-green"}`}>
@@ -136,15 +121,9 @@ export default function ExperienceSection() {
 
                   <ul className="text-gray-300 space-y-2 text-sm">
                     {exp.description.map((item, itemIndex) => (
-                      <motion.li 
-                        key={itemIndex}
-                        initial={{ opacity: 0.7 }}
-                        whileHover={{ opacity: 1, x: 5 }}
-                        transition={{ duration: 0.2 }}
-                        className="group-hover:text-white transition-colors duration-300"
-                      >
+                      <li key={itemIndex} className="text-gray-300">
                         • {item}
-                      </motion.li>
+                      </li>
                     ))}
                   </ul>
                 </div>

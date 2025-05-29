@@ -307,30 +307,7 @@ export default function AboutSection() {
             </div>
           </motion.div>
         </div>
-        {/* Desktop Layout - Show all sections expanded */}
-        <div className="hidden md:grid md:grid-cols-2 gap-8">
-          {sections.map((section, index) => (
-            <motion.div
-              key={section.id}
-              initial={{ opacity: 0, y: 50, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              whileHover={{ 
-                y: -5,
-                boxShadow: "0 25px 50px rgba(0, 255, 136, 0.15)"
-              }}
-              transition={{ 
-                duration: 0.6, 
-                delay: index * 0.2,
-                type: "spring",
-                stiffness: 100
-              }}
-              viewport={{ once: true }}
-              className="bg-dark-secondary rounded-lg p-6 border border-gray-700 hover:border-neon-green/50 transition-all duration-500 hover-lift"
-              style={{ "--animation-order": index } as React.CSSProperties}
-            >
-              </motion.div>
-          ))}
-        </div>
+        
       </div>
     </section>
   );

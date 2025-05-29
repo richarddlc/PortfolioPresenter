@@ -80,37 +80,17 @@ export default function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
             {navItems.map((item, index) => (
-              <motion.button
+              <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                whileHover={{ 
-                  scale: 1.05,
-                  y: -2
-                }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ 
-                  duration: 0.5, 
-                  delay: index * 0.1,
-                  type: "spring",
-                  stiffness: 200
-                }}
                 className={`${
                   activeSection === item.id
                     ? "text-neon-green border-b-2 border-neon-green"
                     : "text-gray-300 hover:text-neon-green"
-                } pb-1 transition-all duration-300 relative`}
+                } pb-1 transition-colors duration-300`}
               >
                 {item.label}
-                {activeSection === item.id && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-neon-green"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
-                )}
-              </motion.button>
+              </button>
             ))}
           </div>
 

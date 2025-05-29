@@ -42,40 +42,8 @@ function Counter({ target, duration = 2000, suffix = "" }: CounterProps) {
 export default function HeroSection() {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-dark-primary via-dark-secondary to-dark-primary"></div>
-        <motion.div
-          animate={{
-            backgroundPosition: ["0% 0%", "100% 100%"],
-          }}
-          transition={{
-            duration: 20,
-            ease: "linear",
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: `
-              radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 40% 80%, rgba(0, 255, 136, 0.05) 0%, transparent 50%)
-            `,
-            backgroundSize: "100% 100%",
-          }}
-        />
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 50, ease: "linear", repeat: Infinity }}
-          className="absolute top-1/4 left-1/4 w-96 h-96 border border-neon-green/10 rounded-full"
-        />
-        <motion.div
-          animate={{ rotate: -360 }}
-          transition={{ duration: 70, ease: "linear", repeat: Infinity }}
-          className="absolute bottom-1/4 right-1/4 w-72 h-72 border border-neon-green/5 rounded-full"
-        />
-      </div>
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-dark-primary via-dark-secondary to-dark-primary opacity-80"></div>
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Mobile: Image first */}
@@ -86,48 +54,11 @@ export default function HeroSection() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="relative"
           >
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-0 rounded-full border-2 border-dashed border-neon-green/30"
+            <img
+              src={professionalImage}
+              alt="Richard de la Cruz - Professional Headshot"
+              className="w-64 h-64 rounded-full object-cover border-4 border-neon-green"
             />
-            <div className="relative">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="relative"
-                >
-                  <img
-                    src={professionalImage}
-                    alt="Richard de la Cruz - Professional Headshot"
-                    className="w-64 h-64 rounded-full object-cover border-4 border-neon-green animate-pulse-border animate-float morph-blob"
-                  />
-                  <motion.div
-                    animate={{ 
-                      scale: [1, 1.2, 1],
-                      rotate: [0, 180, 360]
-                    }}
-                    transition={{ 
-                      duration: 4, 
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                    className="absolute -top-4 -right-4 w-8 h-8 bg-neon-green rounded-full"
-                  />
-                  <motion.div
-                    animate={{ 
-                      opacity: [0.3, 0.8, 0.3],
-                      scale: [1, 1.1, 1]
-                    }}
-                    transition={{ 
-                      duration: 3, 
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                    className="absolute inset-0 rounded-full bg-neon-green/20 blur-xl"
-                  />
-                </motion.div>
-              </div>
           </motion.div>
         </div>
 
@@ -201,50 +132,11 @@ export default function HeroSection() {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="hidden md:flex justify-center"
           >
-            <div className="relative">
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 rounded-full border-2 border-dashed border-neon-green/30"
-              />
-              <div className="relative">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="relative"
-                >
-                  <img
-                    src={professionalImage}
-                    alt="Richard de la Cruz - Professional Headshot"
-                    className="w-80 h-80 rounded-full object-cover border-4 border-neon-green animate-pulse-border animate-float morph-blob"
-                  />
-                  <motion.div
-                    animate={{ 
-                      scale: [1, 1.2, 1],
-                      rotate: [0, 180, 360]
-                    }}
-                    transition={{ 
-                      duration: 4, 
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                    className="absolute -top-4 -right-4 w-8 h-8 bg-neon-green rounded-full"
-                  />
-                  <motion.div
-                    animate={{ 
-                      opacity: [0.3, 0.8, 0.3],
-                      scale: [1, 1.1, 1]
-                    }}
-                    transition={{ 
-                      duration: 3, 
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                    className="absolute inset-0 rounded-full bg-neon-green/20 blur-xl"
-                  />
-                </motion.div>
-              </div>
-            </div>
+            <img
+              src={professionalImage}
+              alt="Richard de la Cruz - Professional Headshot"
+              className="w-80 h-80 rounded-full object-cover border-4 border-neon-green"
+            />
           </motion.div>
         </div>
 
