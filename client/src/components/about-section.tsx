@@ -31,11 +31,36 @@ export default function AboutSection() {
             </div>
           </div>
           <div>
-            <img
-              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400&q=80"
-              alt="Collaborative learning environment with laptops and teamwork"
-              className="rounded-lg w-full h-48 object-cover"
-            />
+            <div className="rounded-lg w-full h-48 bg-gradient-to-br from-dark-tertiary to-dark-secondary relative overflow-hidden">
+              <motion.div
+                animate={{
+                  backgroundPosition: ["0% 0%", "100% 100%"],
+                }}
+                transition={{
+                  duration: 10,
+                  ease: "linear",
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                }}
+                className="absolute inset-0 opacity-40"
+                style={{
+                  backgroundImage: `
+                    radial-gradient(circle at 25% 35%, rgba(0, 255, 136, 0.3) 0%, transparent 50%),
+                    radial-gradient(circle at 75% 65%, rgba(0, 255, 136, 0.2) 0%, transparent 50%)
+                  `,
+                  backgroundSize: "100% 100%",
+                }}
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <motion.div
+                  animate={{ scale: [1, 1.1, 1] }}
+                  transition={{ duration: 4, ease: "easeInOut", repeat: Infinity }}
+                  className="text-6xl opacity-60"
+                >
+                  💼
+                </motion.div>
+              </div>
+            </div>
           </div>
         </div>
       ),
