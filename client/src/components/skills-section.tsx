@@ -132,7 +132,10 @@ export default function SkillsSection() {
                     whileInView={{ width: `${skill.level}%` }}
                     transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
                     viewport={{ once: true }}
-                    className="h-full bg-gradient-to-r from-neon-green to-green-400 rounded-full"
+                    className="h-full bg-gradient-to-r from-green-400 to-emerald-500 rounded-full"
+                    style={{
+                      background: "linear-gradient(90deg, hsl(var(--neon-green)) 0%, #22c55e 100%)"
+                    }}
                   />
                 </div>
               </motion.div>

@@ -127,7 +127,10 @@ export default function AboutSection() {
                       initial={{ width: 0 }}
                       animate={{ width: `${skill.level}%` }}
                       transition={{ duration: 1, delay: 0.5 }}
-                      className="bg-neon-green h-2 rounded-full"
+                      className="h-2 rounded-full"
+                      style={{
+                        backgroundColor: "hsl(var(--neon-green))"
+                      }}
                     />
                   </div>
                 </div>
