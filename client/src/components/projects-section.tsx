@@ -37,7 +37,7 @@ export default function ProjectsSection() {
       technologies: ["Articulate Storyline", "Gamification", "Scenario-Based Learning", "Instructional Design", "Microlearning"],
       results: "High engagement among advanced learners, positive feedback for creativity, and successful knowledge reinforcement beyond core topics.",
       viewLink: "https://richardportfolio10.s3.ap-southeast-2.amazonaws.com/Nice+to+Know_Richard+-+Storyline+output/story.html",
-      thumbnail: "/attached_assets/Nice to Know.png",
+      thumbnail: "/assets/Nice to Know.png",
       details: {
         client: "Sun Life Financial",
         tool: "Articulate Storyline 360",
@@ -72,7 +72,7 @@ export default function ProjectsSection() {
       technologies: ["Articulate Storyline", "Scenario-Based Learning", "System Simulation", "Branching Logic", "Instructional Design"],
       results: "Improved learner confidence and accuracy in GIB handling, with strong SME endorsement for real-world alignment.",
       viewLink: "https://richardportfolio10.s3.ap-southeast-2.amazonaws.com/GIB+Case+Study_Richard/story.html",
-      thumbnail: "/attached_assets/GIB Case Study.png",
+      thumbnail: "/assets/GIB Case Study.png",
       details: {
         client: "Sun Life Financial",
         tool: "Articulate Storyline 360",
