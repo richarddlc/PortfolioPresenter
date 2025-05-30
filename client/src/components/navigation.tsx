@@ -95,8 +95,8 @@ export default function Navigation() {
           </div>
 
           <a
-            href="/attached_assets/Richard_de_la_Cruz_Resume.pdf"
-            download="Richard_de_la_Cruz_Resume.pdf"
+            href="/attached_assets/Resume - Richard de la Cruz (1).pdf"
+            download="Resume-Richard_de_la_Cruz.pdf"
             className="hidden md:block bg-neon-green text-black px-4 py-2 rounded-lg font-medium hover:bg-green-400 transition-colors"
           >
             Download CV
