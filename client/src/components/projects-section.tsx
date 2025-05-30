@@ -143,6 +143,7 @@ export default function ProjectsSection() {
                     src={project.thumbnail}
                     alt={project.title}
                     className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
                   />
