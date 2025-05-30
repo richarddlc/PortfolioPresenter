@@ -95,7 +95,7 @@ export default function Navigation() {
           </div>
 
           <a
-            href=attached_assets/Resume - Richard de la cruz (1).pdf"
+            "href=attached_assets/Resume - Richard de la cruz (1).pdf"
             download="Resume - Richard de la cruz.pdf"
             className="hidden md:block bg-neon-green text-black px-4 py-2 rounded-lg font-medium hover:bg-green-400 transition-colors"
           >
