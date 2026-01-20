@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Code, BookOpen, Users } from "lucide-react";
+import CircularProgress from "./CircularProgress";
 
 export default function SkillsSection() {
   const skillCategories = [
@@ -63,7 +64,11 @@ export default function SkillsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">Core Skills & Technologies</h2>
+          <h2 className="text-4xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-white via-neon-green to-white bg-clip-text text-transparent animate-gradient">
+              Core Skills & Technologies
+            </span>
+          </h2>
           <p className="text-gray-400">Technologies and methodologies I use to create exceptional learning experiences</p>
         </motion.div>
 
@@ -101,15 +106,36 @@ export default function SkillsSection() {
           ))}
         </div>
 
+        {/* Top Skills - Circular Progress */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <h3 className="text-2xl font-bold mb-12 text-center text-neon-green">Top Skills Proficiency</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 justify-items-center">
+            {coreSkills.slice(0, 4).map((skill, index) => (
+              <CircularProgress
+                key={skill.name}
+                percentage={skill.level}
+                label={skill.name}
+                delay={index * 200}
+              />
+            ))}
+          </div>
+        </motion.div>
+
         {/* Core Skills Progress Bars */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="bg-dark-secondary p-8 rounded-lg border border-gray-700"
+          className="bg-dark-secondary p-8 rounded-lg border border-gray-700 glass-card"
         >
-          <h3 className="text-2xl font-bold mb-8 text-center text-neon-green">Expertise Level</h3>
+          <h3 className="text-2xl font-bold mb-8 text-center text-neon-green">Complete Expertise Level</h3>
 
           <div className="grid md:grid-cols-2 gap-8">
             {coreSkills.map((skill, index) => (

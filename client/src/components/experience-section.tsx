@@ -93,53 +93,104 @@ export default function ExperienceSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">Work Experience</h2>
+          <h2 className="text-4xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-white via-neon-green to-white bg-clip-text text-transparent animate-gradient">
+              Work Experience
+            </span>
+          </h2>
           <p className="text-gray-400">My professional journey in instructional design and learning technologies</p>
         </motion.div>
 
         <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-8 top-0 bottom-0 w-px bg-neon-green hidden md:block" />
+          {/* Timeline line with gradient */}
+          <motion.div
+            className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-neon-green via-green-400 to-gray-600 hidden md:block"
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            viewport={{ once: true }}
+            style={{ transformOrigin: "top" }}
+          />
 
           <div className="space-y-12">
             {experiences.map((exp, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                className="bg-dark-secondary p-6 rounded-lg border border-gray-700 hover:border-neon-green/50 transition-all duration-300"
-              >
-                {/* Timeline dot */}
-                <div className={`flex-shrink-0 w-16 h-16 ${
-                  exp.current ? "bg-neon-green" : "bg-dark-tertiary border-2 border-gray-600"
-                } rounded-full flex items-center justify-center z-10 hidden md:flex`}>
-                  {exp.icon}
-                </div>
+              <div key={index} className="relative flex items-start md:pl-24">
+                {/* Timeline dot with animation */}
+                <motion.div
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className={`absolute left-4 top-8 flex-shrink-0 w-8 h-8 ${
+                    exp.current ? "bg-neon-green glow-neon" : "bg-dark-tertiary border-2 border-gray-600"
+                  } rounded-full flex items-center justify-center z-10 hidden md:flex`}
+                >
+                  {exp.current && (
+                    <motion.div
+                      className="w-3 h-3 bg-white rounded-full"
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    />
+                  )}
+                </motion.div>
 
-                {/* Content */}
-                <div className="w-full md:ml-8 bg-dark-primary p-6 rounded-lg border border-gray-700 hover:border-neon-green/50 transition-all duration-300">
-                  <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
-                    <div>
-                      <div className={`text-sm mb-2 transition-colors duration-300 ${exp.current ? "text-neon-green" : "text-gray-400 group-hover:text-neon-green"}`}>
-                        {exp.period}
+                {/* Content card */}
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.15 }}
+                  viewport={{ once: true }}
+                  className="w-full group"
+                >
+                  <div className={`p-6 rounded-lg border border-gray-700 hover:border-neon-green/50 transition-all duration-300 glass-card glass-card-hover ${
+                    exp.current ? "glow-neon" : ""
+                  }`}>
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                      <div className="flex-1">
+                        <motion.div
+                          className={`inline-block text-xs font-semibold px-3 py-1 rounded-full mb-3 ${
+                            exp.current
+                              ? "bg-neon-green/20 text-neon-green border border-neon-green/50"
+                              : "bg-gray-700 text-gray-400"
+                          }`}
+                          whileHover={{ scale: 1.05 }}
+                        >
+                          {exp.period}
+                        </motion.div>
+                        <h3 className="text-xl font-bold mb-2 group-hover:text-neon-green transition-colors duration-300">
+                          {exp.role}
+                        </h3>
+                        <h4 className="text-gray-400 mb-4 group-hover:text-gray-200 transition-colors duration-300">
+                          {exp.company}
+                        </h4>
                       </div>
-                      <h3 className="text-xl font-bold mb-2 group-hover:text-neon-green transition-colors duration-300">{exp.role}</h3>
-                      <h4 className="text-gray-400 mb-4 group-hover:text-gray-200 transition-colors duration-300">{exp.company}</h4>
+                      <motion.div
+                        className="mb-4 md:mb-0"
+                        whileHover={{ scale: 1.2, rotate: 5 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        {exp.icon}
+                      </motion.div>
                     </div>
-                    <div className="md:hidden mb-4 group-hover:scale-110 transition-transform duration-300">{exp.icon}</div>
-                  </div>
 
-                  <ul className="text-gray-300 space-y-2 text-sm">
-                    {exp.description.map((item, itemIndex) => (
-                      <li key={itemIndex} className="text-gray-300">
-                        • {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
+                    <ul className="text-gray-300 space-y-2 text-sm">
+                      {exp.description.map((item, itemIndex) => (
+                        <motion.li
+                          key={itemIndex}
+                          className="flex items-start"
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.4, delay: index * 0.1 + itemIndex * 0.05 }}
+                          viewport={{ once: true }}
+                        >
+                          <span className="text-neon-green mr-2 flex-shrink-0">•</span>
+                          <span className="group-hover:text-white transition-colors duration-300">{item}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              </div>
             ))}
           </div>
         </div>

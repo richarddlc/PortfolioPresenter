@@ -5,10 +5,16 @@ import ExperienceSection from "@/components/experience-section";
 import SkillsSection from "@/components/skills-section";
 import ProjectsSection from "@/components/projects-section";
 import ContactSection from "@/components/contact-section";
+import CustomCursor from "@/components/CustomCursor";
+import FloatingActions from "@/components/FloatingActions";
+import SideNavDots from "@/components/SideNavDots";
 
 export default function Portfolio() {
   return (
     <div className="min-h-screen bg-dark-primary text-white">
+      <CustomCursor />
+      <FloatingActions />
+      <SideNavDots />
       <Navigation />
       <HeroSection />
       <AboutSection />
@@ -16,7 +22,7 @@ export default function Portfolio() {
       <SkillsSection />
       <ProjectsSection />
       <ContactSection />
-      
+
       {/* Footer */}
       <footer className="bg-dark-primary py-8 px-4 sm:px-6 lg:px-8 border-t border-gray-700">
         <div className="max-w-4xl mx-auto text-center">

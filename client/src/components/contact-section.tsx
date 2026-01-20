@@ -1,8 +1,12 @@
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, ExternalLink } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
 import { FaLinkedinIn, FaEnvelope } from "react-icons/fa";
+import { useMagneticHover } from "@/lib/useMagneticHover";
 
 export default function ContactSection() {
+  const linkedinRef = useMagneticHover({ strength: 0.4, tolerance: 100 });
+  const emailRef = useMagneticHover({ strength: 0.4, tolerance: 100 });
+
   const contactInfo = [
     {
       icon: <Phone className="text-neon-green" size={24} />,
@@ -34,7 +38,11 @@ export default function ContactSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-8">Let's work together</h2>
+          <h2 className="text-4xl font-bold mb-8">
+            <span className="bg-gradient-to-r from-white via-neon-green to-white bg-clip-text text-transparent animate-gradient">
+              Let's work together
+            </span>
+          </h2>
           <p className="text-gray-300 mb-8 max-w-2xl mx-auto text-lg">
             Ready to create engaging learning experiences? Let's discuss your instructional design needs and how I can help your organization achieve its training goals.
           </p>
@@ -45,25 +53,43 @@ export default function ContactSection() {
           {contactInfo.map((contact, index) => (
             <motion.div
               key={contact.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              initial={{ opacity: 0, y: 30, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.15,
+                type: "spring",
+                stiffness: 100
+              }}
+              whileHover={{
+                y: -8,
+                transition: { duration: 0.2 }
+              }}
               viewport={{ once: true }}
-              className="bg-dark-primary p-6 rounded-lg border border-gray-700 hover:border-neon-green/50 transition-all duration-300 group text-center"
+              className="glass-card glass-card-hover p-6 rounded-lg text-center group"
             >
-              <div className="flex justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+              <motion.div
+                className="flex justify-center mb-4"
+                whileHover={{
+                  scale: 1.2,
+                  rotate: [0, -10, 10, -10, 0],
+                  transition: { duration: 0.5 }
+                }}
+              >
                 {contact.icon}
-              </div>
-              <h3 className="font-semibold mb-2 text-lg">{contact.title}</h3>
+              </motion.div>
+              <h3 className="font-semibold mb-2 text-lg group-hover:text-neon-green transition-colors">
+                {contact.title}
+              </h3>
               {contact.link ? (
                 <a
                   href={contact.link}
-                  className="text-gray-400 hover:text-neon-green transition-colors"
+                  className="text-gray-400 hover:text-neon-green transition-colors text-sm"
                 >
                   {contact.value}
                 </a>
               ) : (
-                <p className="text-gray-400">{contact.value}</p>
+                <p className="text-gray-400 text-sm">{contact.value}</p>
               )}
             </motion.div>
           ))}
@@ -73,28 +99,37 @@ export default function ContactSection() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="bg-dark-primary p-6 rounded-lg border border-gray-700 mb-12"
+          className="glass-card p-8 rounded-lg mb-12"
         >
-          <h3 className="text-xl font-semibold mb-6 text-neon-green text-center">Professional Information</h3>
+          <motion.h3
+            className="text-xl font-semibold mb-6 text-neon-green text-center"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            viewport={{ once: true }}
+          >
+            Professional Information
+          </motion.h3>
           <div className="grid md:grid-cols-2 gap-6 text-center md:text-left">
-            <div>
-              <h4 className="font-semibold mb-2">Languages</h4>
-              <p className="text-gray-400 text-sm">English (Fluent), Filipino (Fluent), Ilocano</p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-2">Status</h4>
-              <p className="text-gray-400 text-sm">Available for hire • Open to opportunities</p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-2">Specialization</h4>
-              <p className="text-gray-400 text-sm">Instructional Design, eLearning Development</p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-2">Industries</h4>
-              <p className="text-gray-400 text-sm">Finance, BPO, Technology, Education</p>
-            </div>
+            {[
+              { title: "Languages", value: "English (Fluent), Filipino (Fluent), Ilocano" },
+              { title: "Status", value: "Available for hire • Open to opportunities" },
+              { title: "Specialization", value: "Instructional Design, eLearning Development" },
+              { title: "Industries", value: "Finance, BPO, Technology, Education" }
+            ].map((item, idx) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 + idx * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <h4 className="font-semibold mb-2 text-neon-green/80">{item.title}</h4>
+                <p className="text-gray-400 text-sm">{item.value}</p>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
 
@@ -102,29 +137,35 @@ export default function ContactSection() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
           viewport={{ once: true }}
           className="flex flex-col sm:flex-row justify-center items-center gap-4"
         >
-
-          
-          <a
+          <motion.a
+            ref={linkedinRef as any}
             href="https://linkedin.com/in/richard-de-la-cruz-7782bb92"
             target="_blank"
             rel="noopener noreferrer"
-            className="border border-neon-green text-neon-green px-8 py-3 rounded-lg font-medium hover:bg-neon-green hover:text-black transition-colors flex items-center gap-2"
+            className="border-2 border-neon-green text-neon-green px-8 py-3 rounded-lg font-medium hover:bg-neon-green hover:text-black transition-all flex items-center gap-2 glow-neon"
+            style={{ transition: 'transform 0.2s ease-out, background-color 0.3s, box-shadow 0.3s' }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             <FaLinkedinIn />
             LinkedIn Profile
-          </a>
-          
-          <a
+          </motion.a>
+
+          <motion.a
+            ref={emailRef as any}
             href="mailto:chard.bdc@gmail.com"
-            className="border border-gray-600 text-gray-300 px-8 py-3 rounded-lg font-medium hover:border-neon-green hover:text-neon-green transition-colors flex items-center gap-2"
+            className="border-2 border-gray-600 text-gray-300 px-8 py-3 rounded-lg font-medium hover:border-neon-green hover:text-neon-green transition-all flex items-center gap-2"
+            style={{ transition: 'transform 0.2s ease-out, border-color 0.3s, color 0.3s' }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             <FaEnvelope />
             Send Email
-          </a>
+          </motion.a>
         </motion.div>
 
         {/* Additional Contact Note */}

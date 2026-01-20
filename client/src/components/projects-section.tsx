@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, X, Calendar, User, Briefcase, Target } from "lucide-react";
+import { useTiltEffect } from "@/lib/useTiltEffect";
 
 interface Project {
   id: string;
@@ -23,6 +24,98 @@ interface Project {
     features: string[];
     outcome: string;
   };
+}
+
+function ProjectCard({ project, index, onOpenModal }: { project: Project; index: number; onOpenModal: (project: Project) => void }) {
+  const tiltRef = useTiltEffect({ maxTilt: 10, scale: 1.02 });
+
+  return (
+    <motion.div
+      ref={tiltRef as any}
+      key={project.id}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.2 }}
+      viewport={{ once: true }}
+      className="bg-dark-secondary rounded-lg border border-gray-700 hover:border-neon-green/50 transition-all duration-300 group overflow-hidden glow-neon"
+    >
+      {/* Project Thumbnail */}
+      {project.thumbnail && (
+        <div className="relative overflow-hidden">
+          <motion.img
+            src={project.thumbnail}
+            alt={project.title}
+            className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+            loading="lazy"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileHover={{ opacity: 1, y: 0 }}
+            className="absolute bottom-4 left-4 right-4"
+          >
+            <div className="bg-black/70 backdrop-blur-sm rounded-lg p-3">
+              <h3 className="text-lg font-bold text-neon-green">{project.title}</h3>
+              <p className="text-sm text-gray-300">{project.subtitle}</p>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
+      <div className="p-6">
+        {!project.thumbnail && (
+          <>
+            <h3 className="text-xl font-bold mb-2 text-neon-green">{project.title}</h3>
+            <h4 className="text-lg font-semibold mb-4 text-gray-300">{project.subtitle}</h4>
+          </>
+        )}
+
+        <p className="text-gray-400 mb-4 text-sm leading-relaxed">
+          {project.description}
+        </p>
+
+        <div className="mb-4">
+          <h5 className="text-sm font-semibold mb-2 text-neon-green">Technologies & Methods:</h5>
+          <div className="flex flex-wrap gap-2">
+            {project.technologies.map((tech) => (
+              <span key={tech} className="bg-dark-tertiary text-xs px-2 py-1 rounded border border-gray-600">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="mb-6">
+          <h5 className="text-sm font-semibold mb-2 text-neon-green">Results:</h5>
+          <p className="text-gray-400 text-sm">{project.results}</p>
+        </div>
+
+        <div className="flex gap-3">
+          <motion.button
+            onClick={() => onOpenModal(project)}
+            className="bg-neon-green text-black px-4 py-2 rounded-lg font-medium hover:bg-green-400 transition-colors text-sm glow-neon-strong"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Show more
+          </motion.button>
+          <motion.a
+            href={project.viewLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border border-neon-green text-neon-green px-4 py-2 rounded-lg font-medium hover:bg-neon-green hover:text-black transition-colors text-sm flex items-center gap-2"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            View Project
+            <ExternalLink size={14} />
+          </motion.a>
+        </div>
+      </div>
+    </motion.div>
+  );
 }
 
 export default function ProjectsSection() {
@@ -120,7 +213,11 @@ export default function ProjectsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">Featured Projects</h2>
+          <h2 className="text-4xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-white via-neon-green to-white bg-clip-text text-transparent animate-gradient">
+              Featured Projects
+            </span>
+          </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
             Explore my latest instructional design projects showcasing innovative e-learning solutions and gamified experiences.
           </p>
@@ -128,90 +225,12 @@ export default function ProjectsSection() {
 
         <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
-            <motion.div
+            <ProjectCard
               key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              className="bg-dark-secondary rounded-lg border border-gray-700 hover:border-neon-green/50 transition-all duration-300 group overflow-hidden"
-            >
-              {/* Project Thumbnail */}
-              {project.thumbnail && (
-                <div className="relative overflow-hidden">
-                  <motion.img
-                    src={project.thumbnail}
-                    alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                    loading="lazy"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileHover={{ opacity: 1, y: 0 }}
-                    className="absolute bottom-4 left-4 right-4"
-                  >
-                    <div className="bg-black/70 backdrop-blur-sm rounded-lg p-3">
-                      <h3 className="text-lg font-bold text-neon-green">{project.title}</h3>
-                      <p className="text-sm text-gray-300">{project.subtitle}</p>
-                    </div>
-                  </motion.div>
-                </div>
-              )}
-              
-              <div className="p-6">
-                {!project.thumbnail && (
-                  <>
-                    <h3 className="text-xl font-bold mb-2 text-neon-green">{project.title}</h3>
-                    <h4 className="text-lg font-semibold mb-4 text-gray-300">{project.subtitle}</h4>
-                  </>
-                )}
-                
-                <p className="text-gray-400 mb-4 text-sm leading-relaxed">
-                  {project.description}
-                </p>
-
-              <div className="mb-4">
-                <h5 className="text-sm font-semibold mb-2 text-neon-green">Technologies & Methods:</h5>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <span key={tech} className="bg-dark-tertiary text-xs px-2 py-1 rounded border border-gray-600">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mb-6">
-                <h5 className="text-sm font-semibold mb-2 text-neon-green">Results:</h5>
-                <p className="text-gray-400 text-sm">{project.results}</p>
-              </div>
-
-              <div className="flex gap-3">
-                  <motion.button
-                    onClick={() => openProjectModal(project)}
-                    className="bg-neon-green text-black px-4 py-2 rounded-lg font-medium hover:bg-green-400 transition-colors text-sm"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Show more
-                  </motion.button>
-                  <motion.a
-                    href={project.viewLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="border border-neon-green text-neon-green px-4 py-2 rounded-lg font-medium hover:bg-neon-green hover:text-black transition-colors text-sm flex items-center gap-2"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    View Project
-                    <ExternalLink size={14} />
-                  </motion.a>
-                </div>
-              </div>
-            </motion.div>
+              project={project}
+              index={index}
+              onOpenModal={openProjectModal}
+            />
           ))}
         </div>
 

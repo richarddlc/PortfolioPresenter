@@ -186,7 +186,11 @@ export default function AboutSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">Why hire me?</h2>
+          <h2 className="text-4xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-white via-neon-green to-white bg-clip-text text-transparent animate-gradient">
+              Why hire me?
+            </span>
+          </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
             Instructional Designer with 5+ years of experience delivering engaging digital learning solutions across finance, BPO, and tech industries.
           </p>
