@@ -63,7 +63,11 @@ export default function SkillsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">Core Skills & Technologies</h2>
+          <h2 className="text-4xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-white via-neon-green to-white bg-clip-text text-transparent animate-gradient">
+              Core Skills & Technologies
+            </span>
+          </h2>
           <p className="text-gray-400">Technologies and methodologies I use to create exceptional learning experiences</p>
         </motion.div>
 

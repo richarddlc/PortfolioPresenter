@@ -34,7 +34,11 @@ export default function ContactSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-8">Let's work together</h2>
+          <h2 className="text-4xl font-bold mb-8">
+            <span className="bg-gradient-to-r from-white via-neon-green to-white bg-clip-text text-transparent animate-gradient">
+              Let's work together
+            </span>
+          </h2>
           <p className="text-gray-300 mb-8 max-w-2xl mx-auto text-lg">
             Ready to create engaging learning experiences? Let's discuss your instructional design needs and how I can help your organization achieve its training goals.
           </p>

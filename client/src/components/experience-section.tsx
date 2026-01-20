@@ -93,7 +93,11 @@ export default function ExperienceSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4">Work Experience</h2>
+          <h2 className="text-4xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-white via-neon-green to-white bg-clip-text text-transparent animate-gradient">
+              Work Experience
+            </span>
+          </h2>
           <p className="text-gray-400">My professional journey in instructional design and learning technologies</p>
         </motion.div>
 

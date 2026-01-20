@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaLinkedinIn, FaEnvelope } from "react-icons/fa";
 import professionalImage from "@assets/Untitled design (14).png";
+import ParticleBackground from "./ParticleBackground";
+import { useMagneticHover } from "@/lib/useMagneticHover";
 
 interface CounterProps {
   target: number;
@@ -40,10 +42,14 @@ function Counter({ target, duration = 2000, suffix = "" }: CounterProps) {
 }
 
 export default function HeroSection() {
+  const linkedinRef = useMagneticHover({ strength: 0.4, tolerance: 80 });
+  const emailRef = useMagneticHover({ strength: 0.4, tolerance: 80 });
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-dark-primary via-dark-secondary to-dark-primary opacity-80"></div>
+      <ParticleBackground />
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Mobile: Image first */}
@@ -102,7 +108,9 @@ export default function HeroSection() {
               className="text-5xl md:text-7xl font-bold mb-6"
             >
               Hello I'm<br />
-              <span className="text-neon-green">Richard de la Cruz</span>
+              <span className="bg-gradient-to-r from-neon-green via-green-300 to-neon-green bg-clip-text text-transparent animate-gradient text-glow">
+                Richard de la Cruz
+              </span>
             </motion.h1>
 
             <motion.p
@@ -124,16 +132,20 @@ export default function HeroSection() {
             >
               <div className="flex space-x-6">
                 <a
+                  ref={linkedinRef as any}
                   href="https://linkedin.com/in/richard-de-la-cruz-7782bb92"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-14 h-14 bg-dark-secondary rounded-full flex items-center justify-center hover:bg-neon-green hover:text-black transition-colors transform hover:scale-110 duration-300 shadow-lg"
+                  className="w-14 h-14 bg-dark-secondary rounded-full flex items-center justify-center hover:bg-neon-green hover:text-black transition-all transform hover:scale-110 duration-300 shadow-lg hover:shadow-neon-green/50"
+                  style={{ transition: 'transform 0.2s ease-out, background-color 0.3s, box-shadow 0.3s' }}
                 >
                   <FaLinkedinIn size={20} />
                 </a>
                 <a
+                  ref={emailRef as any}
                   href="mailto:chard.bdc@gmail.com"
-                  className="w-14 h-14 bg-dark-secondary rounded-full flex items-center justify-center hover:bg-neon-green hover:text-black transition-colors transform hover:scale-110 duration-300 shadow-lg"
+                  className="w-14 h-14 bg-dark-secondary rounded-full flex items-center justify-center hover:bg-neon-green hover:text-black transition-all transform hover:scale-110 duration-300 shadow-lg hover:shadow-neon-green/50"
+                  style={{ transition: 'transform 0.2s ease-out, background-color 0.3s, box-shadow 0.3s' }}
                 >
                   <FaEnvelope size={20} />
                 </a>
