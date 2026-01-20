@@ -114,7 +114,7 @@ export default function HeroSection() {
               className="text-5xl md:text-7xl font-bold mb-6"
             >
               Hello I'm<br />
-              <span className="bg-gradient-to-r from-neon-green via-green-300 to-neon-green bg-clip-text text-transparent animate-gradient">
+              <span className="text-neon-green">
                 Richard de la Cruz
               </span>
             </motion.h1>
