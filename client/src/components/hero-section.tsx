@@ -4,6 +4,7 @@ import { FaLinkedinIn, FaEnvelope } from "react-icons/fa";
 import professionalImage from "@assets/Untitled design (14).png";
 import ParticleBackground from "./ParticleBackground";
 import { useMagneticHover } from "@/lib/useMagneticHover";
+import TypingAnimation from "./TypingAnimation";
 
 interface CounterProps {
   target: number;
@@ -96,9 +97,14 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-gray-400 mb-4"
+              className="text-gray-400 mb-4 text-lg"
             >
-              Instructional Designer
+              <TypingAnimation
+                text="Instructional Designer"
+                delay={800}
+                speed={100}
+                className="text-neon-green font-semibold"
+              />
             </motion.p>
 
             <motion.h1

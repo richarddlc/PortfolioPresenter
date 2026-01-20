@@ -6,11 +6,15 @@ import SkillsSection from "@/components/skills-section";
 import ProjectsSection from "@/components/projects-section";
 import ContactSection from "@/components/contact-section";
 import CustomCursor from "@/components/CustomCursor";
+import FloatingActions from "@/components/FloatingActions";
+import SideNavDots from "@/components/SideNavDots";
 
 export default function Portfolio() {
   return (
     <div className="min-h-screen bg-dark-primary text-white">
       <CustomCursor />
+      <FloatingActions />
+      <SideNavDots />
       <Navigation />
       <HeroSection />
       <AboutSection />
