@@ -5,13 +5,20 @@ import { motion } from "framer-motion";
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const scrollTop = window.scrollY;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+
+      setScrolled(scrollTop > 50);
+      setScrollProgress(progress);
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -71,6 +78,12 @@ export default function Navigation() {
         scrolled ? "bg-dark-secondary/95 backdrop-blur-md" : "bg-transparent"
       } border-b border-gray-700/50`}
     >
+      <div className="absolute top-0 left-0 h-1 w-full bg-gray-800/70">
+        <div
+          className="h-full bg-gradient-to-r from-neon-green/80 via-emerald-400 to-neon-green"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="text-xl font-bold">
@@ -83,13 +96,20 @@ export default function Navigation() {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`${
+                className={`relative pb-1 transition-colors duration-300 ${
                   activeSection === item.id
-                    ? "text-neon-green border-b-2 border-neon-green"
+                    ? "text-neon-green"
                     : "text-gray-300 hover:text-neon-green"
-                } pb-1 transition-colors duration-300`}
+                }`}
               >
                 {item.label}
+                <span
+                  className={`absolute -bottom-1 left-0 h-0.5 w-full rounded-full transition-all duration-300 ${
+                    activeSection === item.id
+                      ? "bg-neon-green shadow-[0_0_10px_rgba(0,255,136,0.7)]"
+                      : "bg-transparent"
+                  }`}
+                />
               </button>
             ))}
           </div>

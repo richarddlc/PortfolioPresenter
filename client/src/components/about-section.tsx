@@ -261,7 +261,7 @@ export default function AboutSection() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                   onClick={() => setActiveSection(section.id)}
-                  className={`w-full p-4 text-left rounded-lg transition-all duration-300 ${
+                  className={`w-full p-4 text-left rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)] ${
                     activeSection === section.id
                       ? "bg-neon-green text-black"
                       : "bg-dark-secondary hover:bg-dark-tertiary"
@@ -284,7 +284,7 @@ export default function AboutSection() {
             viewport={{ once: true }}
             className="flex-1"
           >
-            <div className="bg-dark-secondary rounded-lg p-8 min-h-[500px]">
+            <div className="bg-dark-secondary rounded-lg p-8 min-h-[500px] transition-shadow duration-300 hover:shadow-[0_0_30px_rgba(0,255,136,0.12)]">
               <AnimatePresence mode="wait">
                 {sections.map((section) => (
                   activeSection === section.id && (

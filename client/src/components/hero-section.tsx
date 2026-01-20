@@ -40,10 +40,21 @@ function Counter({ target, duration = 2000, suffix = "" }: CounterProps) {
 }
 
 export default function HeroSection() {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-dark-primary via-dark-secondary to-dark-primary opacity-80"></div>
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-32 -right-24 h-64 w-64 rounded-full bg-neon-green/10 blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 left-10 h-72 w-72 rounded-full bg-emerald-400/10 blur-3xl animate-pulse" />
+      </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Mobile: Image first */}
@@ -119,7 +130,27 @@ export default function HeroSection() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
+              transition={{ delay: 0.75, duration: 0.6 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mb-8"
+            >
+              <button
+                onClick={() => scrollToSection("projects")}
+                className="bg-neon-green text-black px-6 py-3 rounded-lg font-medium hover:bg-green-400 transition-colors shadow-[0_0_25px_rgba(0,255,136,0.25)]"
+              >
+                View Portfolio
+              </button>
+              <button
+                onClick={() => scrollToSection("contact")}
+                className="border border-neon-green text-neon-green px-6 py-3 rounded-lg font-medium hover:bg-neon-green hover:text-black transition-colors"
+              >
+                Hire Me
+              </button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.85, duration: 0.6 }}
               className="flex justify-center mb-8"
             >
               <div className="flex space-x-6">
@@ -180,25 +211,25 @@ export default function HeroSection() {
           className="mt-20 w-full max-w-4xl mx-auto px-4"
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="animate-counter">
+            <div className="animate-counter rounded-xl border border-transparent hover:border-neon-green/40 hover:shadow-[0_0_18px_rgba(0,255,136,0.2)] transition-all duration-300 p-4">
               <div className="text-3xl font-bold text-neon-green">
                 <Counter target={5} suffix="+" />
               </div>
               <div className="text-gray-400 text-sm">Years of<br />Experience</div>
             </div>
-            <div className="animate-counter">
+            <div className="animate-counter rounded-xl border border-transparent hover:border-neon-green/40 hover:shadow-[0_0_18px_rgba(0,255,136,0.2)] transition-all duration-300 p-4">
               <div className="text-3xl font-bold text-neon-green">
                 <Counter target={50} suffix="+" />
               </div>
               <div className="text-gray-400 text-sm">eLearning<br />Modules</div>
             </div>
-            <div className="animate-counter">
+            <div className="animate-counter rounded-xl border border-transparent hover:border-neon-green/40 hover:shadow-[0_0_18px_rgba(0,255,136,0.2)] transition-all duration-300 p-4">
               <div className="text-3xl font-bold text-neon-green">
                 <Counter target={6} />
               </div>
               <div className="text-gray-400 text-sm">Companies<br />Served</div>
             </div>
-            <div className="animate-counter">
+            <div className="animate-counter rounded-xl border border-transparent hover:border-neon-green/40 hover:shadow-[0_0_18px_rgba(0,255,136,0.2)] transition-all duration-300 p-4">
               <div className="text-3xl font-bold text-neon-green">
                 <Counter target={500} suffix="+" />
               </div>

@@ -109,7 +109,9 @@ export default function ExperienceSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className="bg-dark-secondary p-6 rounded-lg border border-gray-700 hover:border-neon-green/50 transition-all duration-300"
+                className={`group bg-dark-secondary/80 p-6 rounded-lg border border-gray-700 hover:border-neon-green/50 transition-all duration-300 ${
+                  index % 2 === 0 ? "md:translate-x-6" : "md:translate-x-0"
+                }`}
               >
                 {/* Timeline dot */}
                 <div className={`flex-shrink-0 w-16 h-16 ${
@@ -119,7 +121,7 @@ export default function ExperienceSection() {
                 </div>
 
                 {/* Content */}
-                <div className="w-full md:ml-8 bg-dark-primary p-6 rounded-lg border border-gray-700 hover:border-neon-green/50 transition-all duration-300">
+                <div className="w-full md:ml-8 bg-dark-primary p-6 rounded-lg border border-gray-700 hover:border-neon-green/50 transition-all duration-300 hover:shadow-[0_0_25px_rgba(0,255,136,0.08)]">
                   <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
                     <div>
                       <div className={`text-sm mb-2 transition-colors duration-300 ${exp.current ? "text-neon-green" : "text-gray-400 group-hover:text-neon-green"}`}>
