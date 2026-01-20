@@ -73,7 +73,7 @@ export default function ExperienceSection() {
       role: "Training Specialist",
       company: "Philchema Inc, Quezon City",
       description: [
-        "Designe and facilitated product training programs, reducing onboarding time by 30%",
+        "Design and facilitate product training programs, reducing onboarding time by 30%",
         "Author technical manuals and performance assessments",
         "Collaborate with technical SMEs on updates and improvements",
         "Conduct lab testing and provided feed recommendations to optimize product performance",
