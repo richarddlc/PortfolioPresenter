@@ -8,6 +8,7 @@ interface Project {
   subtitle: string;
   description: string;
   technologies: string[];
+  tags: string[];
   results: string;
   viewLink: string;
   thumbnail?: string;
@@ -27,6 +28,7 @@ interface Project {
 
 export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [activeFilter, setActiveFilter] = useState("All");
 
   const projects: Project[] = [
     {
@@ -35,6 +37,7 @@ export default function ProjectsSection() {
       subtitle: "Gamified Microlearning",
       description: "A gamified e-learning experience created for seasoned Plan Specialists at Sun Life. Designed as an escape room, the module reinforces additional product knowledge through interactive challenges, puzzles, and scenario-based tasks.",
       technologies: ["Articulate Storyline", "Gamification", "Scenario-Based Learning", "Instructional Design", "Microlearning"],
+      tags: ["Gamified", "Scenario-Based"],
       results: "High engagement among advanced learners, positive feedback for creativity, and successful knowledge reinforcement beyond core topics.",
       viewLink: "https://richardportfolio10.s3.ap-southeast-2.amazonaws.com/Nice+to+Know_Richard+-+Storyline+output/story.html",
       thumbnail: "/assets/Nice to Know.png",
@@ -70,6 +73,7 @@ export default function ProjectsSection() {
       subtitle: "Scenario-Based Training",
       description: "Interactive case study training for Case Managers to strengthen decision-making on Guaranteed Insurability Benefit (GIB) requests. Includes realistic scenarios, system simulations, and ATHENA-based guidance.",
       technologies: ["Articulate Storyline", "Scenario-Based Learning", "System Simulation", "Branching Logic", "Instructional Design"],
+      tags: ["Scenario-Based", "Simulation"],
       results: "Improved learner confidence and accuracy in GIB handling, with strong SME endorsement for real-world alignment.",
       viewLink: "https://richardportfolio10.s3.ap-southeast-2.amazonaws.com/GIB+Case+Study_Richard/story.html",
       thumbnail: "/assets/GIB Case Study.png",
@@ -110,6 +114,11 @@ export default function ProjectsSection() {
     setSelectedProject(null);
   };
 
+  const filters = ["All", "Gamified", "Scenario-Based", "Simulation"];
+  const filteredProjects = projects.filter((project) =>
+    activeFilter === "All" ? true : project.tags.includes(activeFilter)
+  );
+
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
@@ -126,8 +135,24 @@ export default function ProjectsSection() {
           </p>
         </motion.div>
 
+        <div className="flex flex-wrap justify-center gap-3 mb-10">
+          {filters.map((filter) => (
+            <button
+              key={filter}
+              onClick={() => setActiveFilter(filter)}
+              className={`px-4 py-2 rounded-full text-sm border transition-colors ${
+                activeFilter === filter
+                  ? "bg-neon-green text-black border-neon-green"
+                  : "border-gray-600 text-gray-300 hover:border-neon-green hover:text-neon-green"
+              }`}
+            >
+              {filter}
+            </button>
+          ))}
+        </div>
+
         <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
+          {filteredProjects.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 30 }}
@@ -158,6 +183,16 @@ export default function ProjectsSection() {
                       <p className="text-sm text-gray-300">{project.subtitle}</p>
                     </div>
                   </motion.div>
+                  <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="bg-black/70 text-xs text-neon-green border border-neon-green/40 px-2 py-1 rounded-full"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               )}
               
@@ -173,21 +208,33 @@ export default function ProjectsSection() {
                   {project.description}
                 </p>
 
-              <div className="mb-4">
-                <h5 className="text-sm font-semibold mb-2 text-neon-green">Technologies & Methods:</h5>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <span key={tech} className="bg-dark-tertiary text-xs px-2 py-1 rounded border border-gray-600">
-                      {tech}
-                    </span>
-                  ))}
+                <div className="mb-4 flex flex-wrap gap-2">
+                  <span className="bg-dark-tertiary text-xs px-3 py-1 rounded-full border border-gray-600">
+                    {project.details.type}
+                  </span>
+                  <span className="bg-dark-tertiary text-xs px-3 py-1 rounded-full border border-gray-600">
+                    {project.details.role}
+                  </span>
+                  <span className="bg-dark-tertiary text-xs px-3 py-1 rounded-full border border-gray-600">
+                    {project.details.date}
+                  </span>
                 </div>
-              </div>
 
-              <div className="mb-6">
-                <h5 className="text-sm font-semibold mb-2 text-neon-green">Results:</h5>
-                <p className="text-gray-400 text-sm">{project.results}</p>
-              </div>
+                <div className="mb-4">
+                  <h5 className="text-sm font-semibold mb-2 text-neon-green">Technologies & Methods:</h5>
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech) => (
+                      <span key={tech} className="bg-dark-tertiary text-xs px-2 py-1 rounded border border-gray-600">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mb-6">
+                  <h5 className="text-sm font-semibold mb-2 text-neon-green">Results:</h5>
+                  <p className="text-gray-400 text-sm">{project.results}</p>
+                </div>
 
               <div className="flex gap-3">
                   <motion.button

@@ -98,6 +98,65 @@ export default function ContactSection() {
           </div>
         </motion.div>
 
+        {/* Trust & Quick Message */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="grid lg:grid-cols-2 gap-6 mb-12"
+        >
+          <div className="bg-dark-primary p-6 rounded-lg border border-gray-700">
+            <h3 className="text-xl font-semibold mb-4 text-neon-green">Client Feedback</h3>
+            <p className="text-gray-300 text-sm leading-relaxed">
+              “Richard delivers engaging learning experiences that feel modern and practical. His modules consistently receive strong
+              learner feedback and measurable performance gains.”
+            </p>
+            <div className="mt-4 text-sm text-gray-400">
+              — Learning & Development Lead
+            </div>
+            <div className="mt-6 flex items-center gap-3 text-sm text-gray-400">
+              <ExternalLink size={16} className="text-neon-green" />
+              Trusted by teams across finance, BPO, and tech
+            </div>
+          </div>
+
+          <form
+            action="mailto:chard.bdc@gmail.com"
+            method="post"
+            encType="text/plain"
+            className="bg-dark-primary p-6 rounded-lg border border-gray-700"
+          >
+            <h3 className="text-xl font-semibold mb-4 text-neon-green">Send a Quick Message</h3>
+            <div className="space-y-4">
+              <input
+                type="text"
+                name="name"
+                placeholder="Your name"
+                className="w-full rounded-lg bg-dark-secondary border border-gray-700 px-4 py-3 text-sm text-white placeholder:text-gray-500 focus:border-neon-green focus:outline-none"
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Your email"
+                className="w-full rounded-lg bg-dark-secondary border border-gray-700 px-4 py-3 text-sm text-white placeholder:text-gray-500 focus:border-neon-green focus:outline-none"
+              />
+              <textarea
+                name="message"
+                placeholder="Tell me about your project..."
+                rows={4}
+                className="w-full rounded-lg bg-dark-secondary border border-gray-700 px-4 py-3 text-sm text-white placeholder:text-gray-500 focus:border-neon-green focus:outline-none"
+              />
+              <button
+                type="submit"
+                className="w-full bg-neon-green text-black px-6 py-3 rounded-lg font-medium hover:bg-green-400 transition-colors"
+              >
+                Send Message
+              </button>
+            </div>
+          </form>
+        </motion.div>
+
         {/* Call to Action Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

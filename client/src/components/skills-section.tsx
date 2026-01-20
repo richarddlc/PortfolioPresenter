@@ -76,10 +76,10 @@ export default function SkillsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="bg-dark-secondary rounded-lg p-8 border border-gray-700 hover:border-neon-green/50 transition-all duration-300"
+              className="group bg-dark-secondary rounded-lg p-8 border border-gray-700 hover:border-neon-green/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(0,0,0,0.35)]"
             >
-              <div className="w-full h-48 rounded-lg mb-4 bg-gradient-to-br from-dark-tertiary to-dark-secondary flex items-center justify-center">
-                <div className="text-6xl opacity-80">
+              <div className="w-full h-48 rounded-lg mb-4 bg-gradient-to-br from-dark-tertiary to-dark-secondary flex items-center justify-center overflow-hidden">
+                <div className="text-6xl opacity-80 transition-transform duration-300 group-hover:scale-110">
                   {category.icon}
                 </div>
               </div>
@@ -160,7 +160,7 @@ export default function SkillsSection() {
             ].map((tech) => (
               <span
                 key={tech}
-                className="bg-dark-tertiary hover:bg-neon-green hover:text-black transition-colors px-4 py-2 rounded-full text-sm border border-gray-600 hover:border-neon-green"
+                className="bg-dark-tertiary hover:bg-neon-green hover:text-black transition-colors px-4 py-2 rounded-full text-sm border border-gray-600 hover:border-neon-green hover:shadow-[0_0_12px_rgba(0,255,136,0.4)]"
               >
                 {tech}
               </span>
