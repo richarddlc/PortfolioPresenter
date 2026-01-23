@@ -20,7 +20,7 @@ export default function ExperienceSection() {
     {
       period: "FEB 2025 - JUL 2025",
       role: "Instructional Designer",
-      company: "Sun Life | Taguig",
+      company: "SunLife | Taguig",
       description: [
         "Designed and developed eLearning modules for multiple business lines supporting SUMMIT platform, incorporating scenario-based case studies that improved knowledge application",
         "Created innovative gamified learning experiences, including escape room modules, increasing learner engagement scores by 30%",
@@ -81,7 +81,7 @@ export default function ExperienceSection() {
     {
       period: "MAY 2021 - JUL 2021",
       role: "Training Specialist",
-      company: "Pulchema Inc. | Quezon City",
+      company: "Philchema Inc. | Quezon City",
       description: [
         "Designed and facilitated product training programs, reducing onboarding time by 30%",
         "Authored technical manuals and performance assessments in collaboration with technical SMEs",
@@ -92,7 +92,7 @@ export default function ExperienceSection() {
     {
       period: "AUG 2018 - MAY 2021",
       role: "Technical Staff",
-      company: "Pulchema Inc. | Quezon City",
+      company: "Philchema Inc. | Quezon City",
       description: [
         "Conducted laboratory testing and provided data-driven feed recommendations to optimize product performance",
         "Assisted in R&D trials and analyzed data for market positioning strategies",
