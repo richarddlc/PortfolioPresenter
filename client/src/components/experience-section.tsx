@@ -90,7 +90,7 @@ export default function ExperienceSection() {
       current: false,
     },
     {
-      period: "AUG 2018 - MAY 2021",
+      period: "AUG 2016 - MAY 2021",
       role: "Technical Staff",
       company: "Philchema Inc. | Quezon City",
       description: [
