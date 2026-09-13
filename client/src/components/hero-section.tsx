@@ -1,5 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
-import professionalImage from "@assets/Untitled design (14).png";
+import professionalImage from "@assets/richard-portrait.webp";
 
 export default function HeroSection() {
   return (

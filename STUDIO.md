@@ -36,13 +36,18 @@ Publish the contents of `dist` with your existing static hosting provider.
   keeping all of the floating learning panels visible during the video sequence.
   The frame fits between the studio label and caption, with at least 24px of
   caption clearance and feathered edges. Caption resizing updates the fit.
-- Home goes to the hero; Studio goes to the end of the
-  introductory fade. Other navigation links bypass the pinned sequence.
+- The Richard brand link goes to the hero. Other top navigation links bypass
+  the pinned sequence; the separate Home and Studio buttons have been removed.
 - Reduced motion, supported data-saver settings, unavailable canvas decoding,
   and failed frame requests retain the static hero without the long pinned section.
-- Compressed frames preload near the section. At most four fetches and four
-  decodes run concurrently; twelve decoded frames are retained. Desktop frames
-  total about 4.05 MB and mobile frames 2.16 MB. Resources are released on cleanup.
+- Compressed frames preload near the section in 20 batches of 12 unchanged WebP
+  images. Three background fetches leave a fourth slot for the current scroll
+  position. At most four decodes run concurrently; twelve decoded frames are
+  retained, including frame zero for immediate return to the hero. Desktop
+  frames total about 4.25 MB and mobile frames 2.27 MB (decimal units).
+- The preloaded poster supplies the first canvas frame. While an exact frame is
+  pending, the closest decoded frame is used. A batch retries once before a
+  persistent error restores the static hero. Resources are released on cleanup.
 
 ## Files
 
@@ -53,6 +58,11 @@ Publish the contents of `dist` with your existing static hosting provider.
   the Studio marker inside the combined scene.
 - `client/src/index.css`: presentation and responsive layouts.
 - `public/media/learning-studio`: poster, frames and metadata.
+- `public/media/learning-studio/packs-v1`: the batches used by the browser.
+- `client/src/lib/studio-frame-pack.ts`: validates and unpacks frame batches.
+- `npm run build:studio-frames`: regenerates batches from the source WebP frames.
+- `npm run test:studio-frames`: verifies all 480 desktop/mobile frames are
+  preserved byte-for-byte and rejects malformed batch data.
 
 The enlarged portrait/name, removed footer labels, removed skip link, responsive
 CV button and increased brand spacing from the earlier revisions are retained.
@@ -93,3 +103,24 @@ Project titles are always visible, including on phones. The project detail
 dialog supports Escape, trapped keyboard focus, focus restoration and scroll
 locking. Checks passed at widths 320, 390, 768, 900 and 1440 in Chrome, including
 no horizontal page overflow, dialog behavior, animation preferences and touch.
+
+## Loading optimization measurement
+
+Chrome cold-cache comparison on the local preview, with simulated 10 Mbps
+download throughput and 100ms latency (one run per viewport before and after):
+
+| Viewport | First canvas frame, before / after | All frames downloaded, before / after |
+| --- | --- | --- |
+| 1440px desktop | 3.67s / 2.75s | 13.73s / 6.51s |
+| 390px mobile | 3.87s / 3.29s | 12.05s / 6.15s |
+
+The frame sequence uses 20 requests instead of 240. The portrait is a 30.5 KB
+WebP instead of a 2.28 MB PNG; the original remains in source. An unused Replit
+development banner script was removed from the production page. These are local
+simulated measurements, not guarantees for the live host or every connection.
+
+Browser checks cover all chapters, reverse scrubbing, caption spacing at four
+sizes, immediate first-frame reuse, a last-frame jump while background requests
+are held, transient retry, corrupt-data fallback, and zero batch downloads with
+reduced motion. Fast scrubbing can still briefly use a nearby frame on a slow
+connection until the exact frame is available.
