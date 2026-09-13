@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import HeroSection from "./hero-section";
+import { FRAMES_PER_PACK, PACK_COUNT, unpackStudioFrames } from "@/lib/studio-frame-pack";
 
 const media = `${import.meta.env.BASE_URL}media/learning-studio`;
 const LAST_FRAME = 239;
@@ -11,8 +12,7 @@ const chapters = [
   { title: "Bring learning to life.", detail: "A complete experience, designed around the learner.", label: "Create" },
 ];
 
-/** CSS sticky preserves native scrolling. Compressed frames preload nearby;
- * twelve decoded frames and four concurrent requests bound memory use. */
+/** Native scrolling with batched downloads and a twelve-frame decoded cache. */
 export default function LearningStudio() {
   const sectionRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -51,6 +51,8 @@ export default function LearningStudio() {
     const blobs = new Map<number, Blob>();
     const decoding = new Set<number>();
     const pending = new Map<number, AbortController>();
+    const loadedPacks = new Set<number>();
+    const attempts = new Map<number, number>();
     let target = 0;
     let disposed = false;
     let near = false;
@@ -61,8 +63,19 @@ export default function LearningStudio() {
     let intro = 0;
     let lastIntro = -1;
 
+    const nearest = (keys: Iterable<number>) => {
+      let closest: number | undefined;
+      for (const key of Array.from(keys)) {
+        if (closest === undefined || Math.abs(key - target) < Math.abs(closest - target)) closest = key;
+      }
+      return closest;
+    };
+
     const paint = () => {
-      const bitmap = cache.get(target);
+      // Use the closest decoded frame while the exact requested frame catches up.
+      const frame = cache.has(target) ? target : nearest(cache.keys());
+      if (frame === undefined || (frame === lastDrawn && intro === lastIntro)) return;
+      const bitmap = cache.get(frame);
       if (!bitmap || !width || !height || disposed) return;
       const cover = Math.max(width / bitmap.width, height / bitmap.height);
       const compact = canvas.clientWidth < 768;
@@ -103,14 +116,15 @@ export default function LearningStudio() {
         }
         context.restore();
       }
-      lastDrawn = target;
+      lastDrawn = frame;
       lastIntro = intro;
-      canvas.dataset.frame = String(target);
+      canvas.dataset.frame = String(frame);
       setReady(true);
     };
 
     const trimCache = () => {
-      const farthest = Array.from(cache.keys()).sort((a, b) => Math.abs(b - target) - Math.abs(a - target));
+      const farthest = Array.from(cache.keys()).filter(key => key !== 0)
+        .sort((a, b) => Math.abs(b - target) - Math.abs(a - target));
       while (cache.size > MAX_CACHE) {
         const key = farthest.shift()!;
         cache.get(key)?.close();
@@ -122,6 +136,8 @@ export default function LearningStudio() {
       if (disposed || !near) return;
       const wanted = [0, 1, -1, 2, -2, 3, -3, 4, -4].map(offset => target + offset)
         .filter(index => index >= 0 && index <= LAST_FRAME);
+      const available = nearest(blobs.keys());
+      if (!blobs.has(target) && available !== undefined) wanted.unshift(available);
       for (const index of wanted) {
         const blob = blobs.get(index);
         if (!blob || cache.has(index) || decoding.has(index) || decoding.size >= 4) continue;
@@ -130,31 +146,42 @@ export default function LearningStudio() {
           if (disposed) { bitmap.close(); return; }
           cache.set(index, bitmap);
           trimCache();
-          if (index === target) paint();
+          paint();
         }).catch(() => { if (!disposed) setFailed(true); }).finally(() => {
           decoding.delete(index);
           if (!disposed) pump();
         });
       }
-      // Keep compressed data (about 4 MB desktop / 2 MB mobile) ready for a
-      // continuous scrub. Always fetch the current neighbourhood first.
-      const queue = wanted.concat(Array.from({ length: LAST_FRAME + 1 }, (_, index) => index));
-      for (const index of queue) {
-        if (pending.size >= 4) break;
-        if (blobs.has(index) || pending.has(index)) continue;
+      // Twenty batches replace 240 requests. Reserve a fourth connection for
+      // the current scroll position so background loading cannot fill every slot.
+      const currentPack = Math.floor(target / FRAMES_PER_PACK);
+      const queue = Array.from({ length: PACK_COUNT }, (_, index) => index)
+        .sort((a, b) => Math.abs(a - currentPack) - Math.abs(b - currentPack));
+      for (const pack of queue) {
+        if (pending.size >= (pack === currentPack ? 4 : 3)) continue;
+        if (loadedPacks.has(pack) || pending.has(pack) || (attempts.get(pack) || 0) >= 2) continue;
         const controller = new AbortController();
-        pending.set(index, controller);
+        pending.set(pack, controller);
         const timeout = window.setTimeout(() => controller.abort(), 15000);
-        fetch(`${media}/${variant}/${String(index).padStart(4, "0")}.webp`, { signal: controller.signal })
+        fetch(`${media}/packs-v1/${variant}/${String(pack).padStart(2, "0")}.bin`, { signal: controller.signal })
           .then(response => {
-            if (!response.ok) throw new Error(`Frame request failed: ${response.status}`);
-            return response.blob();
+            if (!response.ok) throw new Error(`Frame batch request failed: ${response.status}`);
+            return response.arrayBuffer();
           })
-          .then(blob => { if (!disposed) blobs.set(index, blob); })
-          .catch(() => { if (!disposed) setFailed(true); })
+          .then(buffer => {
+            if (disposed) return;
+            unpackStudioFrames(buffer, pack).forEach((blob, index) => blobs.set(index, blob));
+            loadedPacks.add(pack);
+          })
+          .catch(() => {
+            if (disposed) return;
+            const failures = (attempts.get(pack) || 0) + 1;
+            attempts.set(pack, failures);
+            if (failures >= 2) setFailed(true);
+          })
           .finally(() => {
             clearTimeout(timeout);
-            pending.delete(index);
+            pending.delete(pack);
             if (!disposed) pump();
           });
       }
@@ -207,6 +234,20 @@ export default function LearningStudio() {
     if (captionRef.current) resizeObserver.observe(captionRef.current);
     if (toplineRef.current) resizeObserver.observe(toplineRef.current);
     window.addEventListener("scroll", schedule, { passive: true });
+    // The preloaded poster is exactly frame zero. Reuse it immediately instead
+    // of waiting for the first batch before the canvas can follow the hero fade.
+    const poster = section.querySelector<HTMLImageElement>(".studio-poster")!;
+    const seedFirstFrame = () => {
+      if (disposed || cache.has(0)) return;
+      createImageBitmap(poster).then(bitmap => {
+        if (disposed || cache.has(0)) { bitmap.close(); return; }
+        cache.set(0, bitmap);
+        trimCache();
+        paint();
+      }).catch(() => { /* Frame zero is also present in the first batch. */ });
+    };
+    if (poster.complete && poster.naturalWidth) seedFirstFrame();
+    else poster.addEventListener("load", seedFirstFrame, { once: true });
     resize();
 
     return () => {
@@ -214,6 +255,7 @@ export default function LearningStudio() {
       observer.disconnect();
       resizeObserver.disconnect();
       window.removeEventListener("scroll", schedule);
+      poster.removeEventListener("load", seedFirstFrame);
       cancelAnimationFrame(raf);
       pending.forEach(controller => controller.abort());
       cache.forEach(bitmap => bitmap.close());
