@@ -164,8 +164,6 @@ export default function ExperienceSection() {
                   className="w-full group"
                 >
                   <DepthCard className={`experience-depth-card p-6 lg:p-8 ${exp.current ? "is-current" : ""}`}>
-                    <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                      <div className="flex-1">
                         <motion.div
                           className={`inline-block text-xs font-semibold px-3 py-1 rounded-full mb-3 ${
                             exp.current
@@ -176,15 +174,15 @@ export default function ExperienceSection() {
                         >
                           {exp.period}
                         </motion.div>
+                    <div className="experience-heading">
+                      {exp.icon}
+                      <div className="min-w-0">
                         <h3 className="text-xl font-bold mb-2 group-hover:text-neon-green transition-colors duration-300">
                           {exp.role}
                         </h3>
-                        <h4 className="text-gray-400 mb-4 group-hover:text-gray-200 transition-colors duration-300">
+                        <h4 className="text-gray-400 group-hover:text-gray-200 transition-colors duration-300">
                           {exp.company}
                         </h4>
-                      </div>
-                      <div className="w-fit flex-shrink-0 self-start mb-4 md:mb-0">
-                        {exp.icon}
                       </div>
                     </div>
 

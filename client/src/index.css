@@ -476,8 +476,9 @@ section[id] { scroll-margin-top: 64px; }
 .depth-card:focus-within { border-color: #8affc177; }
 .premium-section a:focus-visible, .premium-section button:focus-visible { outline: 2px solid #8affc1; outline-offset: 5px; }
 .capability-card { padding: 28px; }
-.capability-visual { position: relative; height: 144px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border-bottom: 1px solid #ffffff10; }
-.card-index { position: absolute; top: 0; left: 0; color: #98afa3; font-size: 11px; letter-spacing: .12em; }
+.capability-visual { min-height: 114px; display: flex; align-items: center; gap: 16px; padding-bottom: 22px; margin-bottom: 22px; border-bottom: 1px solid #ffffff10; }
+.capability-visual .dimensional-icon { width: 64px; height: 64px; }
+.card-index { display: block; margin-bottom: 6px; color: #98afa3; font-size: 11px; letter-spacing: .12em; }
 .capability-card h3 { font-weight: 500; letter-spacing: -.025em; }
 .capability-card li { line-height: 1.7; }
 .expertise-track { background: #0d1512; box-shadow: inset 0 2px 3px #0006, 0 1px 0 #ffffff0c; }
@@ -494,6 +495,7 @@ section[id] { scroll-margin-top: 64px; }
 .premium-action:hover { background: #c5ffdf; }
 .experience-depth-card.is-current { border-color: #8affc14d; }
 .experience-depth-card li { line-height: 1.7; }
+.experience-heading { display: flex; align-items: center; gap: 20px; margin: 8px 0 24px; }
 .contact-premium { background: radial-gradient(ellipse at 50% 100%, #233c304d, transparent 65%), #141b1a; }
 .contact-depth-card { min-height: 222px; }
 .contact-depth-card a { overflow-wrap: anywhere; }
@@ -521,7 +523,9 @@ section[id] { scroll-margin-top: 64px; }
   .depth-card:hover { border-color: #b0eacc40; box-shadow: inset 0 1px 0 #ffffff15, 0 24px 45px -22px #000d; }
 }
 @media (max-width: 767px) {
-  .capability-visual { height: 118px; justify-content: flex-end; }
+  .capability-visual { min-height: 100px; }
+  .experience-heading { gap: 14px; }
+  .experience-heading .dimensional-icon { width: 52px; height: 52px; }
   .capability-card { padding: 24px; }
   .contact-depth-card { min-height: 210px; }
   .skill-dial { padding: 5px; }

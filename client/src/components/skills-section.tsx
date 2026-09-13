@@ -87,8 +87,13 @@ export default function SkillsSection() {
               className="h-full"
             >
               <DepthCard className="capability-card">
-              <div className="capability-visual"><span className="card-index">0{index + 1}</span>{category.icon}</div>
-              <h3 className="text-xl font-semibold mb-5">{category.title}</h3>
+              <div className="capability-visual">
+                {category.icon}
+                <div className="min-w-0">
+                  <span className="card-index">0{index + 1}</span>
+                  <h3 className="text-xl font-semibold">{category.title}</h3>
+                </div>
+              </div>
 
               <ul className="space-y-2 text-gray-300">
                 {category.skills.map((skill, skillIndex) => (
