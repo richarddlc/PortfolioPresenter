@@ -183,13 +183,9 @@ export default function ExperienceSection() {
                           {exp.company}
                         </h4>
                       </div>
-                      <motion.div
-                        className="mb-4 md:mb-0"
-                        whileHover={{ scale: 1.2, rotate: 5 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                      >
+                      <div className="w-fit flex-shrink-0 self-start mb-4 md:mb-0">
                         {exp.icon}
-                      </motion.div>
+                      </div>
                     </div>
 
                     <ul className="text-gray-300 space-y-2 text-sm">
