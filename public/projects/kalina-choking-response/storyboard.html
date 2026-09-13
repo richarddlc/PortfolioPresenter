@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Choking Response — Written Storyboard | Richard de la Cruz</title><style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+:root{
+  --bg:#f4f6f5; --surface:#ffffff; --surface-2:#edf1ee; --border:#d7dedb;
+  --text:#1c222c; --text-muted:#5c6673; --navy:#2f4a72; --sage:#5b7a49;
+  --sage-tint:#e5eee0; --red:#a13c3c; --red-tint:#f6e6e6; --radius:10px;
+  --font-display:'Fraunces', Georgia, serif; --font-body:'Inter','Segoe UI',sans-serif;
+  --font-mono:'IBM Plex Mono', Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#11151b; --surface:#181e27; --surface-2:#1f2731; --border:#333e4c;
+  --text:#e7ebf0; --text-muted:#96a2b3; --navy:#8fadde; --sage:#9fc38b;
+  --sage-tint:#1e2a1f; --red:#e29a9a; --red-tint:#2e1e1e;
+}}
+:root[data-theme="dark"]{
+  --bg:#11151b; --surface:#181e27; --surface-2:#1f2731; --border:#333e4c;
+  --text:#e7ebf0; --text-muted:#96a2b3; --navy:#8fadde; --sage:#9fc38b;
+  --sage-tint:#1e2a1f; --red:#e29a9a; --red-tint:#2e1e1e;
+}
+*{box-sizing:border-box;}
+body{background:var(--bg); color:var(--text); font-family:var(--font-body); line-height:1.6; -webkit-font-smoothing:antialiased;}
+.wrap{max-width:820px; margin:0 auto; padding:48px 24px 80px;}
+.eyebrow{font-family:var(--font-mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--sage); margin-bottom:12px;}
+h1{font-family:var(--font-display); font-weight:700; font-size:clamp(1.8rem,4vw,2.6rem); line-height:1.1; margin:0 0 10px;}
+.subtitle{font-size:1.05rem; color:var(--text-muted); max-width:60ch; margin:0 0 20px;}
+.meta-strip{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:28px;}
+.meta-chip{font-family:var(--font-mono); font-size:12.5px; color:var(--text-muted); background:var(--surface-2); border:1px solid var(--border); border-radius:99px; padding:6px 14px;}
+.meta-chip b{color:var(--text);}
+.banner{background:var(--red-tint); border:1px solid var(--red); border-radius:8px; padding:14px 18px; font-size:13.5px; margin-bottom:32px;}
+.banner b{color:var(--red);}
+h2{font-family:var(--font-display); font-size:1.4rem; margin:40px 0 14px; border-bottom:1px solid var(--border); padding-bottom:8px;}
+.card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; margin-bottom:16px;}
+.card b{color:var(--navy);}
+.card a{color:var(--navy);}
+table{width:100%; border-collapse:collapse; font-size:14px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;}
+th{text-align:left; font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-muted); padding:10px 14px; border-bottom:1px solid var(--border); background:var(--surface-2);}
+td{padding:10px 14px; border-bottom:1px solid var(--border); vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+.flip{background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:12px 16px; margin-bottom:10px;}
+.flip b{color:var(--navy); display:block; margin-bottom:4px;}
+.scenario-opt{background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:10px 14px; margin-bottom:8px; font-size:14px;}
+.scenario-opt.correct{border-color:var(--sage); background:var(--sage-tint);}
+.scenario-opt.correct::before{content:"✓ correct — "; color:var(--sage); font-weight:600;}
+.quiz-q{background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:14px 16px; margin-bottom:12px;}
+.quiz-q .qtext{font-weight:600; margin-bottom:8px;}
+.quiz-q .opt{padding:4px 0 4px 14px; font-size:13.5px; color:var(--text-muted);}
+.quiz-q .opt.correct{color:var(--sage); font-weight:600;}
+.quiz-q .opt.correct::before{content:"✓ "; }
+.sources{font-size:13px; color:var(--text-muted);}
+.sources a{color:var(--navy);}
+footer{margin-top:48px; font-size:12.5px; color:var(--text-muted); border-top:1px solid var(--border); padding-top:16px;}
+
+
+body {margin:0;}
+.portfolio-bar {display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding:18px max(20px,calc((100% - 772px)/2));border-bottom:1px solid var(--border);background:var(--surface);font-size:13px;}
+.portfolio-bar a {color:var(--navy);font-weight:600;text-decoration:none;}
+.sample-context {max-width:772px;margin:28px auto 0;padding:20px 24px;border-left:3px solid var(--sage);background:var(--surface-2);border-radius:0 10px 10px 0;}
+.sample-context p {margin:0 0 12px;font-size:14px;color:var(--text-muted);}
+.sample-context strong {color:var(--text);}
+.document-nav {display:flex;gap:8px 16px;flex-wrap:wrap;font-size:12px;}
+.document-nav a {color:var(--navy);text-underline-offset:3px;}
+.table-scroll {overflow-x:auto;margin-bottom:24px;border-radius:10px;}
+.table-scroll table {min-width:650px;}
+h2[id] {scroll-margin-top:24px;}
+a:focus-visible,.table-scroll:focus-visible {outline:2px solid var(--sage);outline-offset:4px;}
+@media(max-width:600px){.sample-context{margin:20px 16px 0;padding:18px;}.wrap{padding:32px 16px 48px;}.meta-chip{font-size:11px;}.portfolio-bar{padding:16px;} }
+@media print{.portfolio-bar,.sample-context{display:none;}.table-scroll{overflow:visible;}.table-scroll table{min-width:0;}.wrap{max-width:none;padding:0;}}
+</style></head><body>
+<nav class="portfolio-bar" aria-label="Portfolio links"><a href="../../#projects">← Richard. / Portfolio</a><a href="https://richardportfolio10.s3.ap-southeast-2.amazonaws.com/build/index.html" target="_blank" rel="noopener noreferrer">View the course ↗</a></nav>
+<aside class="sample-context"><p><strong>Portfolio sample · Written storyboard</strong><br>Content, narration and interaction planning by Richard de la Cruz. Visual storyboards were created separately in Figma. Original review and source notes are retained below.</p><nav class="document-nav" aria-label="Storyboard sections"><a href="#narration-script">Narration Script</a><a href="#slide-by-slide-plan">Slide-by-Slide Plan</a><a href="#learning-objectives">Learning Objectives</a><a href="#final-assessment-12-questions-90-passmark">Final Assessment</a><a href="#sources">Sources</a></nav></aside>
+<main>
+<div class="wrap">
+<p class="eyebrow">A KALINA STANDALONE COURSE — STORYBOARD</p>
+<h1>Choking Response</h1>
+<p class="subtitle">Recognise choking, respond correctly using current Australian first aid guidance, and prevent choking during mealtimes.</p>
+<div class="meta-strip">
+<span class="meta-chip"><b>22 slides</b></span>
+<span class="meta-chip"><b>12</b> final assessment questions</span>
+<span class="meta-chip">Passmark: <b>90%</b> (max 1 wrong)</span>
+<span class="meta-chip">Grounded in Australian best-practice research</span>
+</div>
+<div class="banner"><b>Clinical sign-off required</b> before publishing. This course reflects current published Australian guidance as researched, but must be reviewed and approved by a Kalina RN or clinical lead before it goes live to learners.</div>
+<div class="card"><b>Important correction versus older/US-style first aid content (2026-09-06)</b><p>Current Australian guidance (ANZCOR, St John Australia) does <b>not</b> recommend abdominal thrusts (the Heimlich manoeuvre) for a conscious adult or child over one year, due to the risk of serious internal injury. The correct technique is up to 5 back blows, then up to 5 chest thrusts (not abdominal), alternating between the two if the obstruction doesn't clear. This is different from some US Red Cross material and from what many support workers may have learned informally, so the course explicitly corrects this misconception rather than assuming it.</p></div>
+<div class="card"><b>Built as a full SCORM package (2026-09-07)</b><p>All 22 slides verified end-to-end in-browser: hotspot (4 nodes, illustrated body-outline SVG), matching (3 chips), flip cards (2 slides, 4 and 5 cards), tabs (2 slides, 2 and 3 tabs each), accordion (5 sections), all 4 scenario-picks, the native embedded video (byte-exact fetch match, 15.8MB, completion-gating verified), and the 12-question quiz's pass path (100%), fail path (8%, correct "Almost there" messaging and Try Again), and re-gating. Console clean throughout. No photo sourced yet for "Why It Matters" (uses a pulsing warning icon, the pre-photo pattern used by every course before its real photo arrived). Repackaged as a flat SCORM zip via PowerShell <code>Compress-Archive</code> (14.92MB, driven mostly by the ~15.8MB video).</p></div>
+<h2 id="narration-script">Narration Script</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable storyboard table"><table>
+<tr><th>Slide</th><th>Narration</th></tr>
+<tr><td>Title</td><td>(not yet recorded) "Welcome to Choking Response, part of Kalina's clinical skills training. This course covers recognising choking, responding correctly using current Australian first aid guidance, and preventing choking during mealtimes."</td></tr>
+<tr><td>Learning Objectives</td><td>(not yet recorded) "By the end of this course, you'll be able to: recognise mild versus severe choking, correctly perform back blows and chest thrusts, identify choking risk factors and follow mealtime management plans, and know when to escalate."</td></tr>
+<tr><td>Why It Matters</td><td>(not yet recorded) "Choking can become life-threatening within minutes. Knowing exactly what to do, and what not to do, genuinely saves lives."</td></tr>
+<tr><td>Recognising Choking</td><td>(not yet recorded) "Select each sign to learn whether it points to mild or severe choking."</td></tr>
+<tr><td>Mild or Severe?</td><td>(not yet recorded) "Match each description to whether it's mild or severe choking."</td></tr>
+<tr><td>Responding to Mild Choking</td><td>(not yet recorded) "Select each card to learn how to respond when someone is choking mildly."</td></tr>
+<tr><td>Back Blows and Chest Thrusts</td><td>(not yet recorded) "Select each tab to learn the correct technique, step by step."</td></tr>
+<tr><td>Why NOT Abdominal Thrusts</td><td>(not yet recorded) "This is a common misconception. Here's what current Australian guidance actually says."</td></tr>
+<tr><td>If the Person Becomes Unconscious</td><td>(not yet recorded) "If the person stops responding, here's exactly what to do next."</td></tr>
+<tr><td>Choking Risk Factors</td><td>(not yet recorded) "Select each card to learn about a risk factor you might see in the people you support."</td></tr>
+<tr><td>Mealtime Management Plans</td><td>(not yet recorded) "Select each tab to learn what's in a mealtime management plan and why it matters."</td></tr>
+<tr><td>Preventing Choking at Mealtimes</td><td>(not yet recorded) "Select each section to learn a practical prevention step."</td></tr>
+<tr><td>Scenario: Supporting a Wheelchair User</td><td>(not yet recorded) "A participant who uses a wheelchair starts choking. What should you do?"</td></tr>
+<tr><td>Scenario: Limited Communication</td><td>(not yet recorded) "A participant with limited verbal communication suddenly looks distressed during a meal. What should you do?"</td></tr>
+<tr><td>Scenario: It Hasn't Cleared</td><td>(not yet recorded) "You've given 5 back blows and 5 chest thrusts, and the obstruction still hasn't cleared. What now?"</td></tr>
+<tr><td>When to Call an Ambulance</td><td>(not yet recorded) "Even once the obstruction clears, there are situations where you should still call triple zero."</td></tr>
+<tr><td>Reporting After an Incident</td><td>(not yet recorded) "Every choking incident needs to be reported, even if it resolved without an ambulance."</td></tr>
+<tr><td>Best-Practice Standard</td><td>(not yet recorded) "This course follows ANZCOR's Basic Life Support guideline and St John Australia's choking first aid guidance, alongside the NDIS Commission's Practice Alert on dysphagia and mealtime management."</td></tr>
+<tr><td>Practice Scenario</td><td>(not yet recorded) "Let's check your understanding with one more scenario."</td></tr>
+<tr><td>Video Demo</td><td>(not yet recorded) "Watch this choking first aid demonstration, covering the same steps as this course."</td></tr>
+<tr><td>Final Assessment</td><td>(not yet recorded) "Now it's time for your final assessment. You'll answer twelve questions, and you'll need at least 90% correct to complete this course."</td></tr>
+<tr><td>Completion (if passed)</td><td>(not yet recorded) "Well done, you've completed Choking Response. Thank you for the calm, quick thinking you bring to every person you support."</td></tr>
+<tr><td>Completion (if failed)</td><td>(not yet recorded) "Almost there. Take a moment to go back and review the material above, then retake the final assessment from the course outline when you feel ready."</td></tr>
+</table></div>
+
+<h2 id="slide-by-slide-plan">Slide-by-Slide Plan</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Scrollable storyboard table"><table>
+<tr><th>#</th><th>Slide</th><th>Interaction</th><th>Content</th></tr>
+<tr><td>1</td><td>Title</td><td>Hero + particles</td><td>Course title and subtitle, Start Course</td></tr>
+<tr><td>2</td><td>Learning Objectives</td><td>Informational (checklist)</td><td>What the learner will be able to do by the end of the course</td></tr>
+<tr><td>3</td><td>Why It Matters</td><td>Real photograph</td><td>Choking can become life-threatening within minutes</td></tr>
+<tr><td>4</td><td>Recognising Choking</td><td>Illustrated hotspot diagram (4 points)</td><td>Effective cough, clutching the throat, can't speak or breathe, turning blue - each explained</td></tr>
+<tr><td>5</td><td>Mild or Severe?</td><td>Matching (3 chips/buckets)</td><td>Mild (still coughing/breathing), severe (silent, can't cough), signs of both compared</td></tr>
+<tr><td>6</td><td>Responding to Mild Choking</td><td>Flip cards (4)</td><td>Encourage coughing, stay calm and close, don't interfere, watch for it turning severe</td></tr>
+<tr><td>7</td><td>Back Blows and Chest Thrusts</td><td>Tabs (2)</td><td>Back blows technique; chest thrusts technique - both step by step</td></tr>
+<tr><td>8</td><td>Why NOT Abdominal Thrusts</td><td>Informational warning callout</td><td>ANZCOR/St John Australia's current position - risk of internal injury</td></tr>
+<tr><td>9</td><td>If the Person Becomes Unconscious</td><td>Informational callouts</td><td>Call 000, lower them safely, begin CPR</td></tr>
+<tr><td>10</td><td>Choking Risk Factors</td><td>Flip cards (5)</td><td>Dysphagia, cognitive impairment, reduced muscle control, poor positioning, eating too quickly</td></tr>
+<tr><td>11</td><td>Mealtime Management Plans</td><td>Tabs (3)</td><td>What's in a plan; food texture modification; positioning and supervision requirements</td></tr>
+<tr><td>12</td><td>Preventing Choking at Mealtimes</td><td>Accordion (5 sections)</td><td>Sit upright, small bites/sips, minimise distractions, supervise as required, follow the modified texture exactly</td></tr>
+<tr><td>13</td><td>Scenario: Supporting a Wheelchair User</td><td>4-option scenario-pick</td><td>Correct positioning and technique adapted for a seated participant</td></tr>
+<tr><td>14</td><td>Scenario: Limited Communication</td><td>4-option scenario-pick</td><td>Recognising distress signs beyond the universal choking sign</td></tr>
+<tr><td>15</td><td>Scenario: It Hasn't Cleared</td><td>4-option scenario-pick</td><td>Keep alternating back blows and chest thrusts - never switch to abdominal thrusts</td></tr>
+<tr><td>16</td><td>When to Call an Ambulance</td><td>Informational callouts</td><td>Breathing difficulty continues, back blows/chest thrusts were needed, any doubt</td></tr>
+<tr><td>17</td><td>Reporting After an Incident</td><td>Informational (checklist)</td><td>Report every incident, document what happened, review the mealtime plan</td></tr>
+<tr><td>18</td><td>Best-Practice Standard</td><td>Citation card</td><td>ANZCOR Guideline 4, St John Australia, NDIS Practice Alert on dysphagia</td></tr>
+<tr><td>19</td><td>Practice Scenario</td><td>Scenario-pick cards (ungraded)</td><td>One more reinforcement scenario</td></tr>
+<tr><td>20</td><td>Video Demo</td><td>Native video (Kalina-supplied)</td><td>Choking first aid demonstration</td></tr>
+<tr><td>21</td><td>Final Assessment</td><td>12-question graded quiz</td><td>Passmark 90% (11 of 12, at most one wrong)</td></tr>
+<tr><td>22</td><td>Completion</td><td>Certificate</td><td>Pass/fail dynamic messaging</td></tr>
+</table></div>
+
+<h2 id="learning-objectives">Learning Objectives</h2>
+<div class="flip"><b>Objective 1</b>Recognise the difference between mild and severe choking and respond appropriately.</div>
+<div class="flip"><b>Objective 2</b>Correctly perform back blows and chest thrusts, and understand why abdominal thrusts are not used in current Australian first aid guidance.</div>
+<div class="flip"><b>Objective 3</b>Identify choking risk factors and follow a person's mealtime management plan to help prevent choking.</div>
+<div class="flip"><b>Objective 4</b>Know when to escalate to emergency services and how to report a choking incident.</div>
+
+<h2 id="recognising-choking-hotspot">Recognising Choking (hotspot)</h2>
+<div class="flip"><b>Effective cough</b>The person is coughing forcefully and can still make sound. Their airway is only partially blocked - don't interfere, just stay close and encourage them.</div>
+<div class="flip"><b>Clutching the throat</b>The universal sign of choking. Ask "Are you choking?" - if they nod and can't speak, treat it as severe.</div>
+<div class="flip"><b>Can't speak, cough, or breathe</b>A silent, weak, or absent cough means the airway is completely or severely blocked. This is a medical emergency - act immediately.</div>
+<div class="flip"><b>Turning blue (cyanosis)</b>A sign of severe oxygen deprivation. Call 000 and continue back blows and chest thrusts without delay.</div>
+
+<h2 id="mild-or-severe-matching">Mild or Severe? (matching)</h2>
+<div class="flip"><b>Mild</b>Still coughing forcefully, can speak or make sound, appears distressed but is moving air.</div>
+<div class="flip"><b>Severe</b>Silent or very weak cough, cannot speak or breathe, may be clutching the throat, may start to turn blue.</div>
+<div class="flip"><b>Either can change quickly</b>A mild obstruction can become severe within moments - keep watching even after encouraging someone to cough.</div>
+
+<h2 id="responding-to-mild-choking-flip-cards">Responding to Mild Choking (flip cards)</h2>
+<div class="flip"><b>Encourage coughing</b>An effective cough is the body's best tool for clearing an airway. Encourage the person to keep coughing.</div>
+<div class="flip"><b>Stay calm and close</b>Stay with the person, speak calmly, and don't leave them alone.</div>
+<div class="flip"><b>Don't interfere</b>Don't slap their back or attempt back blows while they're coughing effectively - this can push the object further in or worsen things.</div>
+<div class="flip"><b>Watch for it turning severe</b>If the cough becomes weak, silent, or stops, or they can no longer breathe, switch immediately to the severe choking response.</div>
+
+<h2 id="back-blows-and-chest-thrusts-tabs">Back Blows and Chest Thrusts (tabs)</h2>
+<div class="card"><b>Back blows</b><p>Bend the person well forward, supporting their chest with one hand. Give up to 5 sharp blows between the shoulder blades with the heel of your other hand. Check after each blow to see if the blockage has cleared.</p></div>
+<div class="card"><b>Chest thrusts</b><p>If back blows don't clear it, give up to 5 chest thrusts: one hand on the person's back for support, the heel of your other hand on the lower half of the sternum. Thrusts should be slower and sharper than CPR compressions. If it still hasn't cleared, keep alternating 5 back blows with 5 chest thrusts until it clears or medical help arrives.</p></div>
+
+<h2 id="why-not-abdominal-thrusts">Why NOT Abdominal Thrusts</h2>
+<div class="card warn"><b>Current Australian guidance does not use the Heimlich manoeuvre</b><p>ANZCOR and St John Australia do not recommend abdominal thrusts for a conscious adult or child over one year - they carry a real risk of broken ribs and internal organ damage. If you've learned the Heimlich manoeuvre elsewhere, Kalina's practice follows the current Australian standard instead: back blows and chest thrusts.</p></div>
+
+<h2 id="if-the-person-becomes-unconscious">If the Person Becomes Unconscious</h2>
+<div class="card"><b>Call 000 immediately</b><p>If the person stops responding, call an ambulance straight away, or direct someone else to.</p></div>
+<div class="card"><b>Lower them safely and begin CPR</b><p>Lower the person carefully to the ground, open their mouth to check for and remove any visible object, and begin CPR following your basic life support training. Do not perform blind finger sweeps - only remove an object you can clearly see.</p></div>
+
+<h2 id="choking-risk-factors-flip-cards">Choking Risk Factors (flip cards)</h2>
+<div class="flip"><b>Dysphagia</b>Swallowing difficulties significantly increase choking risk. Always follow the person's mealtime management plan exactly.</div>
+<div class="flip"><b>Cognitive impairment</b>May affect a person's ability to chew thoroughly, eat at a safe pace, or recognise when something is unsafe to swallow.</div>
+<div class="flip"><b>Reduced muscle control</b>Conditions affecting the muscles used in chewing and swallowing increase risk, especially without correct positioning.</div>
+<div class="flip"><b>Poor positioning</b>Slouching, lying down, or eating in a wheelchair without proper support all increase choking risk.</div>
+<div class="flip"><b>Eating too quickly</b>Rushed meals, large bites, or not chewing thoroughly are common, preventable risk factors.</div>
+
+<h2 id="mealtime-management-plans-tabs">Mealtime Management Plans (tabs)</h2>
+<div class="card"><b>What's in a plan</b><p>A mealtime management plan is prepared by a speech pathologist and sets out exactly how a person with swallowing difficulties should be supported: food and fluid texture, positioning, pace, supervision level, and specific precautions.</p></div>
+<div class="card"><b>Food texture modification</b><p>Meals may need to be pureed, minced, or softened, and fluids may need to be thickened. Never substitute or guess a texture - follow the plan exactly.</p></div>
+<div class="card"><b>Positioning and supervision</b><p>The plan will specify seating position (usually upright, not reclined), and how closely the person needs to be supervised while eating and for a period afterward.</p></div>
+
+<h2 id="preventing-choking-at-mealtimes-accordion">Preventing Choking at Mealtimes (accordion)</h2>
+<div class="flip"><b>Sit upright</b>Always support the person to sit upright during meals and for a period afterward, never lying down or slumped.</div>
+<div class="flip"><b>Small bites and sips</b>Encourage small amounts at a time, and allow enough time to chew and swallow before the next bite.</div>
+<div class="flip"><b>Minimise distractions</b>Reduce talking, TV, or rushing during meals so the person can focus on eating safely.</div>
+<div class="flip"><b>Supervise as required</b>Follow the level of supervision set out in the person's plan - some people need to be watched throughout the entire meal.</div>
+<div class="flip"><b>Follow the modified texture exactly</b>Never give a person food or fluid in a texture other than what's specified in their plan, even if they ask for it.</div>
+
+<h2 id="scenario-supporting-a-wheelchair-user-scenario-pick">Scenario: Supporting a Wheelchair User (scenario-pick)</h2>
+<p>A participant who uses a wheelchair suddenly can't speak or cough during a meal. What should you do?</p>
+<div class="scenario-opt">Try to lift them out of the wheelchair onto the floor first.</div>
+<div class="scenario-opt">Wait for them to work it out themselves since moving them seems risky.</div>
+<div class="scenario-opt correct">Lean them forward as far as safely possible in the chair and give back blows, adapting your position and support as needed.</div>
+<div class="scenario-opt">Give abdominal thrusts since back blows are harder in a seated position.</div>
+
+<h2 id="scenario-limited-communication-scenario-pick">Scenario: Limited Communication (scenario-pick)</h2>
+<p>A participant with limited verbal communication suddenly looks distressed during a meal, wide-eyed, and stops moving. They can't tell you what's wrong. What should you do?</p>
+<div class="scenario-opt">Assume it's nothing since they haven't said anything is wrong.</div>
+<div class="scenario-opt">Wait a few minutes to see if it passes.</div>
+<div class="scenario-opt correct">Treat it as possible choking - check their airway and breathing, and respond accordingly.</div>
+<div class="scenario-opt">Only act if they clutch their throat.</div>
+
+<h2 id="scenario-it-hasn-t-cleared-scenario-pick">Scenario: It Hasn't Cleared (scenario-pick)</h2>
+<p>You've given 5 back blows and 5 chest thrusts, and the obstruction still hasn't cleared. What should you do?</p>
+<div class="scenario-opt">Switch to abdominal thrusts since back blows and chest thrusts haven't worked.</div>
+<div class="scenario-opt">Stop and wait for the ambulance to arrive without doing anything further.</div>
+<div class="scenario-opt correct">Keep alternating 5 back blows with 5 chest thrusts until it clears or medical help arrives.</div>
+<div class="scenario-opt">Attempt a blind finger sweep of their mouth.</div>
+
+<h2 id="when-to-call-an-ambulance">When to Call an Ambulance</h2>
+<div class="card"><b>Even after the obstruction clears</b><p>Call 000 if the person needed back blows or chest thrusts at all, if breathing difficulty continues, if they lose consciousness at any point, or if you have any doubt.</p></div>
+
+<h2 id="reporting-after-an-incident">Reporting After an Incident</h2>
+<div class="card"><b>Always report, even if it resolved</b><p>Report every choking incident to your supervisor, regardless of whether an ambulance was called. Document what happened, and flag it for review against the person's mealtime management plan in case anything needs updating.</p></div>
+
+<h2 id="the-best-practice-standard">The Best-Practice Standard</h2>
+<div class="card"><b>ANZCOR Guideline 4 - Airway, and St John Australia's Choking First Aid</b><p>The primary Australian first aid protocols for recognising and responding to choking, paired with the NDIS Quality and Safeguards Commission's Practice Alert on dysphagia, safe swallowing, and mealtime management.</p><p class="sources"><a href="https://www.anzcor.org/home/basic-life-support/guideline-4-airway" target="_blank" rel="noopener noreferrer">anzcor.org - Guideline 4</a></p></div>
+
+<h2 id="practice-scenario-ungraded">Practice Scenario (ungraded)</h2>
+<p>A participant at the table suddenly stops talking, stands up, and clutches their throat with both hands. What's the right first step?</p>
+<div class="scenario-opt">Ask them to sit back down and relax.</div>
+<div class="scenario-opt">Offer them a glass of water.</div>
+<div class="scenario-opt correct">Ask "Are you choking?" and check if they can speak or cough.</div>
+<div class="scenario-opt">Immediately begin chest thrusts without checking anything first.</div>
+
+<h2 id="final-assessment-12-questions-90-passmark">Final Assessment (12 questions, 90% passmark)</h2>
+<div class="quiz-q"><p class="qtext">1. A person is coughing forcefully and can still make sound. What should you do?</p>
+<p class="opt">Immediately give back blows</p><p class="opt correct">Encourage them to keep coughing and stay close</p><p class="opt">Give abdominal thrusts</p><p class="opt">Leave them to manage alone</p></div>
+<div class="quiz-q"><p class="qtext">2. Which of these is a sign of severe choking?</p>
+<p class="opt">A strong, forceful cough</p><p class="opt correct">A silent or very weak cough, unable to speak or breathe</p><p class="opt">Mild throat clearing</p><p class="opt">Speaking normally</p></div>
+<div class="quiz-q"><p class="qtext">3. What is the current Australian first aid technique for a conscious adult with severe choking?</p>
+<p class="opt">Abdominal thrusts (Heimlich manoeuvre)</p><p class="opt correct">Up to 5 back blows, then up to 5 chest thrusts, alternating</p><p class="opt">A blind finger sweep of the mouth</p><p class="opt">Immediate CPR without checking first</p></div>
+<div class="quiz-q"><p class="qtext">4. Why does current Australian guidance not recommend abdominal thrusts?</p>
+<p class="opt">They take too long to perform</p><p class="opt correct">They carry a real risk of broken ribs and internal organ damage</p><p class="opt">They are only for children</p><p class="opt">They have no real risks at all</p></div>
+<div class="quiz-q"><p class="qtext">5. How should you position a person before giving back blows?</p>
+<p class="opt">Lying flat on their back</p><p class="opt correct">Bent well forward, supporting their chest with one hand</p><p class="opt">Standing perfectly upright</p><p class="opt">Sitting with their head tilted back</p></div>
+<div class="quiz-q"><p class="qtext">6. How do chest thrusts differ from CPR compressions?</p>
+<p class="opt">They are identical</p><p class="opt correct">Chest thrusts are slower and sharper</p><p class="opt">Chest thrusts are much faster</p><p class="opt">Chest thrusts use two hands stacked, like CPR</p></div>
+<div class="quiz-q"><p class="qtext">7. A choking person becomes unconscious. What should you do?</p>
+<p class="opt">Continue standing back blows on the unconscious person</p><p class="opt correct">Call 000, lower them safely, check for a visible object, and begin CPR</p><p class="opt">Wait for them to wake up</p><p class="opt">Perform a blind finger sweep regardless of visibility</p></div>
+<div class="quiz-q"><p class="qtext">8. Which of the following is a choking risk factor you might see in the people you support?</p>
+<p class="opt">Excellent chewing ability</p><p class="opt correct">Dysphagia (swallowing difficulties)</p><p class="opt">Eating slowly and carefully</p><p class="opt">Sitting upright during meals</p></div>
+<div class="quiz-q"><p class="qtext">9. What is a mealtime management plan?</p>
+<p class="opt">A general recipe book</p><p class="opt correct">A speech pathologist's plan setting out food texture, positioning, pace, and supervision for a person with swallowing difficulties</p><p class="opt">A shift roster for support workers</p><p class="opt">An optional guideline you can adjust as needed</p></div>
+<div class="quiz-q"><p class="qtext">10. A wheelchair user starts choking. What's the correct approach?</p>
+<p class="opt">Give abdominal thrusts since back blows are harder seated</p><p class="opt correct">Lean them forward as far as safely possible and give back blows, adapting position as needed</p><p class="opt">Wait until they can be moved to the floor</p><p class="opt">Do nothing until they stand up themselves</p></div>
+<div class="quiz-q"><p class="qtext">11. Even after an obstruction clears, when should you still call an ambulance?</p>
+<p class="opt">Never, if the person seems fine</p><p class="opt correct">If back blows or chest thrusts were needed, breathing difficulty continues, or you have any doubt</p><p class="opt">Only if the person asks you to</p><p class="opt">Only if they lost consciousness for more than an hour</p></div>
+<div class="quiz-q"><p class="qtext">12. After a choking incident that resolved without an ambulance, what should you do?</p>
+<p class="opt">Nothing, since it resolved on its own</p><p class="opt correct">Report it to your supervisor and review it against the person's mealtime management plan</p><p class="opt">Only mention it if asked</p><p class="opt">Wait until the next scheduled review to bring it up</p></div>
+
+<h2 id="sources">Sources</h2>
+<p class="sources">
+Australian and New Zealand Committee on Resuscitation (ANZCOR) - Guideline 4: Airway: <a href="https://www.anzcor.org/home/basic-life-support/guideline-4-airway" target="_blank" rel="noopener noreferrer">anzcor.org</a><br>
+St John Australia - Choking (adult or child over 1 year): <a href="https://stjohn.org.au/fact-sheet/choking-adult-or-child-over-1-year/" target="_blank" rel="noopener noreferrer">stjohn.org.au</a><br>
+NDIS Quality and Safeguards Commission - Practice Alert: Dysphagia, Safe Swallowing and Mealtime Management (2022): <a href="https://www.ndiscommission.gov.au/sites/default/files/2022-05/practice-alert-dysphagia-safe-swallowing-and-mealtime-management.pdf" target="_blank" rel="noopener noreferrer">ndiscommission.gov.au</a><br>
+Kalina Health &amp; Community Services - internal choking first aid demonstration video (free video sourced online, supplied by Kalina for internal training use - original uploader/redistribution rights still to be confirmed, same open item as the Midazolam and Blood Pressure reference videos)
+</p>
+<footer>Kalina Health &amp; Community Services — internal training storyboard. Not for external distribution.</footer>
+</div>
+</main></body></html>

@@ -11,13 +11,16 @@ interface Project {
   technologies: string[];
   results: string;
   viewLink: string;
+  actionLabel?: string;
+  resultLabel?: string;
+  objectivesLabel?: string;
   thumbnail?: string;
   details: {
     client: string;
     tool: string;
     role: string;
     type: string;
-    date: string;
+    date?: string;
     overview: string;
     objectives: string[];
     strategies: string[];
@@ -32,7 +35,7 @@ function ProjectCard({ project, index, onOpenModal }: { project: Project; index:
       key={project.id}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.2 }}
+      transition={{ duration: 0.6, delay: (index % 2) * 0.15 }}
       viewport={{ once: true }}
       className="h-full"
     >
@@ -72,7 +75,7 @@ function ProjectCard({ project, index, onOpenModal }: { project: Project; index:
         </div>
 
         <div className="mb-6">
-          <h5 className="text-sm font-semibold mb-2 text-neon-green">Results:</h5>
+          <h5 className="text-sm font-semibold mb-2 text-neon-green">{project.resultLabel || "Results"}:</h5>
           <p className="text-gray-400 text-sm">{project.results}</p>
         </div>
 
@@ -93,7 +96,7 @@ function ProjectCard({ project, index, onOpenModal }: { project: Project; index:
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            View Project
+            {project.actionLabel || "View Project"}
             <ExternalLink size={14} />
           </motion.a>
         </div>
@@ -134,6 +137,85 @@ export default function ProjectsSection() {
   }, [selectedProject]);
 
   const projects: Project[] = [
+    {
+      id: "kalina-choking-course",
+      title: "Choking Response: Custom eLearning",
+      subtitle: "Custom development · SCORM 2004",
+      description: "A 22-slide course created from scratch for Kalina staff supporting NDIS participants. I developed the content, scripts, interactions and assessment, then built the experience primarily with Claude in HTML, CSS and JavaScript, without a traditional authoring tool.",
+      technologies: ["Claude", "HTML / CSS / JavaScript", "SCORM 2004", "ChatGPT", "ElevenLabs", "Canva", "Figma"],
+      resultLabel: "Deliverable",
+      results: "A custom SCORM 2004 course combining narrated content, interactive practice, workplace scenarios and a 12-question assessment.",
+      actionLabel: "View Course",
+      viewLink: "https://richardportfolio10.s3.ap-southeast-2.amazonaws.com/build/index.html",
+      thumbnail: "/assets/kalina-choking-response.png",
+      details: {
+        client: "Kalina Health & Community Services",
+        tool: "Claude + HTML, CSS & JavaScript",
+        role: "Instructional Designer & Developer",
+        type: "Custom eLearning · SCORM 2004",
+        overview: "Kalina needed learning resources for staff supporting NDIS participants. Starting with the training need and no supplied course content, I developed Choking Response from the initial content and script through storyboarding, interaction design, development and SCORM 2004 packaging. Claude was the primary coding tool; the course was built directly in HTML, CSS and JavaScript without a traditional authoring tool.",
+        objectives: [
+          "Recognise signs of choking and distinguish between different levels of severity.",
+          "Practise decisions about responding, escalating and reporting within a disability-support context.",
+          "Connect choking prevention to individual mealtime management plans and everyday staff responsibilities."
+        ],
+        strategies: [
+          "Develop the content and learning sequence from the training need, supported by the references documented in the storyboard.",
+          "Use hotspots, matching, flip cards, tabs and accordions to break information into focused interactions.",
+          "Place decisions in workplace scenarios, including support for a wheelchair user and a person with limited verbal communication.",
+          "Combine ungraded practice with a 12-question final assessment and feedback."
+        ],
+        features: [
+          "Claude: primary tool for custom HTML, CSS and JavaScript development.",
+          "ChatGPT: course scripting support.",
+          "ElevenLabs: voiceover production.",
+          "Canva: image editing and preparation.",
+          "Figma: visual storyboarding; a separate written storyboard documents narration, content and interactions.",
+          "SCORM 2004 packaging with a custom course player, progress navigation and assessment."
+        ],
+        outcome: "Produced a complete custom-coded learning experience and its written design documentation for Kalina. The public course link provides a standalone preview. The storyboard preserves the project's clinical-review notes; this case study describes the design and development deliverables."
+      }
+    },
+    {
+      id: "kalina-choking-storyboard",
+      title: "Choking Response: Written Storyboard",
+      subtitle: "Design documentation · Content & narration",
+      description: "The written design blueprint behind the Kalina course: a 22-slide plan covering learning objectives, narration, interactions, scenario feedback and assessment questions. This sample shows the content and instructional decisions; the visual storyboards were created separately in Figma.",
+      technologies: ["Instructional Design", "Content Development", "ChatGPT", "Narration Scripting", "Assessment Design", "Figma Visual Storyboards"],
+      resultLabel: "Deliverable",
+      results: "A readable, slide-by-slide design document connecting the content, voiceover script, interaction plans and assessment.",
+      actionLabel: "Read Storyboard",
+      objectivesLabel: "Design Goals",
+      viewLink: "/projects/kalina-choking-response/storyboard.html",
+      thumbnail: "/assets/kalina-choking-storyboard.svg",
+      details: {
+        client: "Kalina Health & Community Services",
+        tool: "Written HTML document · Figma visuals",
+        role: "Instructional Designer & Content Developer",
+        type: "Written storyboard · Portfolio sample",
+        overview: "This companion artifact makes the instructional design behind Choking Response visible. It records the learning objectives, narration, screen sequence, interaction choices, scenario responses and assessment items used to guide course development. The linked sample is the written storyboard; Figma was used separately to plan the visual experience.",
+        objectives: [
+          "Translate the staff-training need into a coherent 22-slide learning sequence.",
+          "Align the narration, on-screen content and learner interactions.",
+          "Document scenarios, feedback and assessment items before implementation."
+        ],
+        strategies: [
+          "Map each slide to its purpose, interaction type and planned content.",
+          "Write narration alongside the content plan to support production and review.",
+          "Specify scenario options and feedback so instructional intent carries through to development.",
+          "Maintain source references and clinical-review notes within the design document."
+        ],
+        features: [
+          "22-slide content and interaction map.",
+          "Narration script and planned voiceover content.",
+          "Hotspot, matching, flip-card, tab and accordion specifications.",
+          "Workplace scenarios, practice feedback and 12 final-assessment questions.",
+          "Browser-readable document with section navigation and source references.",
+          "Visual storyboards created separately in Figma."
+        ],
+        outcome: "A detailed written blueprint connecting the training brief to the finished course. The portfolio copy retains the original document's review and source notes and presents the written design process as a separate work sample."
+      }
+    },
     {
       id: "escape-room",
       title: "Nice to Know: Escape Room Module",
@@ -231,7 +313,7 @@ export default function ProjectsSection() {
             </span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Explore my latest instructional design projects showcasing innovative e-learning solutions and gamified experiences.
+            Explore custom-coded learning, instructional storyboards, and interactive eLearning built around real workplace needs.
           </p>
         </motion.div>
 
@@ -271,10 +353,19 @@ export default function ProjectsSection() {
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Modal Header */}
-                <div className="sticky top-0 bg-dark-primary border-b border-gray-700 p-6 flex justify-between items-start">
-                  <div>
+                <div className="sticky top-0 z-10 bg-dark-primary border-b border-gray-700 p-5 sm:p-6 flex justify-between items-start gap-4">
+                  <div className="min-w-0">
                     <h3 id="project-dialog-title" className="text-2xl font-bold text-neon-green mb-2">{selectedProject.title}</h3>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                    <p className="project-type mb-0">{selectedProject.subtitle}</p>
+                  </div>
+                  <button onClick={closeModal} aria-label="Close project details" className="shrink-0 p-1 text-gray-400 hover:text-white transition-colors">
+                    <X size={24} />
+                  </button>
+                </div>
+
+                {/* Keep longer project metadata outside the sticky title on phones. */}
+                <div className="p-5 sm:p-6 space-y-6">
+                    <div className="grid sm:grid-cols-2 gap-5 text-sm border-b border-gray-700 pb-6">
                       <div className="flex items-center gap-2">
                         <User size={16} className="text-neon-green" />
                         <div>
@@ -292,37 +383,25 @@ export default function ProjectsSection() {
                       <div className="flex items-center gap-2">
                         <Target size={16} className="text-neon-green" />
                         <div>
-                          <p className="text-gray-400">Tool</p>
+                          <p className="text-gray-400">Build / design tools</p>
                           <p className="font-medium">{selectedProject.details.tool}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
                         <Calendar size={16} className="text-neon-green" />
                         <div>
-                          <p className="text-gray-400">Date</p>
-                          <p className="font-medium">{selectedProject.details.date}</p>
+                          <p className="text-gray-400">{selectedProject.details.date ? "Date" : "Format"}</p>
+                          <p className="font-medium">{selectedProject.details.date || selectedProject.details.type}</p>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <button
-                    onClick={closeModal}
-                    aria-label="Close project details"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    <X size={24} />
-                  </button>
-                </div>
-
-                {/* Modal Content */}
-                <div className="p-6 space-y-6">
                   <div>
                     <h4 className="text-lg font-semibold mb-3 text-neon-green">Project Overview</h4>
                     <p className="text-gray-300 leading-relaxed">{selectedProject.details.overview}</p>
                   </div>
 
                   <div>
-                    <h4 className="text-lg font-semibold mb-3 text-neon-green">Learning Objectives</h4>
+                    <h4 className="text-lg font-semibold mb-3 text-neon-green">{selectedProject.objectivesLabel || "Learning Objectives"}</h4>
                     <ul className="space-y-2">
                       {selectedProject.details.objectives.map((objective, index) => (
                         <li key={index} className="flex items-start gap-2 text-gray-300">
@@ -369,7 +448,7 @@ export default function ProjectsSection() {
                       rel="noopener noreferrer"
                       className="bg-neon-green text-black px-6 py-3 rounded-lg font-medium hover:bg-green-400 transition-colors inline-flex items-center gap-2"
                     >
-                      View Project
+                      {selectedProject.actionLabel || "View Project"}
                       <ExternalLink size={16} />
                     </a>
                   </div>
