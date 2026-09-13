@@ -34,6 +34,8 @@ Publish the contents of `dist` with your existing static hosting provider.
   The final frame holds for a quarter viewport before normal page scrolling resumes.
 - Phones transition from a background crop to showing the whole landscape frame,
   keeping all of the floating learning panels visible during the video sequence.
+  The frame fits between the studio label and caption, with at least 24px of
+  caption clearance and feathered edges. Caption resizing updates the fit.
 - Home goes to the hero; Studio goes to the end of the
   introductory fade. Other navigation links bypass the pinned sequence.
 - Reduced motion, supported data-saver settings, unavailable canvas decoding,
