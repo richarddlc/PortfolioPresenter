@@ -26,6 +26,7 @@ export default function SkillsSection() {
         "Agile (SAM, 4MAT)",
         "Adult Learning Theory",
         "Kirkpatrick Evaluation",
+        "AI Learning and Design",
         "Needs Analysis",
         "Curriculum Mapping",
       ],
@@ -52,6 +53,10 @@ export default function SkillsSection() {
     { name: "LMS Management", level: 85 },
     { name: "Video Production", level: 82 },
     { name: "Project Management", level: 88 },
+    { name: "AI Prompting", level: 98 },
+    { name: "Vibe Coding", level: 98 },
+    { name: "OpenAI Skills", level: 98 },
+    { name: "Claude Skills", level: 98 },
   ];
 
   return (
