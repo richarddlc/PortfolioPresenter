@@ -2,11 +2,12 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Check } from "lucide-react";
 import PortfolioBriefcase from "./portfolio-briefcase";
+import DimensionalIcon from "./dimensional-icon";
 
 interface SectionData {
   id: string;
   title: string;
-  icon: string;
+  icon: JSX.Element;
   content: JSX.Element;
 }
 
@@ -17,7 +18,7 @@ export default function AboutSection() {
     {
       id: "summary",
       title: "Professional Summary",
-      icon: "💼",
+      icon: <DimensionalIcon kind="briefcase" size="small" />,
       content: (
         <div className="summary-layout">
           <div>
@@ -39,7 +40,7 @@ export default function AboutSection() {
     {
       id: "skills",
       title: "Skills & Technologies",
-      icon: "⚡",
+      icon: <DimensionalIcon kind="ai" size="small" />,
       content: (
         <div className="grid md:grid-cols-2 gap-8">
           <div>
@@ -113,7 +114,7 @@ export default function AboutSection() {
     {
       id: "education",
       title: "Education & Certifications",
-      icon: "🎓",
+      icon: <DimensionalIcon kind="education" size="small" />,
       content: (
         <div className="grid md:grid-cols-2 gap-8">
           <div>
@@ -152,7 +153,7 @@ export default function AboutSection() {
   };
 
   return (
-    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 overflow-x-clip">
+    <section id="about" className="premium-section py-20 px-4 sm:px-6 lg:px-8 overflow-x-clip">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -172,7 +173,7 @@ export default function AboutSection() {
         </motion.div>
 
         {/* Mobile Layout - Keep collapsible */}
-        <div className="md:hidden space-y-6">
+        <div className="lg:hidden space-y-6">
           {sections.map((section, index) => (
             <motion.div
               key={section.id}
@@ -180,7 +181,7 @@ export default function AboutSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-dark-secondary rounded-lg overflow-hidden"
+              className="premium-panel overflow-hidden"
             >
               <button
                 onClick={() => toggleSection(section.id)}
@@ -222,7 +223,7 @@ export default function AboutSection() {
         </div>
 
         {/* Desktop Layout - Tabs on left, content on right */}
-        <div className="hidden md:flex gap-8">
+        <div className="hidden lg:flex gap-8">
           {/* Left Side - Tabs */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -261,9 +262,9 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="flex-1"
+            className="flex-1 min-w-0"
           >
-            <div className="bg-dark-secondary rounded-lg p-8 min-h-[500px]">
+            <div className="premium-panel p-6 lg:p-8 min-h-[500px]">
               <AnimatePresence mode="wait">
                 {sections.map((section) => (
                   activeSection === section.id && (

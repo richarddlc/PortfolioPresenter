@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin } from "lucide-react";
+import DimensionalIcon from "./dimensional-icon";
+import DepthCard from "./depth-card";
 import { FaLinkedinIn, FaEnvelope } from "react-icons/fa";
 import { useMagneticHover } from "@/lib/useMagneticHover";
 
@@ -9,19 +10,19 @@ export default function ContactSection() {
 
   const contactInfo = [
     {
-      icon: <Phone className="text-neon-green" size={24} />,
+      icon: <DimensionalIcon kind="phone" size="medium" />,
       title: "Phone",
       value: "+(63) 949 464 1158",
       link: "tel:+639494641158",
     },
     {
-      icon: <Mail className="text-neon-green" size={24} />,
+      icon: <DimensionalIcon kind="mail" size="medium" />,
       title: "Email",
       value: "chard.bdc@gmail.com",
       link: "mailto:chard.bdc@gmail.com",
     },
     {
-      icon: <MapPin className="text-neon-green" size={24} />,
+      icon: <DimensionalIcon kind="location" size="medium" />,
       title: "Location",
       value: "Mandaluyong City, Philippines",
       link: null,
@@ -29,7 +30,7 @@ export default function ContactSection() {
   ];
 
   return (
-    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-dark-secondary">
+    <section id="contact" className="premium-section contact-premium py-20 px-4 sm:px-6 lg:px-8 bg-dark-secondary">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -61,23 +62,11 @@ export default function ContactSection() {
                 type: "spring",
                 stiffness: 100
               }}
-              whileHover={{
-                y: -8,
-                transition: { duration: 0.2 }
-              }}
               viewport={{ once: true }}
-              className="glass-card glass-card-hover p-6 rounded-lg text-center group"
+              className="h-full"
             >
-              <motion.div
-                className="flex justify-center mb-4"
-                whileHover={{
-                  scale: 1.2,
-                  rotate: [0, -10, 10, -10, 0],
-                  transition: { duration: 0.5 }
-                }}
-              >
-                {contact.icon}
-              </motion.div>
+              <DepthCard className="contact-depth-card p-6 text-center group">
+              <div className="flex justify-center mb-4">{contact.icon}</div>
               <h3 className="font-semibold mb-2 text-lg group-hover:text-neon-green transition-colors">
                 {contact.title}
               </h3>
@@ -91,6 +80,7 @@ export default function ContactSection() {
               ) : (
                 <p className="text-gray-400 text-sm">{contact.value}</p>
               )}
+              </DepthCard>
             </motion.div>
           ))}
         </div>
@@ -101,7 +91,7 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="glass-card p-8 rounded-lg mb-12"
+          className="premium-panel p-8 mb-12"
         >
           <motion.h3
             className="text-xl font-semibold mb-6 text-neon-green text-center"

@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useId, useRef } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 
 interface CircularProgressProps {
   percentage: number;
@@ -16,23 +16,20 @@ export default function CircularProgress({
   strokeWidth = 8,
   delay = 0,
 }: CircularProgressProps) {
-  const [progress, setProgress] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const visible = useInView(ref, { once: true, amount: 0.4 });
+  const reducedMotion = useReducedMotion();
+  const gradientId = useId();
+  const progress = visible || reducedMotion ? percentage : 0;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (progress / 100) * circumference;
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setProgress(percentage);
-    }, delay);
-    return () => clearTimeout(timer);
-  }, [percentage, delay]);
-
   return (
-    <div className="flex flex-col items-center gap-3">
-      <div className="relative" style={{ width: size, height: size }}>
+    <div ref={ref} className="flex flex-col items-center gap-4" role="progressbar" aria-label={label} aria-valuenow={percentage} aria-valuemin={0} aria-valuemax={100}>
+      <div className="relative skill-dial" style={{ width: size, height: size }}>
         {/* Background circle */}
-        <svg width={size} height={size} className="transform -rotate-90">
+        <svg aria-hidden="true" width={size} height={size} className="transform -rotate-90">
           <circle
             cx={size / 2}
             cy={size / 2}
@@ -47,19 +44,19 @@ export default function CircularProgress({
             cy={size / 2}
             r={radius}
             fill="none"
-            stroke="url(#gradient)"
+            stroke={`url(#${gradientId})`}
             strokeWidth={strokeWidth}
             strokeLinecap="round"
             strokeDasharray={circumference}
-            initial={{ strokeDashoffset: circumference }}
+            initial={false}
             animate={{ strokeDashoffset: offset }}
-            transition={{ duration: 1.5, ease: "easeOut", delay: delay / 1000 }}
+            transition={{ duration: reducedMotion ? 0 : 1.5, ease: "easeOut", delay: reducedMotion ? 0 : delay / 1000 }}
           />
           {/* Gradient definition */}
           <defs>
-            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#00ff88" />
-              <stop offset="100%" stopColor="#10b981" />
+            <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#c4fce0" />
+              <stop offset="100%" stopColor="#568e71" />
             </linearGradient>
           </defs>
         </svg>
@@ -72,7 +69,7 @@ export default function CircularProgress({
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: delay / 1000 + 0.5 }}
           >
-            {Math.round(progress)}%
+            {percentage}%
           </motion.span>
         </div>
       </div>
