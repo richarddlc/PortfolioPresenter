@@ -30,7 +30,6 @@ export default function Navigation() {
   };
 
   const navItems = [
-    { id: "home", label: "Home" },
     { id: "about", label: "About" },
     { id: "experience", label: "Experience" },
     { id: "skills", label: "Skills" },
@@ -41,7 +40,7 @@ export default function Navigation() {
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const update = () => setActiveSection(activePortfolioSection(navItems.map(item => item.id)));
+    const update = () => setActiveSection(activePortfolioSection(["home", ...navItems.map(item => item.id)]));
     window.addEventListener("scroll", update, { passive: true });
     update();
     return () => window.removeEventListener("scroll", update);
@@ -63,9 +62,16 @@ export default function Navigation() {
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-4 lg:gap-8 h-16">
-          <div className="text-2xl font-bold shrink-0" data-nav-brand>
+          <a
+            href="#home"
+            onClick={() => setIsOpen(false)}
+            aria-label="Richard. Home"
+            aria-current={activeSection === "home" ? "location" : undefined}
+            className="text-2xl font-bold shrink-0 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neon-green"
+            data-nav-brand
+          >
             Richard<span className="text-neon-green">.</span>
-          </div>
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-4 xl:gap-6 ml-auto text-sm whitespace-nowrap" data-nav-links>
@@ -107,12 +113,6 @@ export default function Navigation() {
         {isOpen && (
           <div className="lg:hidden bg-dark-secondary/95 backdrop-blur-md border-t border-gray-700">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              <button
-                onClick={() => scrollToSection("home")}
-                className="block px-3 py-2 text-white hover:text-neon-green transition-colors w-full text-left"
-              >
-                Home
-              </button>
               <button
                 onClick={() => scrollToSection("about")}
                 className="block px-3 py-2 text-white hover:text-neon-green transition-colors w-full text-left"
