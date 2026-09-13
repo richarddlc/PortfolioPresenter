@@ -80,6 +80,10 @@ export default function AboutSection() {
                 { name: "Adobe Creative Suite", level: 90 },
                 { name: "Camtasia", level: 85 },
                 { name: "ADDIE/SAM Methodologies", level: 98 },
+                { name: "AI Prompting", level: 98 },
+                { name: "Vibe Coding", level: 98 },
+                { name: "OpenAI Skills", level: 98 },
+                { name: "Claude Skills", level: 98 },
               ].map((skill) => (
                 <div key={skill.name}>
                   <div className="flex justify-between mb-1">
@@ -124,6 +128,7 @@ export default function AboutSection() {
                 "Agile (SAM, 4MAT)",
                 "Adult Learning Theory",
                 "Kirkpatrick Evaluation",
+                "AI Learning and Design",
               ].map((method) => (
                 <div key={method} className="flex items-center">
                   <Check className="text-neon-green mr-2" size={16} />
