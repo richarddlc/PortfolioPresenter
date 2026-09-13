@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Briefcase, Award, Code } from "lucide-react";
+import DimensionalIcon from "./dimensional-icon";
+import DepthCard from "./depth-card";
 
 export default function ExperienceSection() {
   const experiences = [
@@ -14,7 +15,7 @@ export default function ExperienceSection() {
         "Produced engaging video animations using Vyond, enhancing learner engagement and content retention",
         "Leveraged AI tools (OpenAI, Claude, ElevenLabs, NanoBanana) to accelerate development workflows and improve content quality",
       ],
-      icon: <Briefcase className="text-neon-green" size={24} />,
+      icon: <DimensionalIcon kind="briefcase" size="medium" />,
       current: true,
     },
     {
@@ -27,7 +28,7 @@ export default function ExperienceSection() {
         "Pioneered AI-driven training simulations using OpenAI and Storyline, reducing content development time by 20%",
         "Applied advanced techniques from Agile 101, JavaScript in Storyline, and Power Automate to drive innovation initiatives",
       ],
-      icon: <Briefcase className="text-gray-400" size={24} />,
+      icon: <DimensionalIcon kind="briefcase" size="medium" />,
       current: false,
     },
     {
@@ -40,7 +41,7 @@ export default function ExperienceSection() {
         "Managed SAP Litmos LMS for 500+ users, tracking engagement metrics and publishing 50+ knowledge base articles",
         "Collaborated with project managers to align training content with KPIs, optimizing training ROI and stakeholder satisfaction",
       ],
-      icon: <Code className="text-gray-400" size={24} />,
+      icon: <DimensionalIcon kind="code" size="medium" />,
       current: false,
     },
     {
@@ -52,7 +53,7 @@ export default function ExperienceSection() {
         "Led needs assessments for global projects and presented learning designs to senior leadership",
         "Designed interactive VILT and WBT programs tailored to diverse learner demographics and regional requirements",
       ],
-      icon: <Award className="text-gray-400" size={24} />,
+      icon: <DimensionalIcon kind="award" size="medium" />,
       current: false,
     },
     {
@@ -63,7 +64,7 @@ export default function ExperienceSection() {
         "Created microlearning content using Synthesia, Canva, and 7taps, achieving 15% improvement in knowledge retention",
         "Facilitated stakeholder presentations and led comprehensive needs assessments for global training initiatives",
       ],
-      icon: <Code className="text-gray-400" size={24} />,
+      icon: <DimensionalIcon kind="code" size="medium" />,
       current: false,
     },
     {
@@ -75,7 +76,7 @@ export default function ExperienceSection() {
         "Produced video-based training using Vyond and Camtasia, accelerating learning completion rates by 25%",
         "Led training evaluations using Kirkpatrick Model and managed LMS platforms (Cornerstone, Axonify)",
       ],
-      icon: <Award className="text-gray-400" size={24} />,
+      icon: <DimensionalIcon kind="award" size="medium" />,
       current: false,
     },
     {
@@ -86,7 +87,7 @@ export default function ExperienceSection() {
         "Designed and facilitated product training programs, reducing onboarding time by 30%",
         "Authored technical manuals and performance assessments in collaboration with technical SMEs",
       ],
-      icon: <Award className="text-gray-400" size={24} />,
+      icon: <DimensionalIcon kind="award" size="medium" />,
       current: false,
     },
     {
@@ -98,13 +99,13 @@ export default function ExperienceSection() {
         "Assisted in R&D trials and analyzed data for market positioning strategies",
         "Managed testing records and documentation using Google Sheets, ensuring accuracy and traceability",
       ],
-      icon: <Award className="text-gray-400" size={24} />,
+      icon: <DimensionalIcon kind="award" size="medium" />,
       current: false,
     },
   ];
 
   return (
-    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-dark-secondary overflow-x-clip">
+    <section id="experience" className="premium-section py-20 px-4 sm:px-6 lg:px-8 bg-dark-secondary overflow-x-clip">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -162,11 +163,7 @@ export default function ExperienceSection() {
                   viewport={{ once: true }}
                   className="w-full group"
                 >
-                  <div className={`p-6 rounded-lg border border-gray-700 hover:border-neon-green/50 transition-all duration-300 glass-card glass-card-hover ${
-                    exp.current ? "glow-neon" : ""
-                  }`}>
-                    <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                      <div className="flex-1">
+                  <DepthCard className={`experience-depth-card p-6 lg:p-8 ${exp.current ? "is-current" : ""}`}>
                         <motion.div
                           className={`inline-block text-xs font-semibold px-3 py-1 rounded-full mb-3 ${
                             exp.current
@@ -177,20 +174,16 @@ export default function ExperienceSection() {
                         >
                           {exp.period}
                         </motion.div>
+                    <div className="experience-heading">
+                      {exp.icon}
+                      <div className="min-w-0">
                         <h3 className="text-xl font-bold mb-2 group-hover:text-neon-green transition-colors duration-300">
                           {exp.role}
                         </h3>
-                        <h4 className="text-gray-400 mb-4 group-hover:text-gray-200 transition-colors duration-300">
+                        <h4 className="text-gray-400 group-hover:text-gray-200 transition-colors duration-300">
                           {exp.company}
                         </h4>
                       </div>
-                      <motion.div
-                        className="mb-4 md:mb-0"
-                        whileHover={{ scale: 1.2, rotate: 5 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                      >
-                        {exp.icon}
-                      </motion.div>
                     </div>
 
                     <ul className="text-gray-300 space-y-2 text-sm">
@@ -208,7 +201,7 @@ export default function ExperienceSection() {
                         </motion.li>
                       ))}
                     </ul>
-                  </div>
+                  </DepthCard>
                 </motion.div>
               </div>
             ))}

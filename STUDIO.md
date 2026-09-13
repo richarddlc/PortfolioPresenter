@@ -73,3 +73,21 @@ before these changes: the undeclared `nanoid` import and the `allowedHosts` type
 Validation uses Chrome with desktop and phone-sized viewports, not physical iOS
 or Safari devices. Source sharpness is limited by the supplied 720p video. This is
 a rendered 3D sequence, not a scene with independently interactive 3D objects.
+
+## Premium section presentation
+
+About, skills, experience, projects and contact share graphite surfaces, fine
+borders, soft highlights and restrained depth. Transparent extruded SVG icons
+replace decorative category/contact/education icons; their animation pauses
+outside the viewport and is disabled with reduced motion. Utility navigation
+and familiar external-link logos retain their simple readable forms.
+
+Capability, project, career and contact cards respond subtly to mouse position.
+Touch input and reduced-motion preferences disable tilt. The proficiency dials
+use inset rims and animate when entering view. About uses an accordion through
+tablet sizes to keep longer text comfortable to read.
+
+Project titles are always visible, including on phones. The project detail
+dialog supports Escape, trapped keyboard focus, focus restoration and scroll
+locking. Checks passed at widths 320, 390, 768, 900 and 1440 in Chrome, including
+no horizontal page overflow, dialog behavior, animation preferences and touch.

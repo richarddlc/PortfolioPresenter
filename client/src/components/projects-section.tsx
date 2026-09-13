@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, X, Calendar, User, Briefcase, Target } from "lucide-react";
-import { useTiltEffect } from "@/lib/useTiltEffect";
+import DepthCard from "./depth-card";
 
 interface Project {
   id: string;
@@ -27,50 +27,34 @@ interface Project {
 }
 
 function ProjectCard({ project, index, onOpenModal }: { project: Project; index: number; onOpenModal: (project: Project) => void }) {
-  const tiltRef = useTiltEffect({ maxTilt: 10, scale: 1.02 });
-
   return (
     <motion.div
-      ref={tiltRef as any}
       key={project.id}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
       viewport={{ once: true }}
-      className="bg-dark-secondary rounded-lg border border-gray-700 hover:border-neon-green/50 transition-all duration-300 group overflow-hidden glow-neon"
+      className="h-full"
     >
+      <DepthCard className="project-depth-card group">
       {/* Project Thumbnail */}
       {project.thumbnail && (
-        <div className="relative overflow-hidden">
+        <div className="project-thumbnail relative overflow-hidden">
           <motion.img
             src={project.thumbnail}
             alt={project.title}
-            className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+            className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileHover={{ opacity: 1, y: 0 }}
-            className="absolute bottom-4 left-4 right-4"
-          >
-            <div className="bg-black/70 backdrop-blur-sm rounded-lg p-3">
-              <h3 className="text-lg font-bold text-neon-green">{project.title}</h3>
-              <p className="text-sm text-gray-300">{project.subtitle}</p>
-            </div>
-          </motion.div>
         </div>
       )}
 
-      <div className="p-6">
-        {!project.thumbnail && (
-          <>
-            <h3 className="text-xl font-bold mb-2 text-neon-green">{project.title}</h3>
-            <h4 className="text-lg font-semibold mb-4 text-gray-300">{project.subtitle}</h4>
-          </>
-        )}
+      <div className="project-card-content p-6 sm:p-8">
+        <p className="project-type">{project.subtitle}</p>
+        <h3 className="text-2xl font-semibold mb-4">{project.title}</h3>
 
         <p className="text-gray-400 mb-4 text-sm leading-relaxed">
           {project.description}
@@ -92,10 +76,10 @@ function ProjectCard({ project, index, onOpenModal }: { project: Project; index:
           <p className="text-gray-400 text-sm">{project.results}</p>
         </div>
 
-        <div className="flex gap-3">
+        <div className="project-actions flex flex-wrap gap-3">
           <motion.button
             onClick={() => onOpenModal(project)}
-            className="bg-neon-green text-black px-4 py-2 rounded-lg font-medium hover:bg-green-400 transition-colors text-sm glow-neon-strong"
+            className="premium-action px-4 py-3 rounded-lg font-medium transition-colors text-sm"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -114,12 +98,40 @@ function ProjectCard({ project, index, onOpenModal }: { project: Project; index:
           </motion.a>
         </div>
       </div>
+      </DepthCard>
     </motion.div>
   );
 }
 
 export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!selectedProject) return;
+    const previousFocus = document.activeElement as HTMLElement | null;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    dialogRef.current?.focus();
+    const keyboard = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedProject(null);
+      if (event.key !== "Tab") return;
+      const items = dialogRef.current?.querySelectorAll<HTMLElement>('a[href], button, [tabindex="0"]');
+      if (!items?.length) return;
+      const first = items[0], last = items[items.length - 1];
+      if (event.shiftKey && (document.activeElement === first || document.activeElement === dialogRef.current)) {
+        event.preventDefault(); last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault(); first.focus();
+      }
+    };
+    document.addEventListener("keydown", keyboard);
+    return () => {
+      document.removeEventListener("keydown", keyboard);
+      document.body.style.overflow = previousOverflow;
+      previousFocus?.focus({ preventScroll: true });
+    };
+  }, [selectedProject]);
 
   const projects: Project[] = [
     {
@@ -204,7 +216,7 @@ export default function ProjectsSection() {
   };
 
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="premium-section py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -250,13 +262,18 @@ export default function ProjectsSection() {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="bg-dark-primary border border-gray-700 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+                ref={dialogRef}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="project-dialog-title"
+                tabIndex={-1}
+                className="premium-dialog bg-dark-primary border border-gray-700 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Modal Header */}
                 <div className="sticky top-0 bg-dark-primary border-b border-gray-700 p-6 flex justify-between items-start">
                   <div>
-                    <h3 className="text-2xl font-bold text-neon-green mb-2">{selectedProject.title}</h3>
+                    <h3 id="project-dialog-title" className="text-2xl font-bold text-neon-green mb-2">{selectedProject.title}</h3>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                       <div className="flex items-center gap-2">
                         <User size={16} className="text-neon-green" />
@@ -290,6 +307,7 @@ export default function ProjectsSection() {
                   </div>
                   <button
                     onClick={closeModal}
+                    aria-label="Close project details"
                     className="text-gray-400 hover:text-white transition-colors"
                   >
                     <X size={24} />

@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Check } from "lucide-react";
+import PortfolioBriefcase from "./portfolio-briefcase";
+import DimensionalIcon from "./dimensional-icon";
 
 interface SectionData {
   id: string;
   title: string;
-  icon: string;
+  icon: JSX.Element;
   content: JSX.Element;
 }
 
@@ -16,12 +18,12 @@ export default function AboutSection() {
     {
       id: "summary",
       title: "Professional Summary",
-      icon: "💼",
+      icon: <DimensionalIcon kind="briefcase" size="small" />,
       content: (
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="summary-layout">
           <div>
             <p className="text-gray-300 mb-4">
-              Instructional Designer with 5+ years of experience delivering engaging digital learning solutions across finance, BPO, and tech industries. Proven expertise in eLearning development, ILT/WBT curriculum design, and multimedia integration.
+              Results-driven Instructional Designer with 5+ years of experience creating high-impact learning solutions for finance, BPO, healthcare, and IT sectors. Expertise in transforming complex content into engaging eLearning experiences using Articulate Storyline, Rise 360, and AI-driven tools. Proven track record of improving learner outcomes by up to 25% through scenario-based design, gamification, and custom HTML/CSS/JavaScript interactions. Skilled in stakeholder collaboration, LMS administration, and leveraging AI to accelerate development workflows.
             </p>
             <div className="flex flex-wrap gap-2">
               <span className="bg-neon-green/20 text-neon-green px-3 py-1 rounded-full text-sm">ADDIE</span>
@@ -30,38 +32,7 @@ export default function AboutSection() {
               <span className="bg-neon-green/20 text-neon-green px-3 py-1 rounded-full text-sm">4MAT</span>
             </div>
           </div>
-          <div>
-            <div className="rounded-lg w-full h-48 bg-gradient-to-br from-dark-tertiary to-dark-secondary relative overflow-hidden">
-              <motion.div
-                animate={{
-                  backgroundPosition: ["0% 0%", "100% 100%"],
-                }}
-                transition={{
-                  duration: 10,
-                  ease: "linear",
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                }}
-                className="absolute inset-0 opacity-40"
-                style={{
-                  backgroundImage: `
-                    radial-gradient(circle at 25% 35%, rgba(0, 255, 136, 0.3) 0%, transparent 50%),
-                    radial-gradient(circle at 75% 65%, rgba(0, 255, 136, 0.2) 0%, transparent 50%)
-                  `,
-                  backgroundSize: "100% 100%",
-                }}
-              />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 4, ease: "easeInOut", repeat: Infinity }}
-                  className="text-6xl opacity-60"
-                >
-                  💼
-                </motion.div>
-              </div>
-            </div>
-          </div>
+          <PortfolioBriefcase />
         </div>
       ),
     },
@@ -69,7 +40,7 @@ export default function AboutSection() {
     {
       id: "skills",
       title: "Skills & Technologies",
-      icon: "⚡",
+      icon: <DimensionalIcon kind="ai" size="small" />,
       content: (
         <div className="grid md:grid-cols-2 gap-8">
           <div>
@@ -143,7 +114,7 @@ export default function AboutSection() {
     {
       id: "education",
       title: "Education & Certifications",
-      icon: "🎓",
+      icon: <DimensionalIcon kind="education" size="small" />,
       content: (
         <div className="grid md:grid-cols-2 gap-8">
           <div>
@@ -182,7 +153,7 @@ export default function AboutSection() {
   };
 
   return (
-    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 overflow-x-clip">
+    <section id="about" className="premium-section py-20 px-4 sm:px-6 lg:px-8 overflow-x-clip">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -202,7 +173,7 @@ export default function AboutSection() {
         </motion.div>
 
         {/* Mobile Layout - Keep collapsible */}
-        <div className="md:hidden space-y-6">
+        <div className="lg:hidden space-y-6">
           {sections.map((section, index) => (
             <motion.div
               key={section.id}
@@ -210,7 +181,7 @@ export default function AboutSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-dark-secondary rounded-lg overflow-hidden"
+              className="premium-panel overflow-hidden"
             >
               <button
                 onClick={() => toggleSection(section.id)}
@@ -252,7 +223,7 @@ export default function AboutSection() {
         </div>
 
         {/* Desktop Layout - Tabs on left, content on right */}
-        <div className="hidden md:flex gap-8">
+        <div className="hidden lg:flex gap-8">
           {/* Left Side - Tabs */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -291,9 +262,9 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="flex-1"
+            className="flex-1 min-w-0"
           >
-            <div className="bg-dark-secondary rounded-lg p-8 min-h-[500px]">
+            <div className="premium-panel p-6 lg:p-8 min-h-[500px]">
               <AnimatePresence mode="wait">
                 {sections.map((section) => (
                   activeSection === section.id && (

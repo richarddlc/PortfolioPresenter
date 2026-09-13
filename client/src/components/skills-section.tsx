@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
-import { Code, BookOpen, Users } from "lucide-react";
+import DimensionalIcon from "./dimensional-icon";
+import DepthCard from "./depth-card";
 import CircularProgress from "./CircularProgress";
 
 export default function SkillsSection() {
   const skillCategories = [
     {
       title: "eLearning Development",
-      icon: <Code className="text-neon-green" size={32} />,
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=200",
+      icon: <DimensionalIcon kind="code" />,
       skills: [
         "Articulate Storyline & Rise 360",
         "Adobe Creative Suite",
@@ -19,8 +19,7 @@ export default function SkillsSection() {
     },
     {
       title: "Design Methodologies",
-      icon: <BookOpen className="text-neon-green" size={32} />,
-      image: "https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=200",
+      icon: <DimensionalIcon kind="book" />,
       skills: [
         "ADDIE Framework",
         "Agile (SAM, 4MAT)",
@@ -33,8 +32,7 @@ export default function SkillsSection() {
     },
     {
       title: "Platform Management",
-      icon: <Users className="text-neon-green" size={32} />,
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=200",
+      icon: <DimensionalIcon kind="layers" />,
       skills: [
         "SAP Litmos",
         "Cornerstone OnDemand",
@@ -60,7 +58,7 @@ export default function SkillsSection() {
   ];
 
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="skills" className="premium-section py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -78,7 +76,7 @@ export default function SkillsSection() {
         </motion.div>
 
         {/* Skill Categories */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid lg:grid-cols-3 gap-6 mb-16">
           {skillCategories.map((category, index) => (
             <motion.div
               key={category.title}
@@ -86,17 +84,15 @@ export default function SkillsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="bg-dark-secondary rounded-lg p-8 border border-gray-700 hover:border-neon-green/50 transition-all duration-300"
+              className="h-full"
             >
-              <div className="w-full h-48 rounded-lg mb-4 bg-gradient-to-br from-dark-tertiary to-dark-secondary flex items-center justify-center">
-                <div className="text-6xl opacity-80">
-                  {category.icon}
-                </div>
-              </div>
-
-              <div className="flex items-center mb-4">
+              <DepthCard className="capability-card">
+              <div className="capability-visual">
                 {category.icon}
-                <h3 className="text-xl font-bold ml-3 text-neon-green">{category.title}</h3>
+                <div className="min-w-0">
+                  <span className="card-index">0{index + 1}</span>
+                  <h3 className="text-xl font-semibold">{category.title}</h3>
+                </div>
               </div>
 
               <ul className="space-y-2 text-gray-300">
@@ -107,6 +103,7 @@ export default function SkillsSection() {
                   </li>
                 ))}
               </ul>
+              </DepthCard>
             </motion.div>
           ))}
         </div>
@@ -138,7 +135,7 @@ export default function SkillsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="bg-dark-secondary p-8 rounded-lg border border-gray-700 glass-card"
+          className="premium-panel p-6 sm:p-8"
         >
           <h3 className="text-2xl font-bold mb-8 text-center text-neon-green">Complete Expertise Level</h3>
 
@@ -153,20 +150,17 @@ export default function SkillsSection() {
                 className="space-y-2"
               >
                 <div className="flex justify-between items-center">
-                  <span className="font-medium">{skill.name}</span>
+                  <span className="font-medium pr-3">{skill.name}</span>
                   <span className="text-neon-green font-bold">{skill.level}%</span>
                 </div>
 
-                <div className="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
+                <div className="expertise-track w-full rounded-full h-2 overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     whileInView={{ width: `${skill.level}%` }}
                     transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
                     viewport={{ once: true }}
                     className="h-full bg-gradient-to-r from-green-400 to-emerald-500 rounded-full"
-                    style={{
-                      background: "linear-gradient(90deg, hsl(var(--neon-green)) 0%, #22c55e 100%)"
-                    }}
                   />
                 </div>
               </motion.div>
