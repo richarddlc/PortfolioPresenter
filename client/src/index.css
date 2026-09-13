@@ -517,6 +517,11 @@ section[id] { scroll-margin-top: 64px; }
 .project-thumbnail { border-radius: 19px 19px 0 0; border-bottom: 1px solid #ffffff12; }
 .project-card-content { display: flex; flex-direction: column; flex: 1; }
 .project-card-content h3 { font-weight: 500; line-height: 1.25; letter-spacing: -.025em; }
+@media (min-width: 1024px) {
+  .project-featured { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .project-featured .project-thumbnail { display: flex; align-items: center; background: #05052a; border-radius: 19px 0 0 19px; border-bottom: 0; border-right: 1px solid #ffffff12; }
+  .project-featured .project-thumbnail img { object-fit: contain; }
+}
 .project-type { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: #a1c4b1; margin-bottom: 10px; }
 .project-actions { margin-top: auto; }
 .project-card-content .text-neon-green, .experience-depth-card .text-neon-green { color: #adf5cb; }

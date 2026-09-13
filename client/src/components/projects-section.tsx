@@ -14,6 +14,7 @@ interface Project {
   actionLabel?: string;
   resultLabel?: string;
   objectivesLabel?: string;
+  featured?: boolean;
   thumbnail?: string;
   details: {
     client: string;
@@ -37,9 +38,9 @@ function ProjectCard({ project, index, onOpenModal }: { project: Project; index:
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: (index % 2) * 0.15 }}
       viewport={{ once: true }}
-      className="h-full"
+      className={`h-full${project.featured ? " md:col-span-2" : ""}`}
     >
-      <DepthCard className="project-depth-card group">
+      <DepthCard className={`project-depth-card group${project.featured ? " project-featured" : ""}`}>
       {/* Project Thumbnail */}
       {project.thumbnail && (
         <div className="project-thumbnail relative overflow-hidden">
@@ -137,6 +138,47 @@ export default function ProjectsSection() {
   }, [selectedProject]);
 
   const projects: Project[] = [
+    {
+      id: "onedge-working-across-generations",
+      title: "Working Across Generations — Part 1",
+      subtitle: "Leadership development · Articulate Storyline 360",
+      featured: true,
+      description: "Part 1 of a leadership learning series developed during my freelance work supporting Onedge (EDGE). The lesson combines interactive Storyline activities, narration and animated video to help leaders explore generational perspectives, workplace values and the opportunities within a multigenerational team.",
+      technologies: ["Articulate Storyline 360", "ElevenLabs", "Figma", "Vyond", "NanoBanana"],
+      resultLabel: "Deliverable",
+      results: "A multimedia leadership lesson with polls, a generation timeline, workplace scenarios, drag-and-drop practice and knowledge checks.",
+      actionLabel: "View Lesson 1",
+      viewLink: "https://richardportfolio10.s3.ap-southeast-2.amazonaws.com/SL+_+Working+Across+Generations+Lesson+1/story.html",
+      thumbnail: "/assets/onedge-working-across-generations.webp",
+      details: {
+        client: "Onedge (EDGE)",
+        tool: "Articulate Storyline 360",
+        role: "Freelance Instructional Designer & eLearning Developer",
+        type: "Leadership learning · Series Part 1",
+        overview: "Developed during my freelance work supporting Onedge (EDGE), this lesson introduces the Working Across Generations leadership series. EDGE builds, certifies and supports remote professionals serving medical, dental and insurance organizations. I brought together Storyline development, visual storyboarding, narration, animated video and generated imagery to turn generational concepts into an interactive learning experience for leaders.",
+        objectives: [
+          "Explore generational experiences, workplace values and expectations.",
+          "Recognise differences and overlaps between generations, including micro-generations.",
+          "Connect generational perspectives to everyday leadership and team interactions.",
+          "Apply the lesson's concepts through workplace scenarios, practice activities and knowledge checks."
+        ],
+        strategies: [
+          "Begin with a quick poll to invite reflection before introducing generational concepts.",
+          "Use a generation timeline and comparisons to organize differences, overlaps and shared experiences.",
+          "Connect concepts to workplace situations through scenarios and drag-and-drop practice.",
+          "Combine narration and animated video with knowledge checks and key takeaways."
+        ],
+        features: [
+          "Articulate Storyline 360: course assembly, interactions and lesson navigation.",
+          "ElevenLabs: narration production.",
+          "Figma: visual storyboarding.",
+          "Vyond: animated video production.",
+          "NanoBanana: image generation.",
+          "A course map, generation timeline, polls, workplace scenarios and knowledge checks."
+        ],
+        outcome: "Produced the first part of the Working Across Generations leadership series as an interactive Storyline lesson, bringing together the visual plan, narrated content, animated video and practice activities. The linked sample demonstrates the completed learning experience and multimedia development work."
+      }
+    },
     {
       id: "kalina-choking-course",
       title: "Choking Response: Custom eLearning",
