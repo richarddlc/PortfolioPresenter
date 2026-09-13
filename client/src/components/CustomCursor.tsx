@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 
 export default function CustomCursor() {
+  const [enabled, setEnabled] = useState(() => window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)").matches);
+  const [hasMoved, setHasMoved] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
@@ -9,7 +11,16 @@ export default function CustomCursor() {
   const [trail, setTrail] = useState<{ x: number; y: number; id: number }[]>([]);
 
   useEffect(() => {
+    const query = window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)");
+    const update = () => setEnabled(query.matches);
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) return;
     const updateMousePosition = (e: MouseEvent) => {
+      setHasMoved(true);
       setMousePosition({ x: e.clientX, y: e.clientY });
 
       // Add to trail
@@ -49,7 +60,9 @@ export default function CustomCursor() {
       window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mouseup", handleMouseUp);
     };
-  }, []);
+  }, [enabled]);
+
+  if (!enabled || !hasMoved) return null;
 
   return (
     <>
