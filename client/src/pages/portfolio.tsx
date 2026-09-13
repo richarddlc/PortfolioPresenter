@@ -11,7 +11,7 @@ import SideNavDots from "@/components/SideNavDots";
 
 export default function Portfolio() {
   return (
-    <div className="min-h-screen bg-dark-primary text-white">
+    <div className="portfolio-page min-h-screen text-white">
       <CustomCursor />
       <FloatingActions />
       <SideNavDots />
@@ -30,7 +30,7 @@ export default function Portfolio() {
       <ContactSection />
 
       {/* Footer */}
-      <footer className="bg-dark-primary py-8 px-4 sm:px-6 lg:px-8 border-t border-gray-700">
+      <footer className="portfolio-footer py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-gray-400">© 2025 Richard de la Cruz. All rights reserved.</p>
         </div>
