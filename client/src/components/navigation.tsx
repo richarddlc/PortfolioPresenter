@@ -31,7 +31,6 @@ export default function Navigation() {
 
   const navItems = [
     { id: "home", label: "Home" },
-    { id: "studio", label: "Studio" },
     { id: "about", label: "About" },
     { id: "experience", label: "Experience" },
     { id: "skills", label: "Skills" },
@@ -113,9 +112,6 @@ export default function Navigation() {
                 className="block px-3 py-2 text-white hover:text-neon-green transition-colors w-full text-left"
               >
                 Home
-              </button>
-              <button onClick={() => scrollToSection("studio")} className="block px-3 py-2 text-white hover:text-neon-green transition-colors w-full text-left">
-                Studio
               </button>
               <button
                 onClick={() => scrollToSection("about")}
