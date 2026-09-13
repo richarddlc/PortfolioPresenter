@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Check } from "lucide-react";
+import PortfolioBriefcase from "./portfolio-briefcase";
 
 interface SectionData {
   id: string;
@@ -18,10 +19,10 @@ export default function AboutSection() {
       title: "Professional Summary",
       icon: "💼",
       content: (
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="summary-layout">
           <div>
             <p className="text-gray-300 mb-4">
-              Instructional Designer with 5+ years of experience delivering engaging digital learning solutions across finance, BPO, and tech industries. Proven expertise in eLearning development, ILT/WBT curriculum design, and multimedia integration.
+              Results-driven Instructional Designer with 5+ years of experience creating high-impact learning solutions for finance, BPO, healthcare, and IT sectors. Expertise in transforming complex content into engaging eLearning experiences using Articulate Storyline, Rise 360, and AI-driven tools. Proven track record of improving learner outcomes by up to 25% through scenario-based design, gamification, and custom HTML/CSS/JavaScript interactions. Skilled in stakeholder collaboration, LMS administration, and leveraging AI to accelerate development workflows.
             </p>
             <div className="flex flex-wrap gap-2">
               <span className="bg-neon-green/20 text-neon-green px-3 py-1 rounded-full text-sm">ADDIE</span>
@@ -30,38 +31,7 @@ export default function AboutSection() {
               <span className="bg-neon-green/20 text-neon-green px-3 py-1 rounded-full text-sm">4MAT</span>
             </div>
           </div>
-          <div>
-            <div className="rounded-lg w-full h-48 bg-gradient-to-br from-dark-tertiary to-dark-secondary relative overflow-hidden">
-              <motion.div
-                animate={{
-                  backgroundPosition: ["0% 0%", "100% 100%"],
-                }}
-                transition={{
-                  duration: 10,
-                  ease: "linear",
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                }}
-                className="absolute inset-0 opacity-40"
-                style={{
-                  backgroundImage: `
-                    radial-gradient(circle at 25% 35%, rgba(0, 255, 136, 0.3) 0%, transparent 50%),
-                    radial-gradient(circle at 75% 65%, rgba(0, 255, 136, 0.2) 0%, transparent 50%)
-                  `,
-                  backgroundSize: "100% 100%",
-                }}
-              />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <motion.div
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 4, ease: "easeInOut", repeat: Infinity }}
-                  className="text-6xl opacity-60"
-                >
-                  💼
-                </motion.div>
-              </div>
-            </div>
-          </div>
+          <PortfolioBriefcase />
         </div>
       ),
     },
