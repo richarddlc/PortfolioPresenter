@@ -1,5 +1,6 @@
 import Navigation from "@/components/navigation";
 import LearningStudio from "@/components/learning-studio";
+import PortfolioStats from "@/components/portfolio-stats";
 import AboutSection from "@/components/about-section";
 import ExperienceSection from "@/components/experience-section";
 import SkillsSection from "@/components/skills-section";
@@ -17,12 +18,7 @@ export default function Portfolio() {
       <SideNavDots />
       <Navigation />
       <LearningStudio />
-      <div className="portfolio-proof" aria-label="Experience at a glance">
-        <div><strong>5+</strong><span>Years of experience</span></div>
-        <div><strong>50+</strong><span>eLearning modules</span></div>
-        <div><strong>6</strong><span>Companies served</span></div>
-        <div><strong>500+</strong><span>Users trained</span></div>
-      </div>
+      <PortfolioStats />
       <AboutSection />
       <ExperienceSection />
       <SkillsSection />
