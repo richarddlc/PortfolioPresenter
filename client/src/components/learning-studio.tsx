@@ -19,6 +19,8 @@ export default function LearningStudio() {
   const progressRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const storyRef = useRef<HTMLDivElement>(null);
+  const captionRef = useRef<HTMLDivElement>(null);
+  const toplineRef = useRef<HTMLDivElement>(null);
   const [chapter, setChapter] = useState(0);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -63,13 +65,44 @@ export default function LearningStudio() {
       const bitmap = cache.get(target);
       if (!bitmap || !width || !height || disposed) return;
       const cover = Math.max(width / bitmap.width, height / bitmap.height);
-      const contain = Math.min(width / bitmap.width, height / bitmap.height);
-      const scale = canvas.clientWidth < 768 ? cover + (contain - cover) * intro : cover;
+      const compact = canvas.clientWidth < 768;
+      const pixelRatio = width / canvas.clientWidth;
+      const topline = toplineRef.current;
+      const caption = captionRef.current;
+      // Fit the compact story frame between its label and caption. The hero
+      // still starts as a full background and moves into this space as it fades.
+      const mediaTop = ((topline ? topline.offsetTop + topline.offsetHeight : 100) + 24) * pixelRatio;
+      const mediaBottom = (caption ? caption.offsetTop - 24 : canvas.clientHeight - 280) * pixelRatio;
+      const mediaHeight = Math.max(1, mediaBottom - mediaTop);
+      const contain = Math.min(width / bitmap.width, mediaHeight / bitmap.height);
+      const scale = compact ? cover + (contain - cover) * intro : cover;
       const drawWidth = bitmap.width * scale;
       const drawHeight = bitmap.height * scale;
+      const centerY = compact ? height / 2 + ((mediaTop + mediaBottom) / 2 - height / 2) * intro : height / 2;
       context.fillStyle = "#202123";
       context.fillRect(0, 0, width, height);
-      context.drawImage(bitmap, (width - drawWidth) / 2, (height - drawHeight) / 2, drawWidth, drawHeight);
+      context.drawImage(bitmap, (width - drawWidth) / 2, centerY - drawHeight / 2, drawWidth, drawHeight);
+      if (compact && intro > 0) {
+        // Feather the fitted frame into the surrounding stage, avoiding a
+        // visible letterbox edge beside the caption or at the image sides.
+        const x = (width - drawWidth) / 2, y = centerY - drawHeight / 2;
+        const feather = Math.min(32 * pixelRatio, drawWidth / 4, drawHeight / 4);
+        context.save();
+        context.globalAlpha = intro;
+        for (const [x1, y1, x2, y2, rx, ry, rw, rh] of [
+          [x, y, x + feather, y, x, y, feather, drawHeight],
+          [x + drawWidth, y, x + drawWidth - feather, y, x + drawWidth - feather, y, feather, drawHeight],
+          [x, y, x, y + feather, x, y, drawWidth, feather],
+          [x, y + drawHeight, x, y + drawHeight - feather, x, y + drawHeight - feather, drawWidth, feather],
+        ]) {
+          const fade = context.createLinearGradient(x1, y1, x2, y2);
+          fade.addColorStop(0, "#202123");
+          fade.addColorStop(1, "#20212300");
+          context.fillStyle = fade;
+          context.fillRect(rx, ry, rw, rh);
+        }
+        context.restore();
+      }
       lastDrawn = target;
       lastIntro = intro;
       canvas.dataset.frame = String(target);
@@ -171,6 +204,8 @@ export default function LearningStudio() {
     observer.observe(section);
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(canvas);
+    if (captionRef.current) resizeObserver.observe(captionRef.current);
+    if (toplineRef.current) resizeObserver.observe(toplineRef.current);
     window.addEventListener("scroll", schedule, { passive: true });
     resize();
 
@@ -198,10 +233,10 @@ export default function LearningStudio() {
         <div className="studio-intro-shade" />
         <div ref={heroRef} className="studio-hero-layer"><HeroSection /></div>
         {!isStatic && <div ref={storyRef} className="studio-story-layer" aria-hidden="true">
-        <div className="studio-topline">
+        <div ref={toplineRef} className="studio-topline">
           <p className="studio-eyebrow"><span /> Inside the learning studio</p>
         </div>
-        <div className="studio-caption">
+        <div ref={captionRef} className="studio-caption">
           <p className="studio-chapter">0{isStatic ? 1 : chapter + 1} / 04 — {isStatic ? "The process" : chapters[chapter].label}</p>
           <h2 id="studio-title">{isStatic ? "Bring learning to life." : chapters[chapter].title}</h2>
           <p>{isStatic ? "From storyboards and scenarios to AI-supported practice and meaningful feedback." : chapters[chapter].detail}</p>
