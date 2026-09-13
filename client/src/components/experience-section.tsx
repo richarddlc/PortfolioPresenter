@@ -104,7 +104,7 @@ export default function ExperienceSection() {
   ];
 
   return (
-    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-dark-secondary">
+    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-dark-secondary overflow-x-clip">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}

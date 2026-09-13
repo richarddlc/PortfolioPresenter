@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["client/src/**/*", "shared/**/*"],
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.cache/tsconfig.client.tsbuildinfo"
+  }
+}

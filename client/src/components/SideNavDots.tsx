@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { activePortfolioSection } from "@/lib/active-portfolio-section";
 
 const sections = [
   { id: "home", label: "Home" },
+  { id: "studio", label: "Studio" },
   { id: "about", label: "About" },
   { id: "experience", label: "Experience" },
   { id: "skills", label: "Skills" },
@@ -15,18 +17,7 @@ export default function SideNavDots() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight / 3;
-
-      for (const section of sections) {
-        const element = document.getElementById(section.id);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section.id);
-            break;
-          }
-        }
-      }
+      setActiveSection(activePortfolioSection(sections.map(section => section.id)));
     };
 
     window.addEventListener("scroll", handleScroll);

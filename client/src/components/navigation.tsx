@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
+import { activePortfolioSection } from "@/lib/active-portfolio-section";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,6 +31,7 @@ export default function Navigation() {
 
   const navItems = [
     { id: "home", label: "Home" },
+    { id: "studio", label: "Studio" },
     { id: "about", label: "About" },
     { id: "experience", label: "Experience" },
     { id: "skills", label: "Skills" },
@@ -40,34 +42,10 @@ export default function Navigation() {
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      {
-        rootMargin: "-50% 0% -50% 0%",
-      }
-    );
-
-    navItems.forEach((item) => {
-      const element = document.getElementById(item.id);
-      if (element) {
-        observer.observe(element);
-      }
-    });
-
-    return () => {
-      navItems.forEach((item) => {
-        const element = document.getElementById(item.id);
-        if (element) {
-          observer.unobserve(element);
-        }
-      });
-    };
+    const update = () => setActiveSection(activePortfolioSection(navItems.map(item => item.id)));
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+    return () => window.removeEventListener("scroll", update);
   }, []);
 
   return (
@@ -84,14 +62,14 @@ export default function Navigation() {
         animate={{ width: `${scrollProgress}%` }}
         transition={{ duration: 0.1 }}
       />
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="text-xl font-bold">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center gap-4 lg:gap-8 h-16">
+          <div className="text-2xl font-bold shrink-0" data-nav-brand>
             Richard<span className="text-neon-green">.</span>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-6 ml-auto text-sm whitespace-nowrap" data-nav-links>
             {navItems.map((item, index) => (
               <button
                 key={item.id}
@@ -110,7 +88,7 @@ export default function Navigation() {
          <a
   href="/Resume-Richard-de-la-cruz.pdf"
   download="Resume - Richard de la cruz.pdf"
-  className="hidden md:block bg-neon-green text-black px-4 py-2 rounded-lg font-medium hover:bg-green-400 transition-colors"
+  className="hidden sm:inline-flex items-center justify-center shrink-0 whitespace-nowrap ml-auto lg:ml-0 bg-neon-green text-black px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-400 transition-colors"
 >
   Download CV
 </a>
@@ -118,7 +96,9 @@ export default function Navigation() {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-neon-green"
+            className="lg:hidden text-neon-green shrink-0 ml-auto sm:ml-0 p-2"
+            aria-label={isOpen ? "Close navigation" : "Open navigation"}
+            aria-expanded={isOpen}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -126,13 +106,16 @@ export default function Navigation() {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden bg-dark-secondary/95 backdrop-blur-md border-t border-gray-700">
+          <div className="lg:hidden bg-dark-secondary/95 backdrop-blur-md border-t border-gray-700">
             <div className="px-2 pt-2 pb-3 space-y-1">
               <button
                 onClick={() => scrollToSection("home")}
                 className="block px-3 py-2 text-white hover:text-neon-green transition-colors w-full text-left"
               >
                 Home
+              </button>
+              <button onClick={() => scrollToSection("studio")} className="block px-3 py-2 text-white hover:text-neon-green transition-colors w-full text-left">
+                Studio
               </button>
               <button
                 onClick={() => scrollToSection("about")}
@@ -166,10 +149,11 @@ export default function Navigation() {
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
-                className="mx-3 mt-4 bg-neon-green text-black px-4 py-2 rounded-lg font-medium hover:bg-green-400 transition-colors w-full"
+                className="mt-4 bg-neon-green text-black px-4 py-2 rounded-lg font-medium hover:bg-green-400 transition-colors w-full"
               >
                 Hire me
               </button>
+              <a href="/Resume-Richard-de-la-cruz.pdf" download="Resume - Richard de la cruz.pdf" className="sm:hidden block px-3 py-3 text-neon-green font-medium">Download CV</a>
             </div>
           </div>
         )}
