@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, X, Calendar, User, Briefcase, Target } from "lucide-react";
+import { ArrowUpRight, X, Calendar, User, Briefcase, Target } from "lucide-react";
 import DepthCard from "./depth-card";
+import ProjectPreview from "./project-preview";
 
 interface Project {
   id: string;
@@ -11,6 +12,7 @@ interface Project {
   technologies: string[];
   results: string;
   viewLink: string;
+  previewLink?: string;
   actionLabel?: string;
   resultLabel?: string;
   objectivesLabel?: string;
@@ -30,7 +32,7 @@ interface Project {
   };
 }
 
-function ProjectCard({ project, index, onOpenModal }: { project: Project; index: number; onOpenModal: (project: Project) => void }) {
+function ProjectCard({ project, index, onOpenModal, onPreview }: { project: Project; index: number; onOpenModal: (project: Project) => void; onPreview: (project: Project) => void }) {
   return (
     <motion.div
       key={project.id}
@@ -89,17 +91,16 @@ function ProjectCard({ project, index, onOpenModal }: { project: Project; index:
           >
             Show more
           </motion.button>
-          <motion.a
-            href={project.viewLink}
-            target="_blank"
-            rel="noopener noreferrer"
+          <motion.button
+            onClick={() => onPreview(project)}
+            aria-haspopup="dialog"
             className="border border-neon-green text-neon-green px-4 py-2 rounded-lg font-medium hover:bg-neon-green hover:text-black transition-colors text-sm flex items-center gap-2"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             {project.actionLabel || "View Project"}
-            <ExternalLink size={14} />
-          </motion.a>
+            <ArrowUpRight size={14} />
+          </motion.button>
         </div>
       </div>
       </DepthCard>
@@ -109,13 +110,24 @@ function ProjectCard({ project, index, onOpenModal }: { project: Project; index:
 
 export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [previewProject, setPreviewProject] = useState<Project | null>(null);
+  const isDialogOpen = Boolean(selectedProject || previewProject);
+  const returnFocusRef = useRef<HTMLElement | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!selectedProject) return;
-    const previousFocus = document.activeElement as HTMLElement | null;
+    if (!isDialogOpen) return;
+    const previousFocus = returnFocusRef.current;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      requestAnimationFrame(() => previousFocus?.focus({ preventScroll: true }));
+    };
+  }, [isDialogOpen]);
+
+  useEffect(() => {
+    if (!selectedProject) return;
     dialogRef.current?.focus();
     const keyboard = (event: KeyboardEvent) => {
       if (event.key === "Escape") setSelectedProject(null);
@@ -132,8 +144,7 @@ export default function ProjectsSection() {
     document.addEventListener("keydown", keyboard);
     return () => {
       document.removeEventListener("keydown", keyboard);
-      document.body.style.overflow = previousOverflow;
-      previousFocus?.focus({ preventScroll: true });
+
     };
   }, [selectedProject]);
 
@@ -181,6 +192,7 @@ export default function ProjectsSection() {
     },
     {
       id: "kalina-choking-course",
+      previewLink: "/projects/kalina-choking-response/course-preview.html",
       title: "Choking Response: Custom eLearning",
       subtitle: "Custom development · SCORM 2004",
       description: "A 22-slide course created from scratch for Kalina staff supporting NDIS participants. I developed the content, scripts, interactions and assessment, then built the experience primarily with Claude in HTML, CSS and JavaScript, without a traditional authoring tool.",
@@ -332,7 +344,14 @@ export default function ProjectsSection() {
   ];
 
   const openProjectModal = (project: Project) => {
+    returnFocusRef.current = document.activeElement as HTMLElement | null;
     setSelectedProject(project);
+  };
+
+  const openPreview = (project: Project) => {
+    if (!isDialogOpen) returnFocusRef.current = document.activeElement as HTMLElement | null;
+    setSelectedProject(null);
+    setPreviewProject(project);
   };
 
   const closeModal = () => {
@@ -366,9 +385,25 @@ export default function ProjectsSection() {
               project={project}
               index={index}
               onOpenModal={openProjectModal}
+              onPreview={openPreview}
             />
           ))}
         </div>
+
+        {previewProject && (
+          <ProjectPreview
+            key={previewProject.id}
+            title={previewProject.title}
+            src={previewProject.previewLink || previewProject.viewLink}
+            onClose={() => setPreviewProject(null)}
+            onNavigate={url => {
+              const project = projects.find(item => new URL(item.viewLink, location.origin).href === url);
+              if (!project) return false;
+              setPreviewProject(project);
+              return true;
+            }}
+          />
+        )}
 
         {/* Project Detail Modal */}
         <AnimatePresence>
@@ -484,15 +519,14 @@ export default function ProjectsSection() {
                   </div>
 
                   <div className="pt-4 border-t border-gray-700">
-                    <a
-                      href={selectedProject.viewLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <button
+                      onClick={() => openPreview(selectedProject)}
+                      aria-haspopup="dialog"
                       className="bg-neon-green text-black px-6 py-3 rounded-lg font-medium hover:bg-green-400 transition-colors inline-flex items-center gap-2"
                     >
                       {selectedProject.actionLabel || "View Project"}
-                      <ExternalLink size={16} />
-                    </a>
+                      <ArrowUpRight size={16} />
+                    </button>
                   </div>
                 </div>
               </motion.div>
