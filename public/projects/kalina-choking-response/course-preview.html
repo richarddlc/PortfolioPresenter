@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><!-- Portfolio launch copy: same-origin HTML lets the existing SCORM API search safely fall back to standalone mode. Course content and assets remain unchanged. -->
+<base href="https://richardportfolio10.s3.ap-southeast-2.amazonaws.com/build/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Choking Response - Kalina Health &amp; Community Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="module-header">
+    <div class="header-inner">
+      <div class="header-left">
+        <button id="btn-outline-toggle" class="outline-toggle" type="button" aria-label="Show course outline" aria-expanded="false" onclick="Course.toggleOutline()">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M2 5h16M2 10h16M2 15h16" stroke="#354f77" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <img src="kalina-logo.webp" alt="Kalina Health & Community Services" class="logo">
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-track">
+          <div id="progress-bar" class="progress-fill"></div>
+        </div>
+        <span id="progress-label" class="progress-label">Slide 1 of 22</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Course outline sidebar -->
+  <div id="outline-backdrop" class="outline-backdrop" onclick="Course.toggleOutline()"></div>
+  <nav id="outline-nav" class="outline-nav" aria-label="Course outline">
+    <div class="outline-nav-head">
+      <span>Course Outline</span>
+      <button type="button" class="outline-close" aria-label="Close course outline" onclick="Course.toggleOutline()">&times;</button>
+    </div>
+    <div id="outline-nav-body"></div>
+  </nav>
+
+  <!-- Narration -->
+  <div class="narration-bar" id="narration-bar" hidden>
+    <div class="narration-bar-inner">
+      <span class="narration-label">Narration</span>
+      <audio id="narration-audio" controls preload="none"></audio>
+      <button id="btn-caption-toggle" class="caption-toggle" type="button" aria-pressed="true" title="Toggle captions" onclick="Course.toggleCaptions()">CC</button>
+    </div>
+    <p class="narration-caption" id="narration-caption"></p>
+  </div>
+
+  <!-- Slide Container -->
+  <main class="slide-container">
+
+    <!-- ===================== Title ===================== -->
+    <div class="slide" id="slide-title" data-audio="1-title.mp3">
+      <div class="hero-slide no-photo">
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <canvas class="hero-particles" id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-content">
+          <img class="hero-logo" src="kalina-logo.webp" alt="Kalina Health & Community Services">
+          <p class="hero-eyebrow">A Kalina Learning Module</p>
+          <h1 class="hero-title">Choking Response</h1>
+          <p class="hero-subtitle">Recognise choking, respond correctly using current Australian first aid guidance, and prevent choking during mealtimes.</p>
+          <button class="btn btn-primary" onclick="Course.next()">Start Course</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== Learning Objectives ===================== -->
+    <div class="slide" id="slide-objectives" data-audio="2-learning-objectives.mp3">
+      <div class="slide-inner">
+        <h2 class="slide-heading">Learning Objectives</h2>
+        <p>By the end of this course, you'll be able to:</p>
+        <ul class="objectives-list">
+          <li><svg class="objective-icon" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#eef1f7" stroke="#354f77" stroke-width="1.5"/><path d="M9 14.5 l3.5 3.5 l6.5 -7" fill="none" stroke="#354f77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Recognise the difference between mild and severe choking and respond appropriately</li>
+          <li><svg class="objective-icon" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#eef1f7" stroke="#354f77" stroke-width="1.5"/><path d="M9 14.5 l3.5 3.5 l6.5 -7" fill="none" stroke="#354f77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Correctly perform back blows and chest thrusts, and understand why abdominal thrusts are not used in current Australian first aid guidance</li>
+          <li><svg class="objective-icon" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#eef1f7" stroke="#354f77" stroke-width="1.5"/><path d="M9 14.5 l3.5 3.5 l6.5 -7" fill="none" stroke="#354f77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Identify choking risk factors and follow a person's mealtime management plan to help prevent choking</li>
+          <li><svg class="objective-icon" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#eef1f7" stroke="#354f77" stroke-width="1.5"/><path d="M9 14.5 l3.5 3.5 l6.5 -7" fill="none" stroke="#354f77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Know when to escalate to emergency services and how to report a choking incident</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ===================== Why It Matters ===================== -->
+    <div class="slide" id="slide-why" data-audio="3-why-it-matters.mp3">
+      <div class="slide-inner">
+        <h2 class="slide-heading">Why It Matters</h2>
+
+        <img class="content-photo" src="why-it-matters.jpg" alt="A support worker sits close by, calmly watching an older adult eat a meal together at a home dining table.">
+
+        <p>Choking can become life-threatening within minutes. Many of the people you support face a higher risk of choking than the general population, whether from swallowing difficulties, cognitive impairment, or reduced muscle control. Knowing exactly what to do, and what not to do, genuinely saves lives.</p>
+      </div>
+    </div>
+
+    <!-- ===================== Recognising Choking (hotspot) ===================== -->
+    <div class="slide" id="slide-recognise" data-audio="4-recognising-choking.mp3">
+      <div class="slide-inner">
+        <h2 class="slide-heading">Recognising Choking</h2>
+        <p>Select each part to learn what it tells you.</p>
+
+        <div class="hotspot-diagram image-hotspot-wrap">
+          <img src="choking-signs-diagram.png" alt="A person demonstrating the universal sign of choking, clutching their throat with both hands">
+          <div class="hotspot img-hotspot" style="left:52%; top:34%;" data-label="Effective cough" data-info="A forceful cough that still makes sound means the airway is only partially blocked. Don't interfere, just stay close and encourage them."></div>
+          <div class="hotspot img-hotspot" style="left:61%; top:27%;" data-label="Turning blue (cyanosis)" data-info="A sign of severe oxygen deprivation. Call 000 and continue back blows and chest thrusts without delay."></div>
+          <div class="hotspot img-hotspot" style="left:52%; top:45%;" data-label="Clutching the throat" data-info="The universal sign of choking. Ask &quot;Are you choking?&quot; - if they nod and can't speak, treat it as severe."></div>
+          <div class="hotspot img-hotspot" style="left:52%; top:64%;" data-label="Can't speak, cough, or breathe" data-info="A silent, weak, or absent cough means the airway is completely or severely blocked. This is a medical emergency - act immediately."></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== Mild or Severe? (matching) ===================== -->
+    <div class="slide" id="slide-severity" data-audio="5-mild-or-severe.mp3">
+      <div class="slide-inner">
+        <h2 class="slide-heading">Mild or Severe?</h2>
+        <p>Match each description to whether it's mild or severe choking. Select a chip, then select its matching description.</p>
+
+        <div class="match-wrap">
+          <div class="match-chips">
+            <button type="button" class="match-chip" data-answer="mild">Still coughing forcefully, can speak or make sound</button>
+            <button type="button" class="match-chip" data-answer="severe">Silent or very weak cough, cannot speak or breathe</button>
+            <button type="button" class="match-chip" data-answer="change">Can change from one to the other within moments</button>
+          </div>
+          <div class="match-buckets">
+            <div class="match-bucket" data-key="severe">Severe - a medical emergency, act immediately</div>
+            <div class="match-bucket" data-key="change">Keep watching even after encouraging someone to cough</div>
+            <div class="match-bucket" data-key="mild">Mild - airway only partially blocked, don't interfere</div>
+          </div>
+        </div>
+        <p class="match-hint">A mild obstruction can become severe within moments - never assume it's resolved just because someone was coughing a moment ago.</p>
+      </div>
+    </div>
+
+    <!-- ===================== Responding to Mild Choking (flip cards) ===================== -->
+    <div class="slide" id="slide-mild" data-audio="6-responding-mild.mp3">
+      <div class="slide-inner">
+        <h2 class="slide-heading">Responding to Mild Choking</h2>
+        <p>Select each card to reveal the detail behind it.</p>
+
+        <div class="flip-grid">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-face flip-front">
+                <div class="flip-icon"><svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle class="pulse-ring" cx="22" cy="22" r="16"/><circle cx="22" cy="22" r="15" fill="#eef1f7" stroke="#354f77" stroke-width="1.5"/><path d="M14 24 Q18 16 22 24 Q26 32 30 24" fill="none" stroke="#354f77" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+                <span class="flip-headline">Encourage coughing</span>
+                <span class="flip-hint">Select to reveal →</span>
+              </div>
+              <div class="flip-face flip-back is-positive">
+                An effective cough is the body's best tool for clearing an airway. Encourage the person to keep coughing.
+              </div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-face flip-front">
+                <div class="flip-icon"><svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle class="pulse-ring" cx="22" cy="22" r="16"/><circle cx="22" cy="22" r="15" fill="#eef1f7" stroke="#354f77" stroke-width="1.5"/><circle cx="22" cy="17.5" r="4" fill="none" stroke="#354f77" stroke-width="1.6"/><path d="M14 31 C14 25.5 18 23.5 22 23.5 C26 23.5 30 25.5 30 31" fill="none" stroke="#354f77" stroke-width="1.6"/></svg></div>
+                <span class="flip-headline">Stay calm and close</span>
+                <span class="flip-hint">Select to reveal →</span>
+              </div>
+              <div class="flip-face flip-back">
+                Stay with the person, speak calmly, and don't leave them alone.
+              </div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-face flip-front">
+                <div class="flip-icon"><svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle class="pulse-ring" cx="22" cy="22" r="16"/><circle cx="22" cy="22" r="15" fill="#eef1f7" stroke="#354f77" stroke-width="1.5"/><circle cx="22" cy="22" r="10" fill="none" stroke="#354f77" stroke-width="1.6"/><line x1="15" y1="15" x2="29" y2="29" stroke="#354f77" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+                <span class="flip-headline">Don't interfere</span>
+                <span class="flip-hint">Select to reveal →</span>
+              </div>
+              <div class="flip-face flip-back">
+                Don't slap their back or attempt back blows while they're coughing effectively - this can push the object further in or worsen things.
+              </div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-face flip-front">
+                <div class="flip-icon"><svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle class="pulse-ring" cx="22" cy="22" r="16"/><circle cx="22" cy="22" r="15" fill="#eef1f7" stroke="#354f77" stroke-width="1.5"/><path d="M14 19 L22 14 L30 19 V29 L22 34 L14 29 Z" fill="none" stroke="#354f77" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+                <span class="flip-headline">Watch for it turning severe</span>
+                <span class="flip-hint">Select to reveal →</span>
+              </div>
+              <div class="flip-face flip-back is-positive">
+                If the cough becomes weak, silent, or stops, or they can no longer breathe, switch immediately to the severe choking response.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== Back Blows and Chest Thrusts (tabs) ===================== -->
+    <div class="slide" id="slide-technique" data-audio="7-back-blows-chest-thrusts.mp3">
+      <div class="slide-inner">
+        <h2 class="slide-heading">Back Blows and Chest Thrusts</h2>
+        <p>Select each tab to learn the correct technique, step by step.</p>
+
+        <div class="tabs-wrap" role="tablist">
+          <button type="button" class="tab-btn is-active" data-tab="tab-backblows" role="tab" aria-selected="true">
+            <span>Back Blows</span>
+            <svg class="tab-caret" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 7l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="tab-panel" id="tab-backblows">
+            <img class="content-photo" src="back-blows-demo.jpg" alt="A support worker leans a person well forward, one hand supporting their chest, the other about to deliver a back blow between the shoulder blades.">
+            <p>Bend the person well forward, supporting their chest with one hand. Give up to 5 sharp blows between the shoulder blades with the heel of your other hand. Check after each blow to see if the blockage has cleared.</p>
+          </div>
+
+          <button type="button" class="tab-btn" data-tab="tab-chestthrusts" role="tab" aria-selected="false">
+            <span>Chest Thrusts</span>
+            <svg class="tab-caret" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 7l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="tab-panel" id="tab-chestthrusts" hidden>
+            <img class="content-photo" src="chest-thrusts-demo.jpg" alt="A support worker stands behind a person, one hand supporting their back, the heel of the other hand positioned on the lower half of the sternum ready to deliver a chest thrust.">
+            <p>If back blows don't clear it, give up to 5 chest thrusts: one hand on the person's back for support, the heel of your other hand on the lower half of the sternum. Thrusts should be slower and sharper than CPR compressions. If it still hasn't cleared, keep alternating 5 back blows with 5 chest thrusts until it clears or medical help arrives.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== Why NOT Abdominal Thrusts ===================== -->
+    <div class="slide" id="slide-no-abdominal" data-audio="8-why-not-abdominal.mp3">
+      <div class="slide-inner">
+        <h2 class="slide-heading">Why NOT Abdominal Thrusts</h2>
+
+        <div class="callout warn">
+          <strong>Current Australian guidance does not use the Heimlich manoeuvre</strong>
+          <p>ANZCOR and St John Australia do not recommend abdominal thrusts for a conscious adult or child over one year - they carry a real risk of broken ribs and internal organ damage. If you've learned the Heimlich manoeuvre elsewhere, Kalina's practice follows the current Australian standard instead: back blows and chest thrusts.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== If the Person Becomes Unconscious ===================== -->
+    <div class="slide" id="slide-unconscious" data-audio="9-unconscious.mp3">
+      <div class="slide-inner">
+        <h2 class="slide-heading">If the Person Becomes Unconscious</h2>
+
+        <div class="callout warn">
+          <strong>Call 000 immediately</strong>
+          <p>If the person stops responding, call an ambulance straight away, or direct someone else to.</p>
+        </div>
+        <div class="callout info">
+          <strong>Lower them safely and begin CPR</strong>
+          <p>Lower the person carefully to the ground, open their mouth to check for and remove any visible object, and begin CPR following your basic life support training. Do not perform blind finger sweeps - only remove an object you can clearly see.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== Choking Risk Factors (flip cards) ===================== -->
+    <div class="slide" id="slide-risk" data-audio="10-risk-factors.mp3">
+      <div class="slide-inner">
+        <h2 class="slide-heading">Choking Risk Factors</h2>
+        <p>Select each card to learn about a risk factor you might see in the people you support.</p>
+
+        <div class="flip-grid flip-grid-3">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-face flip-front">
+                <div class="flip-icon"><svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle class="pulse-ring" cx="22" cy="22" r="16"/><circle cx="22" cy="22" r="15" fill="#eef1f7" stroke="#354f77" stroke-width="1.5"/><path d="M22 12 C27 16 27 28 22 32 C17 28 17 16 22 12 Z" fill="none" stroke="#354f77" stroke-width="1.6"/></svg></div>
+                <span class="flip-headline">Dysphagia</span>
+                <span class="flip-hint">Select to reveal →</span>
+              </div>
+              <div class="flip-face flip-back is-positive">
+                Swallowing difficulties significantly increase choking risk. Always follow the person's mealtime management plan exactly.
+              </div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-face flip-front">
+                <div class="flip-icon"><svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle class="pulse-ring" cx="22" cy="22" r="16"/><circle cx="22" cy="22" r="15" fill="#eef1f7" stroke="#354f77" stroke-width="1.5"/><circle cx="22" cy="22" r="10" fill="none" stroke="#354f77" stroke-width="1.6"/><path d="M18 20 q4 -4 8 0" stroke="#354f77" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></div>
+                <span class="flip-headline">Cognitive impairment</span>
+                <span class="flip-hint">Select to reveal →</span>
+              </div>
+              <div class="flip-face flip-back">
+                May affect a person's ability to chew thoroughly, eat at a safe pace, or recognise when something is unsafe to swallow.
+              </div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-face flip-front">
+                <div class="flip-icon"><svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle class="pulse-ring" cx="22" cy="22" r="16"/><circle cx="22" cy="22" r="15" fill="#eef1f7" stroke="#354f77" stroke-width="1.5"/><path d="M22 14 v8 M22 22 l6 6 M22 22 l-6 6" stroke="#354f77" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></div>
+                <span class="flip-headline">Reduced muscle control</span>
+                <span class="flip-hint">Select to reveal →</span>
+              </div>
+              <div class="flip-face flip-back">
+                Conditions affecting the muscles used in chewing and swallowing increase risk, especially without correct positioning.
+              </div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-face flip-front">
+                <div class="flip-icon"><svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle class="pulse-ring" cx="22" cy="22" r="16"/><circle cx="22" cy="22" r="15" fill="#eef1f7" stroke="#354f77" stroke-width="1.5"/><rect x="14" y="18" width="16" height="10" rx="2" fill="none" stroke="#354f77" stroke-width="1.6" transform="rotate(-15 22 23)"/></svg></div>
+                <span class="flip-headline">Poor positioning</span>
+                <span class="flip-hint">Select to reveal →</span>
+              </div>
+              <div class="flip-face flip-back">
+                Slouching, lying down, or eating in a wheelchair without proper support all increase choking risk.
+              </div>
+            </div>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-face flip-front">
+                <div class="flip-icon"><svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle class="pulse-ring" cx="22" cy="22" r="16"/><circle cx="22" cy="22" r="15" fill="#eef1f7" stroke="#354f77" stroke-width="1.5"/><circle cx="22" cy="22" r="10" fill="none" stroke="#354f77" stroke-width="1.6"/><path d="M22 22 L22 16 M22 22 L27 24" stroke="#354f77" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+                <span class="flip-headline">Eating too quickly</span>
+                <span class="flip-hint">Select to reveal →</span>
+              </div>
+              <div class="flip-face flip-back is-positive">
+                Rushed meals, large bites, or not chewing thoroughly are common, preventable risk factors.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== Mealtime Management Plans (tabs) ===================== -->
+    <div class="slide" id="slide-plan" data-audio="11-mealtime-plans.mp3">
+      <div class="slide-inner">
+        <h2 class="slide-heading">Mealtime Management Plans</h2>
+        <p>Select each tab to learn more.</p>
+
+        <div class="tabs-wrap" role="tablist">
+          <button type="button" class="tab-btn is-active" data-tab="tab-whats-in-plan" role="tab" aria-selected="true">
+            <span>What's in the Plan</span>
+            <svg class="tab-caret" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 7l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="tab-panel" id="tab-whats-in-plan">
+            <div class="icon-text-row">
+              <div class="content-icon"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle class="pulse-ring" cx="20" cy="20" r="15"/><circle cx="20" cy="20" r="14" fill="#eef1f7" stroke="#354f77" stroke-width="1.5"/><rect x="13" y="10" width="14" height="20" rx="2" fill="none" stroke="#354f77" stroke-width="1.6"/><line x1="16" y1="16" x2="24" y2="16" stroke="#354f77" stroke-width="1.4" stroke-linecap="round"/><line x1="16" y1="20.5" x2="24" y2="20.5" stroke="#354f77" stroke-width="1.4" stroke-linecap="round"/><line x1="16" y1="25" x2="21" y2="25" stroke="#354f77" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+              <p>A mealtime management plan is prepared by a speech pathologist and sets out exactly how a person with swallowing difficulties should be supported: food and fluid texture, positioning, pace, supervision level, and specific precautions.</p>
+            </div>
+          </div>
+
+          <button type="button" class="tab-btn" data-tab="tab-texture" role="tab" aria-selected="false">
+            <span>Food Texture</span>
+            <svg class="tab-caret" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 7l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="tab-panel" id="tab-texture" hidden>
+            <div class="icon-text-row">
+              <div class="content-icon"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle class="pulse-ring" cx="20" cy="20" r="15"/><circle cx="20" cy="20" r="14" fill="#eef1f7" stroke="#354f77" stroke-width="1.5"/><path d="M13 24 Q20 30 27 24" stroke="#354f77" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M14 18 Q20 14 26 18" stroke="#354f77" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div>
+              <p>Meals may need to be pureed, minced, or softened, and fluids may need to be thickened. Never substitute or guess a texture - follow the plan exactly.</p>
+            </div>
+          </div>
+
+          <button type="button" class="tab-btn" data-tab="tab-positioning" role="tab" aria-selected="false">
+            <span>Positioning &amp; Supervision</span>
+            <svg class="tab-caret" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 7l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="tab-panel" id="tab-positioning" hidden>
+            <div class="icon-text-row">
+              <div class="content-icon"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle class="pulse-ring" cx="20" cy="20" r="15"/><circle cx="20" cy="20" r="14" fill="#eef1f7" stroke="#354f77" stroke-width="1.5"/><circle cx="20" cy="15.5" r="3.5" fill="none" stroke="#354f77" stroke-width="1.6"/><path d="M13 28 C13 23.5 16.5 21.5 20 21.5 C23.5 21.5 27 23.5 27 28" fill="none" stroke="#354f77" stroke-width="1.6"/></svg></div>
+              <p>The plan will specify seating position (usually upright, not reclined), and how closely the person needs to be supervised while eating and for a period afterward.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== Preventing Choking at Mealtimes (accordion) ===================== -->
+    <div class="slide" id="slide-prevention" data-audio="12-prevention.mp3">
+      <div class="slide-inner">
+        <h2 class="slide-heading">Preventing Choking at Mealtimes</h2>
+        <p>Select each section to expand it.</p>
+
+        <div class="accordion-wrap">
+          <div class="accordion-item">
+            <button type="button" class="accordion-header">Sit upright<svg class="accordion-caret" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 7l5 5 5-5" fill="none" stroke="#354f77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="accordion-body" hidden>
+              <div class="icon-text-row">
+                <div class="content-icon"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle class="pulse-ring" cx="20" cy="20" r="15"/><circle cx="20" cy="20" r="14" fill="#eef1f7" stroke="#354f77" stroke-width="1.5"/><circle cx="20" cy="14" r="3.5" fill="none" stroke="#354f77" stroke-width="1.6"/><line x1="20" y1="18" x2="20" y2="28" stroke="#354f77" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+                <p>Always support the person to sit upright during meals and for a period afterward, never lying down or slumped.</p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button type="button" class="accordion-header">Small bites and sips<svg class="accordion-caret" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 7l5 5 5-5" fill="none" stroke="#354f77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="accordion-body" hidden>
+              <div class="icon-text-row">
+                <div class="content-icon"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle class="pulse-ring" cx="20" cy="20" r="15"/><circle cx="20" cy="20" r="14" fill="#eef1f7" stroke="#354f77" stroke-width="1.5"/><circle cx="20" cy="20" r="6" fill="none" stroke="#354f77" stroke-width="1.6"/></svg></div>
+                <p>Encourage small amounts at a time, and allow enough time to chew and swallow before the next bite.</p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button type="button" class="accordion-header">Minimise distractions<svg class="accordion-caret" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 7l5 5 5-5" fill="none" stroke="#354f77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="accordion-body" hidden>
+              <div class="icon-text-row">
+                <div class="content-icon"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle class="pulse-ring" cx="20" cy="20" r="15"/><circle cx="20" cy="20" r="14" fill="#eef1f7" stroke="#354f77" stroke-width="1.5"/><rect x="12" y="14" width="16" height="12" rx="2" fill="none" stroke="#354f77" stroke-width="1.6"/><line x1="12" y1="30" x2="28" y2="30" stroke="#354f77" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+                <p>Reduce talking, TV, or rushing during meals so the person can focus on eating safely.</p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button type="button" class="accordion-header">Supervise as required<svg class="accordion-caret" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 7l5 5 5-5" fill="none" stroke="#354f77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="accordion-body" hidden>
+              <div class="icon-text-row">
+                <div class="content-icon"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle class="pulse-ring" cx="20" cy="20" r="15"/><circle cx="20" cy="20" r="14" fill="#eef1f7" stroke="#354f77" stroke-width="1.5"/><path d="M12 20 C12 14 28 14 28 20 C28 26 12 26 12 20 Z" fill="none" stroke="#354f77" stroke-width="1.6"/><circle cx="20" cy="20" r="3" fill="none" stroke="#354f77" stroke-width="1.6"/></svg></div>
+                <p>Follow the level of supervision set out in the person's plan - some people need to be watched throughout the entire meal.</p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button type="button" class="accordion-header">Follow the modified texture exactly<svg class="accordion-caret" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 7l5 5 5-5" fill="none" stroke="#354f77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="accordion-body" hidden>
+              <div class="icon-text-row">
+                <div class="content-icon"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle class="pulse-ring" cx="20" cy="20" r="15"/><circle cx="20" cy="20" r="14" fill="#eef1f7" stroke="#354f77" stroke-width="1.5"/><path d="M14 21l4 4 8-9" fill="none" stroke="#354f77" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <p>Never give a person food or fluid in a texture other than what's specified in their plan, even if they ask for it.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== Scenario: Supporting a Wheelchair User ===================== -->
+    <div class="slide" id="slide-wheelchair" data-audio="13-scenario-wheelchair.mp3">
+      <div class="slide-inner">
+        <h2 class="slide-heading">Scenario: Supporting a Wheelchair User</h2>
+        <p>A participant who uses a wheelchair suddenly can't speak or cough during a meal. What should you do? Select a card.</p>
+
+        <div class="scenario-group" data-feedback="scenario-wheelchair-feedback">
+          <button type="button" class="scenario-card" data-correct="false">
+            <strong>Lift them out first</strong>
+            <p>Try to lift them out of the wheelchair onto the floor first.</p>
+          </button>
+          <button type="button" class="scenario-card" data-correct="false">
+            <strong>Wait it out</strong>
+            <p>Wait for them to work it out themselves since moving them seems risky.</p>
+          </button>
+          <button type="button" class="scenario-card" data-correct="true">
+            <strong>Lean forward, adapt your support</strong>
+            <p>Lean them forward as far as safely possible in the chair and give back blows, adapting your position and support as needed.</p>
+          </button>
+          <button type="button" class="scenario-card" data-correct="false">
+            <strong>Abdominal thrusts</strong>
+            <p>Give abdominal thrusts since back blows are harder in a seated position.</p>
+          </button>
+        </div>
+        <div id="scenario-wheelchair-feedback" class="callout tip scenario-feedback" hidden>
+          <strong>That's right.</strong> Adapt your position and support to the person's seating rather than moving them unnecessarily or switching techniques - back blows and chest thrusts still apply, just adapted for a seated position.
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== Scenario: Limited Communication ===================== -->
+    <div class="slide" id="slide-communication" data-audio="14-scenario-communication.mp3">
+      <div class="slide-inner">
+        <h2 class="slide-heading">Scenario: Limited Communication</h2>
+        <p>A participant with limited verbal communication suddenly looks distressed during a meal, wide-eyed, and stops moving. They can't tell you what's wrong. What should you do? Select a card.</p>
+
+        <div class="scenario-group" data-feedback="scenario-communication-feedback">
+          <button type="button" class="scenario-card" data-correct="false">
+            <strong>Assume it's nothing</strong>
+            <p>Assume it's nothing since they haven't said anything is wrong.</p>
+          </button>
+          <button type="button" class="scenario-card" data-correct="false">
+            <strong>Wait and see</strong>
+            <p>Wait a few minutes to see if it passes.</p>
+          </button>
+          <button type="button" class="scenario-card" data-correct="true">
+            <strong>Treat it as possible choking</strong>
+            <p>Treat it as possible choking - check their airway and breathing, and respond accordingly.</p>
+          </button>
+          <button type="button" class="scenario-card" data-correct="false">
+            <strong>Only act on the classic sign</strong>
+            <p>Only act if they clutch their throat.</p>
+          </button>
+        </div>
+        <div id="scenario-communication-feedback" class="callout tip scenario-feedback" hidden>
+          <strong>That's right.</strong> Someone with limited verbal communication may not be able to give you the "classic" signs - sudden distress, wide eyes, or stillness during a meal are enough reason to check immediately.
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== Scenario: It Hasn't Cleared ===================== -->
+    <div class="slide" id="slide-not-cleared" data-audio="15-scenario-not-cleared.mp3">
+      <div class="slide-inner">
+        <h2 class="slide-heading">Scenario: It Hasn't Cleared</h2>
+        <p>You've given 5 back blows and 5 chest thrusts, and the obstruction still hasn't cleared. What should you do? Select a card.</p>
+
+        <div class="scenario-group" data-feedback="scenario-not-cleared-feedback">
+          <button type="button" class="scenario-card" data-correct="false">
+            <strong>Switch to abdominal thrusts</strong>
+            <p>Switch to abdominal thrusts since back blows and chest thrusts haven't worked.</p>
+          </button>
+          <button type="button" class="scenario-card" data-correct="false">
+            <strong>Stop and wait</strong>
+            <p>Stop and wait for the ambulance to arrive without doing anything further.</p>
+          </button>
+          <button type="button" class="scenario-card" data-correct="true">
+            <strong>Keep alternating</strong>
+            <p>Keep alternating 5 back blows with 5 chest thrusts until it clears or medical help arrives.</p>
+          </button>
+          <button type="button" class="scenario-card" data-correct="false">
+            <strong>Blind finger sweep</strong>
+            <p>Attempt a blind finger sweep of their mouth.</p>
+          </button>
+        </div>
+        <div id="scenario-not-cleared-feedback" class="callout tip scenario-feedback" hidden>
+          <strong>That's right.</strong> Never switch to abdominal thrusts. Keep alternating 5 back blows with 5 chest thrusts, and call 000 if you haven't already.
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== When to Call an Ambulance ===================== -->
+    <div class="slide" id="slide-ambulance" data-audio="16-ambulance.mp3">
+      <div class="slide-inner">
+        <h2 class="slide-heading">When to Call an Ambulance</h2>
+
+        <div class="callout warn">
+          <strong>Even after the obstruction clears</strong>
+          <p>Call 000 if the person needed back blows or chest thrusts at all, if breathing difficulty continues, if they lose consciousness at any point, or if you have any doubt.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== Reporting After an Incident ===================== -->
+    <div class="slide" id="slide-reporting" data-audio="17-reporting.mp3">
+      <div class="slide-inner">
+        <h2 class="slide-heading">Reporting After an Incident</h2>
+
+        <div class="callout info">
+          <strong>Always report, even if it resolved</strong>
+          <p>Report every choking incident to your supervisor, regardless of whether an ambulance was called. Document what happened, and flag it for review against the person's mealtime management plan in case anything needs updating.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== Best-Practice Standard ===================== -->
+    <div class="slide" id="slide-standard" data-audio="18-best-practice-standard.mp3">
+      <div class="slide-inner">
+        <h2 class="slide-heading">The Best-Practice Standard</h2>
+
+        <div class="callout info">
+          <strong>ANZCOR Guideline 4 - Airway, and St John Australia's Choking First Aid</strong>
+          <p>The primary Australian first aid protocols for recognising and responding to choking, paired with the NDIS Quality and Safeguards Commission's Practice Alert on dysphagia, safe swallowing, and mealtime management.</p>
+          <p><a href="https://www.anzcor.org/home/basic-life-support/guideline-4-airway" target="_blank" rel="noopener">anzcor.org - Guideline 4</a></p>
+        </div>
+
+        <p>Always follow the person's own mealtime management plan first. If your own observations ever seem to conflict with what's covered here, check with your supervisor or RN.</p>
+      </div>
+    </div>
+
+    <!-- ===================== Practice Scenario ===================== -->
+    <div class="slide" id="slide-scenario" data-audio="19-practice-scenario.mp3">
+      <div class="slide-inner">
+        <h2 class="slide-heading">Practice Scenario</h2>
+        <p>A participant at the table suddenly stops talking, stands up, and clutches their throat with both hands. What's the right first step? Select a card.</p>
+
+        <div class="scenario-group" data-feedback="scenario-practice-feedback">
+          <button type="button" class="scenario-card" data-correct="false">
+            <span class="scenario-eyebrow">Option A</span>
+            <p class="scenario-quote">Ask them to sit back down and relax.</p>
+          </button>
+          <button type="button" class="scenario-card" data-correct="false">
+            <span class="scenario-eyebrow">Option B</span>
+            <p class="scenario-quote">Offer them a glass of water.</p>
+          </button>
+          <button type="button" class="scenario-card" data-correct="true">
+            <span class="scenario-eyebrow">Option C</span>
+            <p class="scenario-quote">Ask "Are you choking?" and check if they can speak or cough.</p>
+          </button>
+          <button type="button" class="scenario-card" data-correct="false">
+            <span class="scenario-eyebrow">Option D</span>
+            <p class="scenario-quote">Immediately begin chest thrusts without checking anything first.</p>
+          </button>
+        </div>
+
+        <div id="scenario-practice-feedback" class="callout tip scenario-feedback" hidden>
+          <strong>That's right.</strong> Always check first - confirm it's choking and assess severity before deciding how to respond.
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== Video Demo ===================== -->
+    <div class="slide" id="slide-video" data-audio="20-video-demo.mp3">
+      <div class="slide-inner">
+        <h2 class="slide-heading">Watch: Choking First Aid</h2>
+        <p>Watch this choking first aid demonstration, covering the same steps as this course. You'll need to watch it all the way through before you can continue.</p>
+
+        <div class="video-frame">
+          <video controls preload="none" playsinline>
+            <source src="choking-first-aid-demo.mp4" type="video/mp4">
+            Your browser doesn't support embedded video. You can find this file directly in the course package.
+          </video>
+        </div>
+        <p class="video-source-credit">Source: a free online choking first aid training video, supplied by Kalina Health &amp; Community Services for internal training use.</p>
+      </div>
+    </div>
+
+    <!-- ===================== Final Assessment ===================== -->
+    <div class="slide" id="slide-quiz" data-audio="21-final-assessment.mp3">
+      <div class="slide-inner">
+        <h2 class="slide-heading">Final Assessment</h2>
+        <p>Twelve questions - you need at least 90% correct (no more than one wrong) to complete this course.</p>
+
+        <div class="quiz-block" data-final="true" data-passmark="90">
+
+          <div class="quiz-question" data-correct="1"
+               data-feedback-correct="Correct - encourage them to keep coughing and stay close."
+               data-feedback-incorrect="Not quite. If someone is coughing forcefully and can still make sound, encourage them to keep coughing and stay close.">
+            <p class="quiz-progress"></p>
+            <p class="quiz-q-text">A person is coughing forcefully and can still make sound. What should you do?</p>
+            <div class="quiz-options" role="radiogroup">
+              <button type="button" class="quiz-option" data-index="0">Immediately give back blows</button>
+              <button type="button" class="quiz-option" data-index="1">Encourage them to keep coughing and stay close</button>
+              <button type="button" class="quiz-option" data-index="2">Give abdominal thrusts</button>
+              <button type="button" class="quiz-option" data-index="3">Leave them to manage alone</button>
+            </div>
+            <div class="quiz-feedback" hidden></div>
+            <button type="button" class="btn btn-primary quiz-next" hidden>Next Question</button>
+          </div>
+
+          <div class="quiz-question" data-correct="1"
+               data-feedback-correct="Correct - a silent or very weak cough, unable to speak or breathe, is severe choking."
+               data-feedback-incorrect="Not quite. A silent or very weak cough, unable to speak or breathe, is a sign of severe choking.">
+            <p class="quiz-progress"></p>
+            <p class="quiz-q-text">Which of these is a sign of severe choking?</p>
+            <div class="quiz-options" role="radiogroup">
+              <button type="button" class="quiz-option" data-index="0">A strong, forceful cough</button>
+              <button type="button" class="quiz-option" data-index="1">A silent or very weak cough, unable to speak or breathe</button>
+              <button type="button" class="quiz-option" data-index="2">Mild throat clearing</button>
+              <button type="button" class="quiz-option" data-index="3">Speaking normally</button>
+            </div>
+            <div class="quiz-feedback" hidden></div>
+            <button type="button" class="btn btn-primary quiz-next" hidden>Next Question</button>
+          </div>
+
+          <div class="quiz-question" data-correct="1"
+               data-feedback-correct="Correct - up to 5 back blows, then up to 5 chest thrusts, alternating."
+               data-feedback-incorrect="Not quite. Current Australian guidance is up to 5 back blows, then up to 5 chest thrusts, alternating - not abdominal thrusts.">
+            <p class="quiz-progress"></p>
+            <p class="quiz-q-text">What is the current Australian first aid technique for a conscious adult with severe choking?</p>
+            <div class="quiz-options" role="radiogroup">
+              <button type="button" class="quiz-option" data-index="0">Abdominal thrusts (Heimlich manoeuvre)</button>
+              <button type="button" class="quiz-option" data-index="1">Up to 5 back blows, then up to 5 chest thrusts, alternating</button>
+              <button type="button" class="quiz-option" data-index="2">A blind finger sweep of the mouth</button>
+              <button type="button" class="quiz-option" data-index="3">Immediate CPR without checking first</button>
+            </div>
+            <div class="quiz-feedback" hidden></div>
+            <button type="button" class="btn btn-primary quiz-next" hidden>Next Question</button>
+          </div>
+
+          <div class="quiz-question" data-correct="1"
+               data-feedback-correct="Correct - they carry a real risk of broken ribs and internal organ damage."
+               data-feedback-incorrect="Not quite. Abdominal thrusts carry a real risk of broken ribs and internal organ damage, which is why current Australian guidance doesn't use them.">
+            <p class="quiz-progress"></p>
+            <p class="quiz-q-text">Why does current Australian guidance not recommend abdominal thrusts?</p>
+            <div class="quiz-options" role="radiogroup">
+              <button type="button" class="quiz-option" data-index="0">They take too long to perform</button>
+              <button type="button" class="quiz-option" data-index="1">They carry a real risk of broken ribs and internal organ damage</button>
+              <button type="button" class="quiz-option" data-index="2">They are only for children</button>
+              <button type="button" class="quiz-option" data-index="3">They have no real risks at all</button>
+            </div>
+            <div class="quiz-feedback" hidden></div>
+            <button type="button" class="btn btn-primary quiz-next" hidden>Next Question</button>
+          </div>
+
+          <div class="quiz-question" data-correct="1"
+               data-feedback-correct="Correct - bend them well forward, supporting their chest with one hand."
+               data-feedback-incorrect="Not quite. Bend the person well forward, supporting their chest with one hand, before giving back blows.">
+            <p class="quiz-progress"></p>
+            <p class="quiz-q-text">How should you position a person before giving back blows?</p>
+            <div class="quiz-options" role="radiogroup">
+              <button type="button" class="quiz-option" data-index="0">Lying flat on their back</button>
+              <button type="button" class="quiz-option" data-index="1">Bent well forward, supporting their chest with one hand</button>
+              <button type="button" class="quiz-option" data-index="2">Standing perfectly upright</button>
+              <button type="button" class="quiz-option" data-index="3">Sitting with their head tilted back</button>
+            </div>
+            <div class="quiz-feedback" hidden></div>
+            <button type="button" class="btn btn-primary quiz-next" hidden>Next Question</button>
+          </div>
+
+          <div class="quiz-question" data-correct="1"
+               data-feedback-correct="Correct - chest thrusts are slower and sharper than CPR compressions."
+               data-feedback-incorrect="Not quite. Chest thrusts should be slower and sharper than CPR compressions.">
+            <p class="quiz-progress"></p>
+            <p class="quiz-q-text">How do chest thrusts differ from CPR compressions?</p>
+            <div class="quiz-options" role="radiogroup">
+              <button type="button" class="quiz-option" data-index="0">They are identical</button>
+              <button type="button" class="quiz-option" data-index="1">Chest thrusts are slower and sharper</button>
+              <button type="button" class="quiz-option" data-index="2">Chest thrusts are much faster</button>
+              <button type="button" class="quiz-option" data-index="3">Chest thrusts use two hands stacked, like CPR</button>
+            </div>
+            <div class="quiz-feedback" hidden></div>
+            <button type="button" class="btn btn-primary quiz-next" hidden>Next Question</button>
+          </div>
+
+          <div class="quiz-question" data-correct="1"
+               data-feedback-correct="Correct - call 000, lower them safely, check for a visible object, and begin CPR."
+               data-feedback-incorrect="Not quite. Call 000, lower them safely, check for a visible object, and begin CPR.">
+            <p class="quiz-progress"></p>
+            <p class="quiz-q-text">A choking person becomes unconscious. What should you do?</p>
+            <div class="quiz-options" role="radiogroup">
+              <button type="button" class="quiz-option" data-index="0">Continue standing back blows on the unconscious person</button>
+              <button type="button" class="quiz-option" data-index="1">Call 000, lower them safely, check for a visible object, and begin CPR</button>
+              <button type="button" class="quiz-option" data-index="2">Wait for them to wake up</button>
+              <button type="button" class="quiz-option" data-index="3">Perform a blind finger sweep regardless of visibility</button>
+            </div>
+            <div class="quiz-feedback" hidden></div>
+            <button type="button" class="btn btn-primary quiz-next" hidden>Next Question</button>
+          </div>
+
+          <div class="quiz-question" data-correct="1"
+               data-feedback-correct="Correct - dysphagia (swallowing difficulties) is a real choking risk factor."
+               data-feedback-incorrect="Not quite. Dysphagia (swallowing difficulties) is a choking risk factor you might see in the people you support.">
+            <p class="quiz-progress"></p>
+            <p class="quiz-q-text">Which of the following is a choking risk factor you might see in the people you support?</p>
+            <div class="quiz-options" role="radiogroup">
+              <button type="button" class="quiz-option" data-index="0">Excellent chewing ability</button>
+              <button type="button" class="quiz-option" data-index="1">Dysphagia (swallowing difficulties)</button>
+              <button type="button" class="quiz-option" data-index="2">Eating slowly and carefully</button>
+              <button type="button" class="quiz-option" data-index="3">Sitting upright during meals</button>
+            </div>
+            <div class="quiz-feedback" hidden></div>
+            <button type="button" class="btn btn-primary quiz-next" hidden>Next Question</button>
+          </div>
+
+          <div class="quiz-question" data-correct="1"
+               data-feedback-correct="Correct - it's a speech pathologist's plan for food texture, positioning, pace, and supervision."
+               data-feedback-incorrect="Not quite. A mealtime management plan is a speech pathologist's plan setting out food texture, positioning, pace, and supervision for a person with swallowing difficulties.">
+            <p class="quiz-progress"></p>
+            <p class="quiz-q-text">What is a mealtime management plan?</p>
+            <div class="quiz-options" role="radiogroup">
+              <button type="button" class="quiz-option" data-index="0">A general recipe book</button>
+              <button type="button" class="quiz-option" data-index="1">A speech pathologist's plan setting out food texture, positioning, pace, and supervision for a person with swallowing difficulties</button>
+              <button type="button" class="quiz-option" data-index="2">A shift roster for support workers</button>
+              <button type="button" class="quiz-option" data-index="3">An optional guideline you can adjust as needed</button>
+            </div>
+            <div class="quiz-feedback" hidden></div>
+            <button type="button" class="btn btn-primary quiz-next" hidden>Next Question</button>
+          </div>
+
+          <div class="quiz-question" data-correct="1"
+               data-feedback-correct="Correct - lean them forward as far as safely possible and give back blows, adapting position as needed."
+               data-feedback-incorrect="Not quite. Lean them forward as far as safely possible in the chair and give back blows, adapting your position as needed.">
+            <p class="quiz-progress"></p>
+            <p class="quiz-q-text">A wheelchair user starts choking. What's the correct approach?</p>
+            <div class="quiz-options" role="radiogroup">
+              <button type="button" class="quiz-option" data-index="0">Give abdominal thrusts since back blows are harder seated</button>
+              <button type="button" class="quiz-option" data-index="1">Lean them forward as far as safely possible and give back blows, adapting position as needed</button>
+              <button type="button" class="quiz-option" data-index="2">Wait until they can be moved to the floor</button>
+              <button type="button" class="quiz-option" data-index="3">Do nothing until they stand up themselves</button>
+            </div>
+            <div class="quiz-feedback" hidden></div>
+            <button type="button" class="btn btn-primary quiz-next" hidden>Next Question</button>
+          </div>
+
+          <div class="quiz-question" data-correct="1"
+               data-feedback-correct="Correct - if back blows or chest thrusts were needed, breathing difficulty continues, or you have any doubt."
+               data-feedback-incorrect="Not quite. Call an ambulance if back blows or chest thrusts were needed, breathing difficulty continues, or you have any doubt.">
+            <p class="quiz-progress"></p>
+            <p class="quiz-q-text">Even after an obstruction clears, when should you still call an ambulance?</p>
+            <div class="quiz-options" role="radiogroup">
+              <button type="button" class="quiz-option" data-index="0">Never, if the person seems fine</button>
+              <button type="button" class="quiz-option" data-index="1">If back blows or chest thrusts were needed, breathing difficulty continues, or you have any doubt</button>
+              <button type="button" class="quiz-option" data-index="2">Only if the person asks you to</button>
+              <button type="button" class="quiz-option" data-index="3">Only if they lost consciousness for more than an hour</button>
+            </div>
+            <div class="quiz-feedback" hidden></div>
+            <button type="button" class="btn btn-primary quiz-next" hidden>Next Question</button>
+          </div>
+
+          <div class="quiz-question" data-correct="1"
+               data-feedback-correct="Correct - report it to your supervisor and review it against the mealtime management plan."
+               data-feedback-incorrect="Not quite. Report every choking incident to your supervisor and review it against the person's mealtime management plan, even if it resolved without an ambulance.">
+            <p class="quiz-progress"></p>
+            <p class="quiz-q-text">After a choking incident that resolved without an ambulance, what should you do?</p>
+            <div class="quiz-options" role="radiogroup">
+              <button type="button" class="quiz-option" data-index="0">Nothing, since it resolved on its own</button>
+              <button type="button" class="quiz-option" data-index="1">Report it to your supervisor and review it against the person's mealtime management plan</button>
+              <button type="button" class="quiz-option" data-index="2">Only mention it if asked</button>
+              <button type="button" class="quiz-option" data-index="3">Wait until the next scheduled review to bring it up</button>
+            </div>
+            <div class="quiz-feedback" hidden></div>
+            <button type="button" class="btn btn-primary quiz-next" hidden>Next Question</button>
+          </div>
+
+          <p class="quiz-summary" hidden></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== Completion - Certificate ===================== -->
+    <div class="slide" id="slide-completion" data-audio="22-completion-passed.mp3" data-audio-fail="23-completion-failed.mp3">
+      <div class="slide-inner">
+        <div class="completion-wrap">
+          <div class="completion-burst-wrap">
+            <span class="burst-dot" style="--angle:0deg"></span>
+            <span class="burst-dot" style="--angle:45deg"></span>
+            <span class="burst-dot" style="--angle:90deg"></span>
+            <span class="burst-dot" style="--angle:135deg"></span>
+            <span class="burst-dot" style="--angle:180deg"></span>
+            <span class="burst-dot" style="--angle:225deg"></span>
+            <span class="burst-dot" style="--angle:270deg"></span>
+            <span class="burst-dot" style="--angle:315deg"></span>
+            <div class="completion-check" id="completion-icon">
+              <svg width="70" height="70" viewBox="0 0 70 70" aria-hidden="true">
+                <circle cx="35" cy="35" r="33" fill="#f0f7f2" stroke="#4a7c59" stroke-width="2.5"/>
+                <path d="M20 36l10 10 20-22" fill="none" stroke="#4a7c59" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="completion-cert-card">
+            <img class="logo" src="kalina-logo.webp" alt="Kalina Health &amp; Community Services">
+            <h2 id="completion-heading">Congratulations!</h2>
+            <p id="completion-message">You've completed Choking Response.</p>
+            <p>Thank you for the calm, quick thinking you bring to every person you support at Kalina.</p>
+            <div class="completion-meta" id="completion-meta">This course is now complete. You may close this window.</div>
+            <div class="completion-actions">
+              <button id="btn-try-again" class="btn btn-primary" type="button" onclick="Course.retryAssessment()" hidden>Try Again</button>
+              <button id="btn-restart-course" class="btn btn-secondary" type="button" onclick="Course.restartCourse()">Restart Course</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Navigation -->
+  <footer class="module-nav">
+    <button id="btn-back" class="btn btn-secondary" onclick="Course.prev()">Back</button>
+    <button id="btn-next" class="btn btn-primary" onclick="Course.next()">Continue</button>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="scorm.js"></script>
+  <script src="interactions.js"></script>
+  <script src="course.js"></script>
+  <script>
+    var COURSE_OUTLINE = [
+      {
+        title: 'Choking Response',
+        items: [
+          { id: 'slide-title', label: 'Title' },
+          { id: 'slide-objectives', label: 'Learning Objectives' },
+          { id: 'slide-why', label: 'Why It Matters' },
+          { id: 'slide-recognise', label: 'Recognising Choking' },
+          { id: 'slide-severity', label: 'Mild or Severe?' },
+          { id: 'slide-mild', label: 'Responding to Mild Choking' },
+          { id: 'slide-technique', label: 'Back Blows and Chest Thrusts' },
+          { id: 'slide-no-abdominal', label: 'Why NOT Abdominal Thrusts' },
+          { id: 'slide-unconscious', label: 'If the Person Becomes Unconscious' },
+          { id: 'slide-risk', label: 'Choking Risk Factors' },
+          { id: 'slide-plan', label: 'Mealtime Management Plans' },
+          { id: 'slide-prevention', label: 'Preventing Choking at Mealtimes' },
+          { id: 'slide-wheelchair', label: 'Scenario: Supporting a Wheelchair User' },
+          { id: 'slide-communication', label: 'Scenario: Limited Communication' },
+          { id: 'slide-not-cleared', label: 'Scenario: It Hasn\'t Cleared' },
+          { id: 'slide-ambulance', label: 'When to Call an Ambulance' },
+          { id: 'slide-reporting', label: 'Reporting After an Incident' },
+          { id: 'slide-standard', label: 'Best-Practice Standard' },
+          { id: 'slide-scenario', label: 'Practice Scenario' },
+          { id: 'slide-video', label: 'Video Demo' },
+          { id: 'slide-quiz', label: 'Final Assessment' },
+          { id: 'slide-completion', label: 'Completion & Certificate' }
+        ]
+      }
+    ];
+
+    window.onload = function () {
+      SCORM.init();
+      Interactions.initHeroParticles('hero-canvas');
+      Interactions.initFlipCards(document);
+      Interactions.initScenarioPicks(document);
+      Interactions.initMatching(document);
+      Interactions.initTabs(document);
+      Interactions.initAccordions(document);
+      Interactions.initHotspots(document);
+      Interactions.initVideos(document);
+      Interactions.initQuizzes(document);
+      Course.init(['slide-title', 'slide-objectives', 'slide-why', 'slide-recognise', 'slide-severity', 'slide-mild', 'slide-technique', 'slide-no-abdominal', 'slide-unconscious', 'slide-risk', 'slide-plan', 'slide-prevention', 'slide-wheelchair', 'slide-communication', 'slide-not-cleared', 'slide-ambulance', 'slide-reporting', 'slide-standard', 'slide-scenario', 'slide-video', 'slide-quiz', 'slide-completion'], COURSE_OUTLINE);
+    };
+    window.onunload = function () {
+      SCORM.finish();
+    };
+  </script>
+</body>
+</html>
